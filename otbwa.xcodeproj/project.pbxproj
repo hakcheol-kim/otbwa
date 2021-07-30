@@ -7,23 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A97876B2D23DA8B31ADC544 /* Pods_otbwa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C115972814BDA77BFAF97CC2 /* Pods_otbwa.framework */; };
 		E9A6ABFE26B29E9C00F53885 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6ABFD26B29E9C00F53885 /* AppDelegate.swift */; };
-		E9A6AC0026B29E9C00F53885 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6ABFF26B29E9C00F53885 /* SceneDelegate.swift */; };
 		E9A6AC0226B29E9C00F53885 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6AC0126B29E9C00F53885 /* ViewController.swift */; };
 		E9A6AC0526B29E9C00F53885 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9A6AC0326B29E9C00F53885 /* Main.storyboard */; };
 		E9A6AC0726B29E9E00F53885 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9A6AC0626B29E9E00F53885 /* Assets.xcassets */; };
 		E9A6AC0A26B29E9E00F53885 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9A6AC0826B29E9E00F53885 /* LaunchScreen.storyboard */; };
+		E9A6AC1326B2A25B00F53885 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E9A6AC1226B2A25B00F53885 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		355F69D5610D07AD45BB6243 /* Pods-otbwa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-otbwa.debug.xcconfig"; path = "Target Support Files/Pods-otbwa/Pods-otbwa.debug.xcconfig"; sourceTree = "<group>"; };
+		C115972814BDA77BFAF97CC2 /* Pods_otbwa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_otbwa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6B7B3B3AAF11ED52262875D /* Pods-otbwa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-otbwa.release.xcconfig"; path = "Target Support Files/Pods-otbwa/Pods-otbwa.release.xcconfig"; sourceTree = "<group>"; };
 		E9A6ABFA26B29E9C00F53885 /* otbwa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = otbwa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9A6ABFD26B29E9C00F53885 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E9A6ABFF26B29E9C00F53885 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E9A6AC0126B29E9C00F53885 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E9A6AC0426B29E9C00F53885 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E9A6AC0626B29E9E00F53885 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E9A6AC0926B29E9E00F53885 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E9A6AC0B26B29E9E00F53885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E9A6AC1226B2A25B00F53885 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +35,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A97876B2D23DA8B31ADC544 /* Pods_otbwa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4FF4CDFFB9211631C7D6B1EC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C115972814BDA77BFAF97CC2 /* Pods_otbwa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C8F16B741A2F25172E8DB651 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				355F69D5610D07AD45BB6243 /* Pods-otbwa.debug.xcconfig */,
+				C6B7B3B3AAF11ED52262875D /* Pods-otbwa.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E9A6ABF126B29E9C00F53885 = {
 			isa = PBXGroup;
 			children = (
 				E9A6ABFC26B29E9C00F53885 /* otbwa */,
 				E9A6ABFB26B29E9C00F53885 /* Products */,
+				C8F16B741A2F25172E8DB651 /* Pods */,
+				4FF4CDFFB9211631C7D6B1EC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +81,23 @@
 		E9A6ABFC26B29E9C00F53885 /* otbwa */ = {
 			isa = PBXGroup;
 			children = (
-				E9A6ABFD26B29E9C00F53885 /* AppDelegate.swift */,
-				E9A6ABFF26B29E9C00F53885 /* SceneDelegate.swift */,
-				E9A6AC0126B29E9C00F53885 /* ViewController.swift */,
 				E9A6AC0326B29E9C00F53885 /* Main.storyboard */,
+				E9A6AC1126B29F7300F53885 /* App */,
+				E9A6AC0126B29E9C00F53885 /* ViewController.swift */,
 				E9A6AC0626B29E9E00F53885 /* Assets.xcassets */,
 				E9A6AC0826B29E9E00F53885 /* LaunchScreen.storyboard */,
 				E9A6AC0B26B29E9E00F53885 /* Info.plist */,
+				E9A6AC1226B2A25B00F53885 /* GoogleService-Info.plist */,
 			);
 			path = otbwa;
+			sourceTree = "<group>";
+		};
+		E9A6AC1126B29F7300F53885 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				E9A6ABFD26B29E9C00F53885 /* AppDelegate.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +107,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E9A6AC0E26B29E9E00F53885 /* Build configuration list for PBXNativeTarget "otbwa" */;
 			buildPhases = (
+				0EBDF6901A24824AC6AA686C /* [CP] Check Pods Manifest.lock */,
 				E9A6ABF626B29E9C00F53885 /* Sources */,
 				E9A6ABF726B29E9C00F53885 /* Frameworks */,
 				E9A6ABF826B29E9C00F53885 /* Resources */,
+				74735B9F798C6768A92BF1BD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -125,12 +160,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9A6AC0A26B29E9E00F53885 /* LaunchScreen.storyboard in Resources */,
+				E9A6AC1326B2A25B00F53885 /* GoogleService-Info.plist in Resources */,
 				E9A6AC0726B29E9E00F53885 /* Assets.xcassets in Resources */,
 				E9A6AC0526B29E9C00F53885 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0EBDF6901A24824AC6AA686C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-otbwa-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		74735B9F798C6768A92BF1BD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-otbwa/Pods-otbwa-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-otbwa/Pods-otbwa-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-otbwa/Pods-otbwa-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E9A6ABF626B29E9C00F53885 /* Sources */ = {
@@ -139,7 +217,6 @@
 			files = (
 				E9A6AC0226B29E9C00F53885 /* ViewController.swift in Sources */,
 				E9A6ABFE26B29E9C00F53885 /* AppDelegate.swift in Sources */,
-				E9A6AC0026B29E9C00F53885 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +293,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -271,7 +348,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -283,6 +360,7 @@
 		};
 		E9A6AC0F26B29E9E00F53885 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 355F69D5610D07AD45BB6243 /* Pods-otbwa.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -293,7 +371,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.otbwa.app.otbwa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.otbwa.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -302,6 +380,7 @@
 		};
 		E9A6AC1026B29E9E00F53885 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C6B7B3B3AAF11ED52262875D /* Pods-otbwa.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -312,7 +391,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.otbwa.app.otbwa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.otbwa.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
