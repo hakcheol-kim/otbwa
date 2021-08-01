@@ -114,6 +114,7 @@ PODS:
   - PanModal (1.2.7)
   - PromisesObjC (2.0.0)
   - SwiftyJSON (4.3.0)
+  - Toast-Swift (5.0.1)
   - UIImageViewAlignedSwift (0.8.1)
 
 DEPENDENCIES:
@@ -125,6 +126,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - PanModal
   - SwiftyJSON (~> 4.0)
+  - Toast-Swift (~> 5.0.1)
   - UIImageViewAlignedSwift
 
 SPEC REPOS:
@@ -147,6 +149,7 @@ SPEC REPOS:
     - PanModal
     - PromisesObjC
     - SwiftyJSON
+    - Toast-Swift
     - UIImageViewAlignedSwift
 
 SPEC CHECKSUMS:
@@ -168,8 +171,9 @@ SPEC CHECKSUMS:
   PanModal: 3e16ead1a907fb06f4df3f13492fd00149fa4974
   PromisesObjC: 68159ce6952d93e17b2dfe273b8c40907db5ba58
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
   UIImageViewAlignedSwift: e4f83530f90860aa31b6840bf570034a681bd2c4
 
-PODFILE CHECKSUM: ed1bb5f319f264a964753990b2d5f4d11a1f2a8d
+PODFILE CHECKSUM: af07ce4d2f5d4d530f8642fd1085e4fb634d9489
 
 COCOAPODS: 1.10.1

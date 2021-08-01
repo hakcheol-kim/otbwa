@@ -17,5 +17,6 @@ target 'otbwa' do
   
   pod 'UIImageViewAlignedSwift'
   pod 'PanModal'
+  pod 'Toast-Swift', '~> 5.0.1'
 
 end
