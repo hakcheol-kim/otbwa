@@ -50,6 +50,26 @@ class BaseViewController: UIViewController {
     @objc func actionKeybardDown() {
         self.view.endEditing(true)
     }
+    func showToast(_ message:String?) {
+        guard let message = message, message.isEmpty == false else {
+            return
+        }
+//        var findView:UIView = self.view
+//        for subView in self.view.subviews {
+//            if subView is UIScrollView {
+//                findView = subView
+//                break
+//            }
+//        }
+        
+        if UIApplication.shared.isKeyboardPresented {
+            self.view.makeToast(message, position:.center)
+        }
+        else {
+            self.view.makeToast(message)
+        }
+    }
+    
     func findBottomConstraint(_ view: UIView) -> NSLayoutConstraint? {
         var findConst:NSLayoutConstraint? = nil
         for const in view.constraints {
@@ -70,8 +90,6 @@ class BaseViewController: UIViewController {
             let duration = CGFloat((notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.floatValue ?? 0.0)
             
             let bottomConstraint = self.findBottomConstraint(self.view)
-            
-            
             guard let bottomCon = bottomConstraint, let conId = bottomCon.identifier else {
                 return
             }

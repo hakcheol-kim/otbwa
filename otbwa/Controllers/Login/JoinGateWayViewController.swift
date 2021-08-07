@@ -14,6 +14,7 @@ class JoinGateWayViewController: BaseViewController {
     @IBOutlet weak var safetyView: UIView!
     @IBOutlet weak var btnNext: CButton!
     
+    var user:UserInfo = UserInfo()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,6 @@ class JoinGateWayViewController: BaseViewController {
         topStepView.layer.cornerRadius = 20
         topStepView.layer.maskedCorners = CACornerMask(TL: false, TR: false, BL: true, BR: true)
         safetyView.isHidden = !isEdgePhone
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -33,10 +33,12 @@ class JoinGateWayViewController: BaseViewController {
         if sender == btnWholesale {
             sender.isSelected = true
             btnRetail.isSelected = false
+            user.kind = "wsale"
         }
         else if sender == btnRetail {
             sender.isSelected = true
             btnWholesale.isSelected = false
+            user.kind = "retail"
         }
         else if sender == btnNext {
             if btnWholesale.isSelected == false && btnRetail.isSelected == false  {
@@ -45,12 +47,12 @@ class JoinGateWayViewController: BaseViewController {
             }
             if btnWholesale.isSelected {
                 let vc = UserTypeSelectionViewController.instantiateFromStoryboard(.login)!
-                vc.joinType = .wholesale
+                vc.user = user
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             else {
                 let vc = UserTypeSelectionViewController.instantiateFromStoryboard(.login)!
-                vc.joinType = .retail
+                vc.user = user
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }

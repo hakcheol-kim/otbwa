@@ -18,7 +18,7 @@ class StaffStoreInfoViewController: BaseViewController {
     @IBOutlet weak var tfBusinessNum: CTextField!
     
     var selItem: JSON?
-    
+    var user: UserInfo!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -31,36 +31,41 @@ class StaffStoreInfoViewController: BaseViewController {
         
         btnNext.setBackgroundImage(UIImage.color(from: RGB(203, 203, 203)), for: .disabled)
         btnNext.setBackgroundImage(UIImage.color(from: UIColor(named: "AccentColor")!), for: .normal)
-        btnNext.isEnabled = false
+//        btnNext.isEnabled = false
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnStoreName {
-            let vc = StoreSelectionViewController.initWithType("1") { item in
+            let vc = StoreSelectionViewController.initWithType("name", user.kind!) { item in
                 guard let item = item else {
                     return
                 }
                 self.selItem = item
+                self.tfStoreName.text = self.selItem!["comp_nm"].stringValue
+                self.tfBusinessNum.text = ""
                 self.btnNext.isEnabled = true
             }
             self.present(vc, animated: true, completion: nil)
         }
         else if sender == btnBusinessNum {
-            let vc = StoreSelectionViewController.initWithType("2") { item in
+            let vc = StoreSelectionViewController.initWithType("num", user.kind!) { item in
                 guard let item = item else {
                     return
                 }
                 self.selItem = item
+                self.tfStoreName.text = ""
+                self.tfBusinessNum.text = self.selItem!["comp_nm"].stringValue
                 self.btnNext.isEnabled = true
             }
             self.present(vc, animated: true, completion: nil)
         }
         else if sender == btnNext {
-            
-            
+            if let selItem = selItem {
+                user.comp_nm = selItem["comp_nm"].stringValue
+                user.comp_num = selItem["comp_num"].stringValue
+            }
             let vc = StaffInfoViewController.instantiateFromStoryboard(.login)!
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
 }

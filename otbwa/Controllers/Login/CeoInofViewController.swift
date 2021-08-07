@@ -1,5 +1,5 @@
 //
-//  StaffInfoViewController.swift
+//  CeoInofViewController.swift
 //  otbwa
 //
 //  Created by 김학철 on 2021/07/30.
@@ -7,26 +7,21 @@
 
 import UIKit
 
-class StaffInfoViewController: BaseViewController {
+class CeoInofViewController: BaseViewController {
     @IBOutlet weak var topStepView: UIView!
     @IBOutlet weak var safetyView: UIView!
     @IBOutlet weak var btnNext: CButton!
     @IBOutlet weak var btnIdCheck: CButton!
     @IBOutlet weak var btnSms: CButton!
     @IBOutlet weak var btnAuth: CButton!
-    
     @IBOutlet weak var tfId: CTextField!
     @IBOutlet weak var tfPw: CTextField!
     @IBOutlet weak var tfPwComfirm: CTextField!
-    @IBOutlet weak var tfName: CTextField!
+    @IBOutlet weak var tfStoreName: CTextField!
+    @IBOutlet weak var tfCeoName: CTextField!
     @IBOutlet weak var tfPhoneNum: CTextField!
     @IBOutlet weak var tfAuth: CTextField!
-    
-    @IBOutlet weak var btnTermTotal: UIButton!
-    @IBOutlet weak var btnTermUsing: UIButton!
-    @IBOutlet weak var btnTermPrivacy: UIButton!
-    @IBOutlet weak var btnTermSms: UIButton!
-
+    @IBOutlet weak var svStoreName: UIStackView!
     
     let toolBar = CToolbar.init(barItems: [.up, .down, .keyboardDown])
     var isCheckedId:Bool = false {
@@ -43,7 +38,6 @@ class StaffInfoViewController: BaseViewController {
             }
         }
     }
-    
     var arrFoucsTf: [CTextField]!
     var tfFocus: CTextField!
     var user: UserInfo!
@@ -51,26 +45,33 @@ class StaffInfoViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
-        CNavigationBar.drawTitle(self, "도매 회원가입", nil)
+        if user.kind == "wsale" {
+            arrFoucsTf = [tfId, tfPw, tfPwComfirm, tfStoreName, tfCeoName, tfPhoneNum, tfAuth]
+            CNavigationBar.drawTitle(self, "도매 회원가입", nil)
+        }
+        else {
+            arrFoucsTf = [tfId, tfPw, tfPwComfirm, tfCeoName, tfPhoneNum, tfAuth]
+            CNavigationBar.drawTitle(self, "소매 회원가입", nil)
+            svStoreName.isHidden = true
+        }
         topStepView.layer.cornerRadius = 20
         topStepView.layer.maskedCorners = CACornerMask(TL: false, TR: false, BL: true, BR: true)
         
         tfId.inputAccessoryView = toolBar
         tfPw.inputAccessoryView = toolBar
         tfPwComfirm.inputAccessoryView = toolBar
-        tfName.inputAccessoryView = toolBar
+        tfStoreName.inputAccessoryView = toolBar
+        tfCeoName.inputAccessoryView = toolBar
         tfPhoneNum.inputAccessoryView = toolBar
         tfAuth.inputAccessoryView = toolBar
         
         toolBar.addTarget(self, selctor: #selector(onClickedBtnActions(_:)))
         self.addTapGestureKeyBoardDown()
         safetyView.isHidden = !isEdgePhone
-        arrFoucsTf = [tfId, tfPw, tfPwComfirm, tfName, tfPhoneNum, tfAuth]
+        
         
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.addKeyboardNotification()
@@ -107,46 +108,6 @@ class StaffInfoViewController: BaseViewController {
                     let newFocusObj = arrFoucsTf[index+1]
                     if newFocusObj.becomeFirstResponder() {}
                 }
-            }
-        }
-        else if sender == btnTermTotal {
-            sender.isSelected = !sender.isSelected
-            if sender.isSelected {
-                btnTermUsing.isSelected = true
-                btnTermPrivacy.isSelected = true
-                btnTermSms.isSelected = true
-            }
-            else {
-                btnTermUsing.isSelected = false
-                btnTermPrivacy.isSelected = false
-                btnTermSms.isSelected = false
-            }
-        }
-        else if sender == btnTermUsing {
-            sender.isSelected = !sender.isSelected
-            if sender.isSelected  && btnTermPrivacy.isSelected && btnTermSms.isSelected {
-                btnTermTotal.isSelected = true
-            }
-            else {
-                btnTermTotal.isSelected = false
-            }
-        }
-        else if sender == btnTermPrivacy {
-            sender.isSelected = !sender.isSelected
-            if sender.isSelected  && btnTermUsing.isSelected && btnTermSms.isSelected {
-                btnTermTotal.isSelected = true
-            }
-            else {
-                btnTermTotal.isSelected = false
-            }
-        }
-        else if sender == btnTermSms {
-            sender.isSelected = !sender.isSelected
-            if sender.isSelected  && btnTermUsing.isSelected && btnTermPrivacy.isSelected {
-                btnTermTotal.isSelected = true
-            }
-            else {
-                btnTermTotal.isSelected = false
             }
         }
         else if sender == btnIdCheck {
@@ -246,8 +207,17 @@ class StaffInfoViewController: BaseViewController {
                 self.showToast("비밀번호가 일치하지 않습니다.")
                 return
             }
-            guard let name = tfName.text, name.isEmpty == false else {
-                self.showToast("이름을 입력해주세요")
+            
+            if user.kind == "wsale" {
+                guard let storeName = tfStoreName.text, storeName.isEmpty == false else {
+                    self.showToast("상호명을 입력해주세요")
+                    return
+                }
+                user.comp_nm = storeName
+            }
+            
+            guard let ceoName = tfCeoName.text, ceoName.isEmpty == false else {
+                self.showToast("대표자 이름을 입력해주세요")
                 return
             }
             guard let phone = tfPhoneNum.text, phone.isEmpty == false else {
@@ -261,44 +231,24 @@ class StaffInfoViewController: BaseViewController {
             
             user.id = id
             user.pw = pw
-            user.name = name
+            user.name = ceoName
             user.phone = phone
-            user.termUse = "Y"
-            user.infoUse = "Y"
-            user.smsUse = btnTermSms.isSelected ? "Y" : "N"
             
-            guard let uuid = UIDevice.current.identifierForVendor?.uuidString else {
-                self.showToast("uuid 오류")
-                return
+            if user.kind == "retail" && user.type == "ceo" {
+                let vc = ProductStyleSelectionViewController.instantiateFromStoryboard(.login)!
+                vc.user = user
+                self.navigationController?.pushViewController(vc, animated: true)
             }
-            
-            user.unique = uuid.lowercased()
-            user.uuid = uuid
-            
-            let param = user.map()
-            ApiManager.ins.requestSignup(param) { res in
-                let success = res["success"].boolValue
-                if success {
-                    KeychainItem.saveUserInKeychain(uuid.lowercased())
-                    UserDefaults.standard.setValue(uuid, forKey: Dfskey.uniqueId)
-                    UserDefaults.standard.setValue(self.user.id!, forKey: Dfskey.userId)
-                    UserDefaults.standard.setValue(self.user.pw!, forKey: Dfskey.userPw)
-                    UserDefaults.standard.synchronize()
-                    
-                    let vc = JoinCompletionViewController.instantiateFromStoryboard(.login)!
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-                else {
-                    self.showErrorToast(res)
-                }
-            } fail: { error in
-                self.showErrorToast(error)
+            else {
+                let vc = StoreInofViewController.instantiateFromStoryboard(.login)!
+                vc.user = user
+                self.navigationController?.pushViewController(vc, animated: true)
             }
         }
     }
 }
 
-extension StaffInfoViewController: UITextFieldDelegate {
+extension CeoInofViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if let textField = textField as? CTextField {
             tfFocus = textField
@@ -320,4 +270,19 @@ extension StaffInfoViewController: UITextFieldDelegate {
         return true
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text,
+              let textRange = Range(range, in: text) else {
+            return false
+        }
+        let _ = text.replacingCharacters(in: textRange, with: string)
+        if textField == tfId {
+            self.isCheckedId = false
+        }
+        else if textField == tfPhoneNum || textField == tfAuth {
+            isCheckAuth = false
+        }
+        
+        return true
+    }
 }

@@ -39,7 +39,12 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
-        
+        if sender == btnJoin {
+            let vc = JoinGateWayViewController.instantiateFromStoryboard(.login)!
+//            let vc = StoreInofViewController.instantiateFromStoryboard(.login)!
+//            let vc = ProductStyleSelectionViewController.instantiateFromStoryboard(.login)!
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
 }

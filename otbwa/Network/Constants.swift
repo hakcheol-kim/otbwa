@@ -8,8 +8,7 @@
 import Foundation
 import UIKit
 
-let baseUrl = "http://211.233.15.31:8080"
-let rootPath = "api"
+let baseUrl = "https://www.otbwa.com:5021"
 
 public func RGB(_ r: CGFloat, _ g: CGFloat, _ b: CGFloat) -> UIColor {
     UIColor(red: r / 255.0, green: g / 255.0, blue: b / 255.0, alpha: 1.0)
@@ -25,9 +24,13 @@ let kPushSetting = "PushSetting"
 let PUSH_DATA = "PUSH_DATA"
 let AUTH_TIMEOUT_MIN: Double = 3
 
-struct DfsKey {
-    
+struct Dfskey {
+    static let userId = "userId"
+    static let userPw = "userPw"
+    static let uniqueId = "uniqueId"
+    static let uuid = "uuid"
 }
+
 enum Storyboard: String {
     case login = "Login"
     case main = "Main"

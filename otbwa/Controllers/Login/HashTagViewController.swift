@@ -15,27 +15,9 @@ class HashTagViewController: BaseViewController {
     @IBOutlet weak var btnNext: CButton!
     @IBOutlet weak var safetyView: UIView!
     
-    var completion:((_ items:[String]) ->Void)?
-    let listData:[JSON] = [["sec_name": "여성의류",
-                            "sec_list":[["group":"아우터", "group_list":["가다건", "점퍼", "코트", "자켓", "조끼"]],
-                                        ["group":"상의", "group_list":["티셔츠", "맨투맨", "후드", "니트", "블라우스", "셔츠", "뷔스티에"]],
-                                        ["group":"바지", "group_list":["긴바지", "7부바지", "반바지"]],
-                                        ["group":"스커트", "group_list":["롱스커트", "미디스커트", "미니스커트"]],
-                                        ["group":"원피스", "group_list":["드레스", "점프수트"]]]],
-                           ["sec_name": "남성의류",
-                            "sec_list":[["group":"아우터", "group_list":["가다건", "점퍼", "자켓", "조끼"]],
-                                        ["group":"상의", "group_list":["티셔츠", "맨투맨", "후드", "니트", "셔츠"]]]],
-                           ["sec_name": "여성 신발",
-                            "sec_list":[["group":"구두", "group_list":["정장구두", "힐"]],
-                                        ["group":"운동화", "group_list":["런닝화", "캐쥬얼"]],
-                                        ["group":"슬리퍼", "group_list":["슬피퍼", "샌들"]]]],
-                           ["sec_name": "남성 신발",
-                            "sec_list":[["group":"구두", "group_list":["정장구두", "힐"]],
-                                        ["group":"운동화", "group_list":["런닝화", "캐쥬얼"]],
-                                        ["group":"슬리퍼", "group_list":["슬피퍼", "샌들"]]]]
-    ]
-    
-    static func initWithCompletion(completion:((_ items:[String]) ->Void)?) ->HashTagViewController {
+    var completion:((_ items:Any) ->Void)?
+   
+    static func initWithCompletion(completion:((_ items:Any) ->Void)?) ->HashTagViewController {
         let vc = HashTagViewController.instantiateFromStoryboard(.login)!
         vc.completion = completion
         return vc
@@ -47,8 +29,11 @@ class HashTagViewController: BaseViewController {
         btnNext.setBackgroundImage(UIImage.color(from: UIColor(named: "AccentColor")!), for: .normal)
         
         btnNext.isEnabled = false
-        self.decorationUi()
         safetyView.isHidden = !isEdgePhone
+        
+        
+        ShareData.ins.removeObject(forKey: "hashtags")
+        self.requestFilter()
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -59,17 +44,39 @@ class HashTagViewController: BaseViewController {
         super.viewWillDisappear(animated)
         
     }
-    
+    func requestFilter() {
+        ApiManager.ins.requestFilterList { res in
+            let success = res["success"].boolValue
+            let data = res["data"]
+            if success && data.isEmpty == false {
+                ShareData.ins.setObject(data, forKey: "filters")
+                self.decorationUi()
+            }
+            else {
+                self.showErrorToast(res)
+            }
+        } fail: { error in
+            self.showErrorToast(error)
+        }
+    }
     func decorationUi() {
-        for item in  listData {
+        guard let data = ShareData.ins.objectForKey("filters") as? JSON else {
+            return
+        }
+        let category = data["category"].arrayValue
+        let level1 = category.filter { (item) ->Bool in
+            return item["level"].stringValue == "1"
+        }
+        
+        for item in  level1 {
             let tagView = Bundle.main.loadNibNamed("HashTagSectionView", owner: nil, options: nil)?.first as! HashTagSectionView
             svContent.addArrangedSubview(tagView)
             tagView.configurationData(item) {
-                if ShareData.ins.hashTags.count == 0 {
-                    self.btnNext.isEnabled = false
+                if let tags = ShareData.ins.objectForKey("hashtags") as? [JSON], tags.isEmpty == false {
+                    self.btnNext.isEnabled = true
                 }
                 else {
-                    self.btnNext.isEnabled = true
+                    self.btnNext.isEnabled = false
                 }
             }
             tagView.layer.cornerRadius = 6
@@ -80,6 +87,15 @@ class HashTagViewController: BaseViewController {
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
-        
+        if sender == btnCose {
+            self.dismiss(animated: true, completion: nil)
+        }
+        else if sender == btnNext {
+            guard let tags = ShareData.ins.objectForKey("hashtags") as? [JSON] else {
+                return
+            }
+            self.completion?(tags)
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }

@@ -50,11 +50,11 @@ extension UIViewController {
     
     func showErrorToast(_ data: Any?) {
         if let data = data as? JSON {
+
             var msg:String = ""
-            let message = data["errorMessage"].stringValue;
-            let code = data["errorCode"].stringValue
+            let message = data["msg"].stringValue;
             if message.isEmpty == false {
-                msg.append("\(message)\nerror code : \(code)")
+                msg.append("\(message)")
             }
             print("==== error: \(data)")
             if msg.isEmpty == true {
@@ -68,17 +68,28 @@ extension UIViewController {
 //                    break
 //                }
 //            }
-            appDelegate.window?.makeToast(msg)
+            if UIApplication.shared.isKeyboardPresented {
+                self.view.makeToast(msg, position:.center)
+            }
+            else {
+                self.view.makeToast(msg)
+            }
         }
         else if let error = data as? Error, let msg = error.localizedDescription as String? {
-            var findView:UIView = self.view
-            for subview in self.view.subviews {
-                if let subview = subview as? UIScrollView {
-                    findView = subview
-                    break
-                }
+//            var findView:UIView = self.view
+//            for subview in self.view.subviews {
+//                if let subview = subview as? UIScrollView {
+//                    findView = subview
+//                    break
+//                }
+//            }
+//            findView.makeToast(msg)
+            if UIApplication.shared.isKeyboardPresented {
+                self.view.makeToast(msg, position:.center)
             }
-            findView.makeToast(msg)
+            else {
+                self.view.makeToast(msg)
+            }
         }
     }
     
@@ -445,6 +456,10 @@ extension String {
             return nil
         }
     }
+    func toClipboard() {
+        let pasteboard = UIPasteboard.general
+        pasteboard.string = self
+    }
 }
 
 extension NSAttributedString {
@@ -566,3 +581,14 @@ extension NSNumber {
     }
    
 }
+extension UIApplication {
+    var isKeyboardPresented: Bool {
+          if let keyboardWindowClass = NSClassFromString("UIRemoteKeyboardWindow"),
+              self.windows.contains(where: { $0.isKind(of: keyboardWindowClass) }) {
+              return true
+          } else {
+              return false
+          }
+      }
+}
+

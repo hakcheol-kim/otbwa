@@ -39,5 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = mainTabBarCtrl
         window?.makeKeyAndVisible()
     }
+    public func startIndicator() {
+        
+    }
+    public func stopIndicator() {
+        
+    }
 }
-

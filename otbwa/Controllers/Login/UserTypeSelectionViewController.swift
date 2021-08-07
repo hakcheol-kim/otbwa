@@ -16,22 +16,21 @@ class UserTypeSelectionViewController: BaseViewController {
     @IBOutlet weak var btnEmp: SelectedButton!
     @IBOutlet weak var safetyView: UIView!
     @IBOutlet weak var btnNext: CButton!
-    var joinType: JoinType = .wholesale
-    
+    var user: UserInfo!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
-        if joinType == .wholesale {
+        if user.kind == "wsale" {
             CNavigationBar.drawTitle(self, "도매 회원가입", nil)
             svJobType.isHidden = true
         }
         else {
             CNavigationBar.drawTitle(self, "소매 회원가입", nil)
         }
+        
         topStepView.layer.cornerRadius = 20
         topStepView.layer.maskedCorners = CACornerMask(TL: false, TR: false, BL: true, BR: true)
-        
         safetyView.isHidden = !isEdgePhone
         
     }
@@ -43,21 +42,25 @@ class UserTypeSelectionViewController: BaseViewController {
         if sender == btnCeo {
             sender.isSelected = true
             btnEmp.isSelected = false
+            user.type = "ceo"
         }
         else if sender == btnEmp {
             sender.isSelected = true
             btnCeo.isSelected = false
-        }
-        else if sender == btnOffline {
-            sender.isSelected = true
-            btnOnline.isSelected = false
+            user.type = "employee"
         }
         else if sender == btnOnline {
             sender.isSelected = true
             btnOffline.isSelected = false
+            user.onlineYN = "Y"
+        }
+        else if sender == btnOffline {
+            sender.isSelected = true
+            btnOnline.isSelected = false
+            user.onlineYN = "N"
         }
         else if sender == btnNext {
-            if joinType == .retail && btnOnline.isSelected == false && btnOffline.isSelected == false {
+            if user.kind == "retail" && btnOnline.isSelected == false && btnOffline.isSelected == false {
                 self.view.makeToast("업종을 선택해주세요.")
                 return
             }
@@ -68,11 +71,20 @@ class UserTypeSelectionViewController: BaseViewController {
             }
             
             if btnCeo.isSelected == true {
-                let vc = WholesaleCeoCompanyInfoViewController.instantiateFromStoryboard(.login)!
-                self.navigationController?.pushViewController(vc, animated: true)
+                if user.kind == "wsale" {
+                    let vc = StoreLocationInfoViewController.instantiateFromStoryboard(.login)!
+                    vc.user = user
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                else {
+                    let vc = CeoInofViewController.instantiateFromStoryboard(.login)!
+                    vc.user = user
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
             }
             else {
                 let vc = StaffStoreInfoViewController.instantiateFromStoryboard(.login)!
+                vc.user = user
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
