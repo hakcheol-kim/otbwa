@@ -111,7 +111,50 @@ extension UIViewController {
         childViewController.view.removeFromSuperview()
         childViewController.endAppearanceTransition()
     }
-
+    func transitionPresent(vc: UIViewController, duration: CFTimeInterval, type: CATransitionSubtype) {
+        let customVcTransition = vc
+        let transition = CATransition()
+        transition.duration = duration
+        transition.type = CATransitionType.moveIn
+        transition.subtype = type
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        view.window!.layer.add(transition, forKey: kCATransition)
+        present(customVcTransition, animated: false, completion: nil)
+    }
+    func transitionDismiss(duration: CFTimeInterval, type:CATransitionSubtype, _ completion:(() -> Void)? = nil) {
+        let transition = CATransition()
+        transition.duration = duration
+        transition.type = CATransitionType.reveal
+        transition.subtype = type
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        view.window!.layer.add(transition, forKey: kCATransition)
+        dismiss(animated: false, completion: completion)
+    }
+    func transitionPush(vc: UIViewController, duration: CFTimeInterval, type: CATransitionSubtype) {
+        guard let naviVc = self.navigationController else {
+            return
+        }
+        let transition = CATransition()
+        transition.duration = duration
+        transition.type = CATransitionType.moveIn
+        transition.subtype = type
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        naviVc.view.layer.add(transition, forKey: kCATransition)
+        naviVc.pushViewController(vc, animated: false)
+    }
+    func transitionPop(duration: CFTimeInterval, type:CATransitionSubtype) {
+        guard let naviVc = self.navigationController else {
+            return
+        }
+        
+        let transition = CATransition()
+        transition.duration = duration
+        transition.type = CATransitionType.reveal
+        transition.subtype = type
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        naviVc.view.layer.add(transition, forKey: kCATransition)
+        naviVc.popViewController(animated: false)
+    }
 }
 //FIXME:: UIView
 extension UIView {
@@ -218,7 +261,7 @@ extension UIImageView {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 guard
                     let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                    let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+//                    let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
                     let data = data, error == nil,
                     let image = UIImage(data: data)
                     else { return }

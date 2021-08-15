@@ -9,21 +9,21 @@ import UIKit
 public let TAG_NAVI_BACK: Int = 10000
 public let TAG_NAVI_TITLE: Int = 10001
 public let TAG_NAVI_MEMU: Int = 10002
-public let TAG_NAVI_BELL: Int = 10003
-
+public let TAG_NAVI_SEARCH: Int = 10003
+public let TAG_NAVI_CART: Int = 10004
 
 class CNavigationBar: UINavigationBar {
     class func drawBack(_ controller: UIViewController, _ title: String?, _ selector:Selector?) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold, scale: .large)
-        CNavigationBar.drawLeftBarItem(controller, UIImage(systemName: "chevron.left", withConfiguration: largeConfig), title, TAG_NAVI_BACK, selector)
+        CNavigationBar.drawLeft(controller, UIImage(systemName: "chevron.left", withConfiguration: largeConfig), title, TAG_NAVI_BACK, selector)
     }
     
-    class func drawLeftBarItem(_ controller: UIViewController, _ systemImgName: String, _ title: String?, _ tag:Int, _ selector:Selector?) {
+    class func drawLeft(_ controller: UIViewController, _ systemImgName: String, _ title: String?, _ tag:Int, _ selector:Selector?) {
         let largeConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold, scale: .large)
         let image = UIImage(systemName: systemImgName, withConfiguration: largeConfig)
-        self.drawLeftBarItem(controller, image, title, tag, selector)
+        self.drawLeft(controller, image, title, tag, selector)
     }
-    class func drawLeftBarItem(_ controller: UIViewController, _ image: UIImage?, _ title: String?, _ tag:Int, _ selector:Selector?) {
+    class func drawLeft(_ controller: UIViewController, _ image: UIImage?, _ title: String?, _ tag:Int, _ selector:Selector?) {
         
         controller.navigationController?.setNavigationBarHidden(false, animated: true)
         let button: UIButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
@@ -62,6 +62,7 @@ class CNavigationBar: UINavigationBar {
     class func drawTitle(_ controller: UIViewController, _ title: Any?, _ selctor:Selector?) {
         let button: UIButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
         button.setTitleColor(UIColor.white, for: .normal)
+       
         if let title:String = title as? String {
             button.setTitle(title, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: .bold)
@@ -95,7 +96,7 @@ class CNavigationBar: UINavigationBar {
     }
     class func drawRight(_ controller: UIViewController, _ img:UIImage?, _ title: String?, _ tag:Int,  _ selctor:Selector?) {
         
-        let button: UIButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
+        let button: UIButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 36, height: 44))
         button.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.right
         button.titleLabel?.lineBreakMode = NSLineBreakMode.byTruncatingTail
         button.tag = tag
@@ -114,7 +115,7 @@ class CNavigationBar: UINavigationBar {
 
             button.frame = CGRect.init(x: 0, y: 0, width: width + 8, height: button.frame.size.height)
         }
-//        button.layer.borderColor = UIColor.white.cgColor;
+//        button.layer.borderColor = UIColor.blue.cgColor;
 //        button.layer.borderWidth = 1.0
         if let selctor = selctor {
             button.addTarget(controller, action: selctor, for: .touchUpInside)

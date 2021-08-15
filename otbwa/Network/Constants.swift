@@ -29,18 +29,34 @@ struct Dfskey {
     static let userPw = "userPw"
     static let uniqueId = "uniqueId"
     static let uuid = "uuid"
+    static let autoLogin = "autoLogin"
+    static let filterCacheData = "filterCacheData"
+}
+struct FitlerKey {
+    static let ftAddr = "ft_addr"
+    static let ftCategory = "ft_category"
+    static let ftColor = "ft_color"
+    static let ftCountry = "ft_country"
+    static let ftStyle = "ft_style"
+    static let maxPrice = "max_price"
+    static let minPrice = "min_price"
+}
+enum FitlerViewType: String {
+    case hasTag = "hasTag"
+    case address = "address"
 }
 
 enum Storyboard: String {
     case login = "Login"
     case main = "Main"
+    case common = "Common"
 }
-enum JoinType: String {
-    case wholesale = "wholesale"
+enum EcomerceKind: String {
+    case wsale = "wsale"
     case retail = "retail"
 }
 enum UserType: String {
     case ceo = "ceo"
-    case staff = "staffer"
+    case employee = "employee"
 }
 

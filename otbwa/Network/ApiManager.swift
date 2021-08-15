@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class ApiManager: NSObject {
     static let ins = ApiManager()
@@ -39,8 +40,14 @@ class ApiManager: NSObject {
     }
     
     ///필터 리스트 조회
-    func requestFilterList(success:ResSuccess?, fail: ResFailure?) {
+    func requestFilterList(hasCache:Bool = true, success:ResSuccess?, fail: ResFailure?) {
+        if hasCache == true, let cachData = UserDefaults.standard.object(forKey: Dfskey.filterCacheData) {
+            success?(JSON(cachData))
+            return
+        }
         NetworkManager.ins.request(.get, "/api/v1/sign/filter") { res in
+            UserDefaults.standard.setValue(res.dictionaryObject, forKey: Dfskey.filterCacheData)
+            UserDefaults.standard.synchronize()
             success?(res)
         } failure: { error in
             fail?(error)
@@ -105,7 +112,15 @@ class ApiManager: NSObject {
             fail?(error)
         }
     }
-
+    /// 로그인
+    func requestSingin(_ param: [String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/sign/login", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+        
     ///판매 스타일과 맞는 이미지 선택을 위한 이미지 조회
     func requestStyleImages(success: ResSuccess?, fail:ResFailure?) {
         NetworkManager.ins.request(.get, "/api/v1/sign/prefer_img") { res in
@@ -130,6 +145,28 @@ class ApiManager: NSObject {
             fail?(error)
         }
     }
-    
-    
+    ///배너 리스트
+    func requestEventBannerList(success: ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.get, "/api/v1/etc/banner") { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    /// 전체신상 상품목록 조회
+    func requestAllProductList(param: [String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/product/all_products", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    /// 거래처 신상품목록 조회
+    func requestPartnerProductList(param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/product/client_products", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
 }

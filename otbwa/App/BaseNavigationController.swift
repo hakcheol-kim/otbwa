@@ -15,6 +15,7 @@ class BaseNavigationController: UINavigationController {
         self.navigationBar.isTranslucent = false
         UINavigationBar.appearance().tintColor = UIColor.white
         UINavigationBar.appearance().barTintColor = UIColor(named: "AccentColor")
+        self.navigationBar.shadowImage = UIImage()
     }
 }
 

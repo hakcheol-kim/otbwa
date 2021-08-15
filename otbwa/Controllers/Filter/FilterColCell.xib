@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="FilterColCell" customModule="otbwa" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="143" height="51"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="143" height="51"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hVW-xg-6xb">
+                        <rect key="frame" x="0.0" y="0.0" width="143" height="51"/>
+                        <subviews>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcW-zb-8xc" customClass="SelectedButton" customModule="otbwa" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="143" height="51"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tl" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="tr" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="bl" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="br" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="selBorderColor">
+                                        <color key="value" name="AccentColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="bcW-zb-8xc" firstAttribute="top" secondItem="hVW-xg-6xb" secondAttribute="top" id="6KJ-3f-1o3"/>
+                            <constraint firstAttribute="bottom" secondItem="bcW-zb-8xc" secondAttribute="bottom" id="9Pf-eD-zOm"/>
+                            <constraint firstItem="bcW-zb-8xc" firstAttribute="leading" secondItem="hVW-xg-6xb" secondAttribute="leading" id="KJZ-QU-obB"/>
+                            <constraint firstAttribute="trailing" secondItem="bcW-zb-8xc" secondAttribute="trailing" id="R3n-AP-vhg"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="hVW-xg-6xb" secondAttribute="bottom" id="9B4-pA-PIU"/>
+                <constraint firstAttribute="trailing" secondItem="hVW-xg-6xb" secondAttribute="trailing" id="9J0-9f-k0x"/>
+                <constraint firstItem="hVW-xg-6xb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="JbL-Oe-59V"/>
+                <constraint firstItem="hVW-xg-6xb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Q96-rd-Gml"/>
+            </constraints>
+            <size key="customSize" width="143" height="51"/>
+            <connections>
+                <outlet property="btnTitle" destination="bcW-zb-8xc" id="hXQ-bm-eXm"/>
+            </connections>
+            <point key="canvasLocation" x="199.27536231884059" y="80.022321428571431"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="1" green="0.43500000238418579" blue="0.28200000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

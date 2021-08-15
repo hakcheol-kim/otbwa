@@ -272,14 +272,13 @@ class StaffInfoViewController: BaseViewController {
                 return
             }
             
-            user.unique = uuid.lowercased()
+            user.unique = KeychainItem.currentUserIdentifier
             user.uuid = uuid
             
             let param = user.map()
             ApiManager.ins.requestSignup(param) { res in
                 let success = res["success"].boolValue
                 if success {
-                    KeychainItem.saveUserInKeychain(uuid.lowercased())
                     UserDefaults.standard.setValue(uuid, forKey: Dfskey.uniqueId)
                     UserDefaults.standard.setValue(self.user.id!, forKey: Dfskey.userId)
                     UserDefaults.standard.setValue(self.user.pw!, forKey: Dfskey.userPw)

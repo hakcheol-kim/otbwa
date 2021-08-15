@@ -22,7 +22,7 @@ class JoinCompletionViewController: BaseViewController {
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnMain {
-            appDelegate.calllMainVc()
+//            appDelegate.calll MainVc()
         }
     }
 }

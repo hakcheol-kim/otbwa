@@ -48,10 +48,12 @@ class NetworkManager: NSObject {
         if isStartIndicator {
             appDelegate.startIndicator()
         }
-        
-        let header:HTTPHeaders = [.contentType(ContentType.json.rawValue)]
-        
-        let request = AF.request(encodedUrl, method: method, parameters: param, encoding: encoding, headers: header)
+        var headers:HTTPHeaders = [.contentType(ContentType.json.rawValue)]
+        if ShareData.ins.token.isEmpty == false {
+            let cusHeader = HTTPHeader(name:"X-AUTH-TOKEN", value: ShareData.ins.token)
+            headers.add(cusHeader)
+        }
+        let request = AF.request(encodedUrl, method: method, parameters: param, encoding: encoding, headers: headers)
         request.responseJSON { (response:AFDataResponse<Any>) in
             if let url = response.request?.url?.absoluteString {
                 print("\n=======request: url: \(String(describing: url))")
@@ -83,7 +85,11 @@ class NetworkManager: NSObject {
         
         appDelegate.startIndicator()
         
-        let header: HTTPHeaders = [.contentType(ContentType.formdata.rawValue)]
+        var headers:HTTPHeaders = [.contentType(ContentType.json.rawValue)]
+        if ShareData.ins.token.isEmpty == false {
+            let cusHeader = HTTPHeader(name:"X-AUTH-TOKEN", value: ShareData.ins.token)
+            headers.add(cusHeader)
+        }
         
         AF.upload(multipartFormData: { (multipartFormData) in
             for (key, value) in param {
@@ -112,7 +118,7 @@ class NetworkManager: NSObject {
                     }
                 }
             }
-        }, to: encodedUrl, method: method, headers: header).responseJSON { (response) in
+        }, to: encodedUrl, method: method, headers: headers).responseJSON { (response) in
             if let url = response.request?.url?.absoluteString {
                 print("\n=======request: url: \(String(describing: url))")
                 print(String(describing: param))

@@ -14,14 +14,15 @@ class HashTagViewController: BaseViewController {
     @IBOutlet weak var btnCose: UIButton!
     @IBOutlet weak var btnNext: CButton!
     @IBOutlet weak var safetyView: UIView!
-    
-    var completion:((_ items:Any) ->Void)?
-   
+
+    var completion:((_ items:Any?) ->Void)?
+    var filters:JSON!
     static func initWithCompletion(completion:((_ items:Any) ->Void)?) ->HashTagViewController {
         let vc = HashTagViewController.instantiateFromStoryboard(.login)!
         vc.completion = completion
         return vc
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,8 +32,6 @@ class HashTagViewController: BaseViewController {
         btnNext.isEnabled = false
         safetyView.isHidden = !isEdgePhone
         
-        
-        ShareData.ins.removeObject(forKey: "hashtags")
         self.requestFilter()
         
     }
@@ -47,9 +46,8 @@ class HashTagViewController: BaseViewController {
     func requestFilter() {
         ApiManager.ins.requestFilterList { res in
             let success = res["success"].boolValue
-            let data = res["data"]
-            if success && data.isEmpty == false {
-                ShareData.ins.setObject(data, forKey: "filters")
+            if let data = res["data"] as? JSON, data.isEmpty == false, success == true {
+                self.filters = data
                 self.decorationUi()
             }
             else {
@@ -60,25 +58,33 @@ class HashTagViewController: BaseViewController {
         }
     }
     func decorationUi() {
-        guard let data = ShareData.ins.objectForKey("filters") as? JSON else {
-            return
+        for subView in svContent.subviews {
+            subView.removeFromSuperview()
         }
-        let category = data["category"].arrayValue
+        
+        let category = filters["category"].arrayValue
         let level1 = category.filter { (item) ->Bool in
             return item["level"].stringValue == "1"
         }
-        
+    
         for item in  level1 {
-            let tagView = Bundle.main.loadNibNamed("HashTagSectionView", owner: nil, options: nil)?.first as! HashTagSectionView
+            let tagView = Bundle.main.loadNibNamed("FilterSectionView", owner: nil, options: nil)?.first as! FilterSectionView
             svContent.addArrangedSubview(tagView)
-            tagView.configurationData(item) {
-                if let tags = ShareData.ins.objectForKey("hashtags") as? [JSON], tags.isEmpty == false {
-                    self.btnNext.isEnabled = true
+            tagView.configurationData(item, category, .hasTag)
+            tagView.completion = {(data, isSelected) ->Void in
+                guard let data = data as? JSON else {
+                    return
+                }
+                if let index = ShareData.ins.selectedFilterList.firstIndex(of: data) {
+                    ShareData.ins.selectedFilterList.remove(at: index)
                 }
                 else {
-                    self.btnNext.isEnabled = false
+                    ShareData.ins.selectedFilterList.append(data)
                 }
+                self.btnNext.isSelected = !(ShareData.ins.selectedFilterList.isEmpty)
+                print(ShareData.ins.selectedFilterList)
             }
+            
             tagView.layer.cornerRadius = 6
             tagView.clipsToBounds = true
             tagView.layer.borderWidth = 1
@@ -88,6 +94,7 @@ class HashTagViewController: BaseViewController {
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnCose {
+            self.requestFilter()
             self.dismiss(animated: true, completion: nil)
         }
         else if sender == btnNext {

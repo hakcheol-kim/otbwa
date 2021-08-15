@@ -78,8 +78,8 @@ class SelectedButton: UIButton {
             }
         }
     }
+
     func decorationSelectedBtn() {
-        
         self.setTitleColor(selBorderColor, for: .normal)
         self.titleLabel?.font = UIFont.systemFont(ofSize: (self.titleLabel?.font.pointSize)!, weight: .bold)
         setNeedsDisplay()
