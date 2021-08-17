@@ -2,6 +2,7 @@ PODS:
   - Alamofire (5.4.3)
   - AlamofireImage (4.2.0):
     - Alamofire (~> 5.4)
+  - Cache (6.0.0)
   - Firebase/Analytics (8.4.0):
     - Firebase/Core
   - Firebase/Auth (8.4.0):
@@ -106,6 +107,10 @@ PODS:
   - GoogleUtilities/UserDefaults (7.5.0):
     - GoogleUtilities/Logger
   - GTMSessionFetcher/Core (1.6.1)
+  - Imaginary (5.0.0):
+    - Cache (~> 6.0.0)
+  - Lightbox (2.5.0):
+    - Imaginary (~> 5.0.0)
   - Mantis (1.7.1)
   - nanopb (2.30908.0):
     - nanopb/decode (= 2.30908.0)
@@ -117,6 +122,7 @@ PODS:
   - SwiftyJSON (4.3.0)
   - Toast-Swift (5.0.1)
   - UIImageViewAlignedSwift (0.8.1)
+  - WSTagsField (5.4.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
@@ -125,16 +131,19 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Crashlytics
   - Firebase/Messaging
+  - Lightbox
   - Mantis
   - PanModal
   - SwiftyJSON (~> 4.0)
   - Toast-Swift (~> 5.0.1)
   - UIImageViewAlignedSwift
+  - WSTagsField
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - AlamofireImage
+    - Cache
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -147,6 +156,8 @@ SPEC REPOS:
     - GoogleDataTransport
     - GoogleUtilities
     - GTMSessionFetcher
+    - Imaginary
+    - Lightbox
     - Mantis
     - nanopb
     - PanModal
@@ -154,10 +165,12 @@ SPEC REPOS:
     - SwiftyJSON
     - Toast-Swift
     - UIImageViewAlignedSwift
+    - WSTagsField
 
 SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   AlamofireImage: 34a2d90b0e5fe6a5605f85ae4b7b01e784c60192
+  Cache: 4ca7e00363fca5455f26534e5607634c820ffc2d
   Firebase: 54cdc8bc9c9b3de54f43dab86e62f5a76b47034f
   FirebaseAnalytics: 4751d6a49598a2b58da678cc07df696bcd809ab9
   FirebaseAuth: 8ef169751d795f20921d425f7b0131cc1c70935c
@@ -170,6 +183,8 @@ SPEC CHECKSUMS:
   GoogleDataTransport: 85fd18ff3019bb85d3f2c551d04c481dedf71fc9
   GoogleUtilities: eea970f4a389963963bffe8d8fabe43540678b9c
   GTMSessionFetcher: 36689134877faeb055b27dfa4ccc9ceaa42e029e
+  Imaginary: cf5e3a7dd6ab1dcbd47ba8ce5edf2307c4e99eb3
+  Lightbox: cc3d5124f024fa8197fd23f913160db1c61a1852
   Mantis: 0c6052cf902f7b3b9ede7302ddc1116b64b4effe
   nanopb: a0ba3315591a9ae0a16a309ee504766e90db0c96
   PanModal: 3e16ead1a907fb06f4df3f13492fd00149fa4974
@@ -177,7 +192,8 @@ SPEC CHECKSUMS:
   SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
   UIImageViewAlignedSwift: e4f83530f90860aa31b6840bf570034a681bd2c4
+  WSTagsField: a4e91b7d866e8c9755332ebcf8123f42f2abd4a0
 
-PODFILE CHECKSUM: 5200782ff4b6003c643d8c259bf9b2c97f633af1
+PODFILE CHECKSUM: 101ec727f44f67cf0fd00c2b56317caa35de753d
 
 COCOAPODS: 1.10.1

@@ -9,6 +9,13 @@ import UIKit
 
 class SelectedButton: UIButton {
     var data:Any? = nil
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        self.decorationNormalBtn()
+    }
     @IBInspectable var cornerRadius: CGFloat = 0.0 {
         didSet {
             if cornerRadius > 0 { setNeedsDisplay()}
@@ -64,10 +71,7 @@ class SelectedButton: UIButton {
             self.layer.maskedCorners = CACornerMask(TL: tl, TR: tr, BL: bl, BR: br)
         }
     }
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        self.decorationNormalBtn()
-    }
+    
     override var isSelected: Bool {
         didSet {
             if isSelected {

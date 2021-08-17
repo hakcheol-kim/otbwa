@@ -211,8 +211,9 @@ extension RTotalProductViewController: UICollectionViewDelegate, UICollectionVie
                         return
                     }
                     print("selbanner : \(item)")
-                    let vc = EventDetailViewController.instantiateFromStoryboard(.common)!
-                    vc.data = item
+                    let vc = ImageShowViewController.instantiateFromStoryboard(.common)!
+                    vc.vcTitle = "이벤트"
+                    vc.url = item["main_img"].stringValue
                     appDelegate.mainNaviCtrl.pushViewController(vc, animated: true)
                 }
              }
@@ -237,6 +238,13 @@ extension RTotalProductViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return .init(width: view.bounds.width, height: 0.1)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let item = listData[indexPath.row]
+        let vc = ProductDetailViewController.instantiateFromStoryboard(.main)!
+        vc.passData = item
+        appDelegate.mainNaviCtrl.pushViewController(vc, animated: true)
     }
 }
 

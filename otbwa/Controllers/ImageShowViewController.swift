@@ -1,5 +1,5 @@
 //
-//  EventDetailViewController.swift
+//  ImageShowViewController.swift
 //  otbwa
 //
 //  Created by 김학철 on 2021/08/08.
@@ -8,19 +8,21 @@
 import UIKit
 import SwiftyJSON
 
-class EventDetailViewController: BaseViewController {
+class ImageShowViewController: BaseViewController {
     @IBOutlet weak var heightImg: NSLayoutConstraint!
     @IBOutlet weak var ivEvent: UIImageView!
-    var data: JSON!
+    var url: String!
+    var vcTitle: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
-        CNavigationBar.drawTitle(self, "이벤트", nil)
-        let main_img = data["main_img"].stringValue
+        CNavigationBar.drawTitle(self, vcTitle, nil)
+        
         
         self.view.layoutIfNeeded()
-        Utility.downloadImage(main_img) { image, _ in
+        Utility.downloadImage(url) { image, _ in
             guard let image = image else {
                 return
             }

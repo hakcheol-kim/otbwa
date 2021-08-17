@@ -149,7 +149,7 @@ extension UIViewController {
         
         let transition = CATransition()
         transition.duration = duration
-        transition.type = CATransitionType.reveal
+        transition.type = CATransitionType.moveIn
         transition.subtype = type
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         naviVc.view.layer.add(transition, forKey: kCATransition)

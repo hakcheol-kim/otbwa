@@ -14,8 +14,9 @@ public let TAG_NAVI_CART: Int = 10004
 
 class CNavigationBar: UINavigationBar {
     class func drawBack(_ controller: UIViewController, _ title: String?, _ selector:Selector?) {
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold, scale: .large)
-        CNavigationBar.drawLeft(controller, UIImage(systemName: "chevron.left", withConfiguration: largeConfig), title, TAG_NAVI_BACK, selector)
+//        let largeConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .bold, scale: .large)
+//        UIImage(systemName: "chevron.left", withConfiguration: largeConfig)
+        CNavigationBar.drawLeft(controller, UIImage(named: "ico_back") , title, TAG_NAVI_BACK, selector)
     }
     
     class func drawLeft(_ controller: UIViewController, _ systemImgName: String, _ title: String?, _ tag:Int, _ selector:Selector?) {
@@ -146,6 +147,15 @@ class CNavigationBar: UINavigationBar {
         
         button.tintColor = UIColor.white
         button.setTitleColor(button.tintColor, for: .normal)
+    }
+    
+    class func drawRight(_ controller: UIViewController, _ btn:UIButton, _ tag:Int, _ selector:Selector?) {
+        let barBtn = UIBarButtonItem.init(customView: btn)
+        if let selector = selector {
+            btn.addTarget(controller, action: selector, for: .touchUpInside)
+        }
+        btn.tag = tag
+        controller.navigationItem.setRightBarButton(barBtn, animated: false)
     }
 }
 

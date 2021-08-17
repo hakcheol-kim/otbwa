@@ -10,6 +10,7 @@ import UIKit
 @IBDesignable
 class CView: UIView {
     var data:Any? = nil
+    
     @IBInspectable var borderWidth: CGFloat = 0.0 {
         didSet {
             if borderWidth > 0 {setNeedsDisplay()}
@@ -20,69 +21,58 @@ class CView: UIView {
             if borderColor != nil { setNeedsDisplay()}
         }
     }
-    @IBInspectable var halfCornerRadius:Bool = false {
-        didSet {
-            setNeedsDisplay()
-        }
-    }
     @IBInspectable var cornerRadius: CGFloat = 0.0 {
         didSet {
             if cornerRadius > 0 { setNeedsDisplay()}
         }
     }
     
-    @IBInspectable var sdColor: UIColor? {
+    @IBInspectable var halfCornerRadius:Bool = false {
         didSet {
-            if sdColor != nil { setNeedsDisplay() }
-        }
-    }
-    @IBInspectable var sdOffset:CGSize = CGSize.zero {
-        didSet {
-            if sdOffset.width > 0 || sdOffset.height > 0 { setNeedsDisplay()}
-        }
-    }
-    @IBInspectable var sdRadius: CGFloat = 0.0 {
-        didSet {
-            if sdRadius > 0 {setNeedsDisplay()}
-        }
-    }
-    @IBInspectable var sdOpacity: Float = 0.0 {
-        didSet {
-            if sdOpacity > 0 { setNeedsDisplay()}
+            setNeedsDisplay()
         }
     }
     
+    @IBInspectable var tl: Bool = false {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    @IBInspectable var tr: Bool = false {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    @IBInspectable var bl: Bool = false {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    @IBInspectable var br: Bool = false {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
-        
+        clipsToBounds = true
         if borderWidth > 0 && borderColor != nil {
-            self.clipsToBounds = true
             layer.borderColor = borderColor?.cgColor
             layer.borderWidth = borderWidth
         }
         
         if halfCornerRadius {
-            self.clipsToBounds = true
-            self.layer.cornerRadius = self.bounds.height/2
+            layer.cornerRadius = self.bounds.height/2
         }
         else if cornerRadius > 0 {
-            self.clipsToBounds = true
-            self.layer.cornerRadius = cornerRadius
+            layer.cornerRadius = cornerRadius
         }
         
-        
-        if let sColor = sdColor {
-            layer.masksToBounds = false
-            layer.shadowOffset = sdOffset
-            layer.shadowColor = sColor.cgColor
-            layer.shadowRadius = sdRadius
-            layer.shadowOpacity = sdOpacity
-            
-            let backgroundCGColor = backgroundColor?.cgColor
-            backgroundColor = nil
-            layer.backgroundColor = backgroundCGColor
-//            backgroundColor = nil
+        if (tl || tr || bl || br)  {
+            layer.masksToBounds = true
+            layer.maskedCorners = CACornerMask(TL: tl, TR: tr, BL: bl, BR: br)
         }
-
     }
 }

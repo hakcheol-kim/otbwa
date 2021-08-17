@@ -197,8 +197,9 @@ extension RPartnerProductViewController: UICollectionViewDelegate, UICollectionV
                         return
                     }
                     print("selbanner : \(item)")
-                    let vc = EventDetailViewController.instantiateFromStoryboard(.common)!
-                    vc.data = item
+                    let vc = ImageShowViewController.instantiateFromStoryboard(.common)!
+                    vc.vcTitle = "이벤트"
+                    vc.url = item["main_img"].stringValue
                     appDelegate.mainNaviCtrl.pushViewController(vc, animated: true)
                 }
              }

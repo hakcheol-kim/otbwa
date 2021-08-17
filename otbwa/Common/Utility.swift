@@ -108,4 +108,22 @@ class Utility: NSObject {
             alpha: CGFloat(1.0)
         )
     }
+    
+    class func createTabBar(_ index:Int, _ title: String, _ tl:Bool, _ tr: Bool, _ bl:Bool, _ br:Bool) ->UIButton {
+        let btn = UIButton.init(type: .custom)
+        
+        let attrNor = NSAttributedString.init(string: title, attributes: [.foregroundColor:RGB(175, 175, 175), .font:UIFont.systemFont(ofSize: 14, weight: .regular)])
+        let attrSel = NSAttributedString.init(string: title, attributes: [.foregroundColor:UIColor(named: "AccentColor")!, .font:UIFont.systemFont(ofSize: 14, weight: .bold)])
+        btn.setAttributedTitle(attrNor, for: .normal)
+        btn.setAttributedTitle(attrSel, for: .selected)
+        
+        btn.setBackgroundImage(UIImage.color(from: RGB(237, 237, 237)), for: .normal)
+        btn.setBackgroundImage(UIImage.color(from: UIColor.white), for: .selected)
+        btn.layer.cornerRadius = 6
+        btn.layer.maskedCorners = CACornerMask.init(TL: tl, TR: tr, BL: bl, BR: br)
+        btn.clipsToBounds = true
+        btn.layer.masksToBounds = true
+        btn.adjustsImageWhenHighlighted = false
+        return btn
+    }
 }

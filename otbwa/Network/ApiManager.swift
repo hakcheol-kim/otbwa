@@ -169,4 +169,131 @@ class ApiManager: NSObject {
             fail?(error)
         }
     }
+    
+    
+    ///User
+    ///회원 마이페이지 정보 조회
+    ///- Parameters: user_no
+    func requestMyPageInfo(param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/user/info/mypage", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///내 정보 수정 페이지 조회
+    func requestMyPageAndStoreInfo(userNo:Int, success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.get, "/api/v1/user/my_page/\(userNo)") { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///알림 정보 조회
+    /// - Parameters:  "kind": "retail", "p_current": 3, "user_no": 34
+    func requestNotificationInfo(param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/user/inform", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///찜 목록 조회
+    ///- Parameters:   "user_no": 34
+    func requestMyLikes(param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/user/likes", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///찜 목록 삭제
+    ///- Parameters:   "user_no": 34, list:[11, 24]
+    func requestDeleteMyLikes(param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.delete, "/api/v1/user/likes", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    
+    ///최근 본 상품
+    ///- Parameters:   "user_no": 34
+    func requestRecentProducts(param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/user/recent_product", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///최근 본 상품 삭제
+    ///- Parameters:   "user_no": 34, list : [11, 24]
+    func requestDeleteRecentProducts(param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.delete, "/api/v1/user/recent_product", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///최근 검색어 조회
+    func requestRecentSearchedList(userNo:Int, success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.get, "/api/v1/user/recent_searched/\(userNo)") { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///최근 검색어 조회
+    ///- Parameters: "search": "셔츠", "user_no": 2
+    func requestDeleteSearched(param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.delete, "/api/v1/user/recent_searched", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    
+    
+    ///상품상세 보기
+    func requestProductDetail(param: [String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/product/product_detail", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///상품상세보기 - 어울리는상품, 비슷한상품 리스트
+    func requestRecommendProducts(productNo:String,  success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.get, "/api/v1/product/product_detail/etc_list/\(productNo)") { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    
+    //장바구니 담기
+    func requestProductPutBasket(param:[String:Any],  success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/product/put_basket", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    //여러상품 장바구니 담기
+    func requestProductPutBasketMany(param:[String:Any],  success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/product/put_baskets", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///상품 찜 목록에 추가
+    ///- Parameters: "product_no": 23, "user_no": 2
+    func requestProductLike(param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/product/like", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
 }
