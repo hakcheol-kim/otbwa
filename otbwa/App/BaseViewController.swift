@@ -7,6 +7,7 @@
 
 import UIKit
 import Photos
+import Lightbox
 
 class BaseViewController: UIViewController {
     
@@ -50,23 +51,15 @@ class BaseViewController: UIViewController {
     @objc func actionKeybardDown() {
         self.view.endEditing(true)
     }
-    func showToast(_ message:String?) {
+    func showToast(_ message:String?, _ bottom: CGFloat = 56) {
         guard let message = message, message.isEmpty == false else {
             return
         }
-//        var findView:UIView = self.view
-//        for subView in self.view.subviews {
-//            if subView is UIScrollView {
-//                findView = subView
-//                break
-//            }
-//        }
-        
         if UIApplication.shared.isKeyboardPresented {
             self.view.makeToast(message, position:.center)
         }
         else {
-            self.view.makeToast(message)
+            self.view.makeToast(message, point: CGPoint(x: UIScreen.main.bounds.size.width/2, y: self.view.bounds.size.height - (self.view.window?.safeAreaInsets.bottom ?? 0) - bottom), title: nil, image: nil, completion: nil)
         }
     }
     
@@ -117,6 +110,24 @@ class BaseViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func showPhoto(imgUrls:Array<String>) {
+        if imgUrls.isEmpty == true {
+            return
+        }
+    
+        var images:[LightboxImage] = [LightboxImage]()
+        for url in imgUrls {
+            if let imgUrl = URL(string: url) {
+                let lightbox = LightboxImage(imageURL: imgUrl)
+                print(imgUrl)
+                images.append(lightbox)
+            }
+        }
+        let controller = LightboxController(images: images, startIndex: 0)
+        controller.dynamicBackground = true
+        present(controller, animated: true, completion: nil)
     }
 }
 

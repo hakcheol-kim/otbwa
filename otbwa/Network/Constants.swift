@@ -59,4 +59,6 @@ enum UserType: String {
     case ceo = "ceo"
     case employee = "employee"
 }
-
+enum TableViewType: Int {
+    case normal, edit
+}

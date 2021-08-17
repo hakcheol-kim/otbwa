@@ -19,5 +19,6 @@ target 'otbwa' do
   pod 'PanModal'
   pod 'Toast-Swift', '~> 5.0.1'
   pod 'Mantis'
-  
+  pod "WSTagsField" #tags
+  pod 'Lightbox' #photo show
 end
