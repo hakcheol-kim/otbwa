@@ -296,4 +296,31 @@ class ApiManager: NSObject {
             fail?(error)
         }
     }
+    ///장바구니 목록 조회
+    ///- Parameters : "p_current": 3, "user_no": 34
+    func requestBasketList(param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/product/basket_list", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///장바구니 목록 삭제
+    ///- Parameters : "product_no": [3..], "user_no": 34
+    func requestDeleteBasketList(param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.delete, "/api/v1/product/basket", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///장바구니 목록 수정
+    func requestModifyBasket(param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.put, "/api/v1/product/basket", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    
 }

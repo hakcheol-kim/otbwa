@@ -44,7 +44,9 @@ class ShadowView: UIView {
         
         @IBInspectable var sdColor: UIColor? {
             didSet {
-                if sdColor != nil { setNeedsDisplay() }
+                if let _ = sdColor {
+                    setNeedsDisplay()
+                }
             }
         }
         @IBInspectable var sdOffset:CGSize = CGSize.zero {

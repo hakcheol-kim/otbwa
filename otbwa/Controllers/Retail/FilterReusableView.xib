@@ -30,7 +30,7 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uNS-sm-MDT">
                                     <rect key="frame" x="0.0" y="209" width="416" height="58"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0nl-uZ-6Um" customClass="CView" customModule="otbwa" customModuleProvider="target">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0nl-uZ-6Um" customClass="ShadowView" customModule="otbwa" customModuleProvider="target">
                                             <rect key="frame" x="18" y="0.0" width="380" height="48"/>
                                             <subviews>
                                                 <button opaque="NO" clipsSubviews="YES" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yu4-7y-Hkv" customClass="CButton" customModule="otbwa" customModuleProvider="target">
@@ -71,7 +71,7 @@
                                                     <real key="value" value="6"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="sdColor">
-                                                    <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                    <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.080000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="size" keyPath="sdOffset">
                                                     <size key="value" width="0.0" height="1"/>

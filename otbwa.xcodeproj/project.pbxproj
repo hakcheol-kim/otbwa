@@ -11,6 +11,11 @@
 		E9063FF726CA8C4800F7954D /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9063FF626CA8C4800F7954D /* ProductDetailViewController.swift */; };
 		E9063FF926CA8C5B00F7954D /* MyPageStoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9063FF826CA8C5B00F7954D /* MyPageStoreInfoViewController.swift */; };
 		E92AEB3026CC05DE0036674E /* StoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92AEB2F26CC05DE0036674E /* StoreInfoViewController.swift */; };
+		E92AEB3226CCB0150036674E /* OptionModifyPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92AEB3126CCB0150036674E /* OptionModifyPopupViewController.swift */; };
+		E92AEB3426CD328C0036674E /* OrderCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92AEB3326CD328C0036674E /* OrderCounterView.swift */; };
+		E92AEB3626CD339B0036674E /* OrderCounterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E92AEB3526CD339B0036674E /* OrderCounterView.xib */; };
+		E92AEB3926CD7AC60036674E /* StoreInfoHearderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92AEB3726CD7AC60036674E /* StoreInfoHearderView.swift */; };
+		E92AEB3A26CD7AC60036674E /* StoreInfoHearderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E92AEB3826CD7AC60036674E /* StoreInfoHearderView.xib */; };
 		E945566026B55DEA00F6268D /* FilterSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945565F26B55DEA00F6268D /* FilterSectionView.swift */; };
 		E945566226B55DF100F6268D /* FilterSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E945566126B55DF100F6268D /* FilterSectionView.xib */; };
 		E945566826B64BCE00F6268D /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945566726B64BCE00F6268D /* ShareData.swift */; };
@@ -90,8 +95,8 @@
 		E9A94FAE26B6E893005BC1EA /* StoreInofViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A94FAD26B6E893005BC1EA /* StoreInofViewController2.swift */; };
 		E9A94FB026B6F4AC005BC1EA /* ProductStyleSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A94FAF26B6F4AC005BC1EA /* ProductStyleSelectionViewController.swift */; };
 		E9A94FB226B6F96C005BC1EA /* CCollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A94FB126B6F96C005BC1EA /* CCollectionFlowLayout.swift */; };
-		E9ABCD3B26CAB2A60032A73F /* ProductOrderSelectionview.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ABCD3A26CAB2A60032A73F /* ProductOrderSelectionview.swift */; };
-		E9ABCD3D26CAB2AD0032A73F /* ProductOrderSelectionview.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9ABCD3C26CAB2AD0032A73F /* ProductOrderSelectionview.xib */; };
+		E9ABCD3B26CAB2A60032A73F /* OrderSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ABCD3A26CAB2A60032A73F /* OrderSelectionView.swift */; };
+		E9ABCD3D26CAB2AD0032A73F /* OrderSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9ABCD3C26CAB2AD0032A73F /* OrderSelectionView.xib */; };
 		E9B234FF26C2B2F80089BB6D /* FtCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B234FE26C2B2F80089BB6D /* FtCategoryViewController.swift */; };
 		E9B2350126C2B3140089BB6D /* FtStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B2350026C2B3140089BB6D /* FtStyleViewController.swift */; };
 		E9B2350326C2B31B0089BB6D /* FtColorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B2350226C2B31B0089BB6D /* FtColorViewController.swift */; };
@@ -102,7 +107,7 @@
 		E9BBC0D726C41A86001ED68C /* FilterColorColCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9BBC0D526C41A86001ED68C /* FilterColorColCell.xib */; };
 		E9CE23EB26C9675700A09B16 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE23EA26C9675700A09B16 /* MenuViewController.swift */; };
 		E9CE23ED26C9677900A09B16 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE23EC26C9677900A09B16 /* SearchViewController.swift */; };
-		E9CE23EF26C967A400A09B16 /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE23EE26C967A400A09B16 /* OrderViewController.swift */; };
+		E9CE23EF26C967A400A09B16 /* BasketListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE23EE26C967A400A09B16 /* BasketListViewController.swift */; };
 		E9CE23F126C9883400A09B16 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE23F026C9883400A09B16 /* ShadowView.swift */; };
 		E9CE23F326CA123400A09B16 /* ProductHistoryMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE23F226CA123400A09B16 /* ProductHistoryMenuViewController.swift */; };
 		E9CE23F526CA124C00A09B16 /* ProductLikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9CE23F426CA124C00A09B16 /* ProductLikeViewController.swift */; };
@@ -123,6 +128,11 @@
 		E9063FF626CA8C4800F7954D /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		E9063FF826CA8C5B00F7954D /* MyPageStoreInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageStoreInfoViewController.swift; sourceTree = "<group>"; };
 		E92AEB2F26CC05DE0036674E /* StoreInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInfoViewController.swift; sourceTree = "<group>"; };
+		E92AEB3126CCB0150036674E /* OptionModifyPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionModifyPopupViewController.swift; sourceTree = "<group>"; };
+		E92AEB3326CD328C0036674E /* OrderCounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCounterView.swift; sourceTree = "<group>"; };
+		E92AEB3526CD339B0036674E /* OrderCounterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderCounterView.xib; sourceTree = "<group>"; };
+		E92AEB3726CD7AC60036674E /* StoreInfoHearderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInfoHearderView.swift; sourceTree = "<group>"; };
+		E92AEB3826CD7AC60036674E /* StoreInfoHearderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoreInfoHearderView.xib; sourceTree = "<group>"; };
 		E945565F26B55DEA00F6268D /* FilterSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSectionView.swift; sourceTree = "<group>"; };
 		E945566126B55DF100F6268D /* FilterSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterSectionView.xib; sourceTree = "<group>"; };
 		E945566726B64BCE00F6268D /* ShareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareData.swift; sourceTree = "<group>"; };
@@ -205,8 +215,8 @@
 		E9A94FAD26B6E893005BC1EA /* StoreInofViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInofViewController2.swift; sourceTree = "<group>"; };
 		E9A94FAF26B6F4AC005BC1EA /* ProductStyleSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductStyleSelectionViewController.swift; sourceTree = "<group>"; };
 		E9A94FB126B6F96C005BC1EA /* CCollectionFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CCollectionFlowLayout.swift; sourceTree = "<group>"; };
-		E9ABCD3A26CAB2A60032A73F /* ProductOrderSelectionview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOrderSelectionview.swift; sourceTree = "<group>"; };
-		E9ABCD3C26CAB2AD0032A73F /* ProductOrderSelectionview.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductOrderSelectionview.xib; sourceTree = "<group>"; };
+		E9ABCD3A26CAB2A60032A73F /* OrderSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSelectionView.swift; sourceTree = "<group>"; };
+		E9ABCD3C26CAB2AD0032A73F /* OrderSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderSelectionView.xib; sourceTree = "<group>"; };
 		E9B234FE26C2B2F80089BB6D /* FtCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FtCategoryViewController.swift; sourceTree = "<group>"; };
 		E9B2350026C2B3140089BB6D /* FtStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FtStyleViewController.swift; sourceTree = "<group>"; };
 		E9B2350226C2B31B0089BB6D /* FtColorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FtColorViewController.swift; sourceTree = "<group>"; };
@@ -217,7 +227,7 @@
 		E9BBC0D526C41A86001ED68C /* FilterColorColCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterColorColCell.xib; sourceTree = "<group>"; };
 		E9CE23EA26C9675700A09B16 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		E9CE23EC26C9677900A09B16 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		E9CE23EE26C967A400A09B16 /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		E9CE23EE26C967A400A09B16 /* BasketListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketListViewController.swift; sourceTree = "<group>"; };
 		E9CE23F026C9883400A09B16 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		E9CE23F226CA123400A09B16 /* ProductHistoryMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductHistoryMenuViewController.swift; sourceTree = "<group>"; };
 		E9CE23F426CA124C00A09B16 /* ProductLikeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductLikeViewController.swift; sourceTree = "<group>"; };
@@ -389,12 +399,17 @@
 				E9CE23FA26CA257300A09B16 /* ProdcutCell.swift */,
 				E9CE23FB26CA257300A09B16 /* ProdcutCell.xib */,
 				E9CE23EC26C9677900A09B16 /* SearchViewController.swift */,
-				E9CE23EE26C967A400A09B16 /* OrderViewController.swift */,
+				E9CE23EE26C967A400A09B16 /* BasketListViewController.swift */,
 				E9063FF626CA8C4800F7954D /* ProductDetailViewController.swift */,
-				E9ABCD3A26CAB2A60032A73F /* ProductOrderSelectionview.swift */,
-				E9ABCD3C26CAB2AD0032A73F /* ProductOrderSelectionview.xib */,
+				E9ABCD3A26CAB2A60032A73F /* OrderSelectionView.swift */,
+				E9ABCD3C26CAB2AD0032A73F /* OrderSelectionView.xib */,
+				E92AEB3326CD328C0036674E /* OrderCounterView.swift */,
+				E92AEB3526CD339B0036674E /* OrderCounterView.xib */,
 				E9063FF826CA8C5B00F7954D /* MyPageStoreInfoViewController.swift */,
 				E92AEB2F26CC05DE0036674E /* StoreInfoViewController.swift */,
+				E92AEB3126CCB0150036674E /* OptionModifyPopupViewController.swift */,
+				E92AEB3726CD7AC60036674E /* StoreInfoHearderView.swift */,
+				E92AEB3826CD7AC60036674E /* StoreInfoHearderView.xib */,
 			);
 			path = Retail;
 			sourceTree = "<group>";
@@ -566,13 +581,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9865E0B26C000B500C7348E /* ProductColCell.xib in Resources */,
-				E9ABCD3D26CAB2AD0032A73F /* ProductOrderSelectionview.xib in Resources */,
+				E9ABCD3D26CAB2AD0032A73F /* OrderSelectionView.xib in Resources */,
 				E9A6AC0A26B29E9E00F53885 /* LaunchScreen.storyboard in Resources */,
+				E92AEB3A26CD7AC60036674E /* StoreInfoHearderView.xib in Resources */,
 				E9A6AC1326B2A25B00F53885 /* GoogleService-Info.plist in Resources */,
 				E9865E0F26C0114400C7348E /* Common.storyboard in Resources */,
 				E9A6AC0726B29E9E00F53885 /* Assets.xcassets in Resources */,
 				E981358326B37F3B00C75AA1 /* Login.storyboard in Resources */,
 				E94632BF26C2CAFA00E469B4 /* FilterColCell.xib in Resources */,
+				E92AEB3626CD339B0036674E /* OrderCounterView.xib in Resources */,
 				E9CE23FD26CA257400A09B16 /* ProdcutCell.xib in Resources */,
 				E9BBC0D726C41A86001ED68C /* FilterColorColCell.xib in Resources */,
 				E9EFC97226B83E8A00FFC603 /* CameraOverlayView.xib in Resources */,
@@ -667,9 +684,10 @@
 				E99EB83126B4395F00084684 /* BuildingSelectedViewController.swift in Sources */,
 				E98135C426B3A1A800C75AA1 /* FindIdViewController.swift in Sources */,
 				E9CE23F326CA123400A09B16 /* ProductHistoryMenuViewController.swift in Sources */,
-				E9ABCD3B26CAB2A60032A73F /* ProductOrderSelectionview.swift in Sources */,
+				E9ABCD3B26CAB2A60032A73F /* OrderSelectionView.swift in Sources */,
 				E99EEC0926BEE4A2006A65CF /* RTotalProductViewController.swift in Sources */,
 				E9CE23EB26C9675700A09B16 /* MenuViewController.swift in Sources */,
+				E92AEB3926CD7AC60036674E /* StoreInfoHearderView.swift in Sources */,
 				E9865DF426BF93B900C7348E /* FSPageViewLayout.swift in Sources */,
 				E9A5B4BC26B3DEB00002AE81 /* StaffInfoViewController.swift in Sources */,
 				E97C7AD826B52C6300D5EA93 /* StoreInofViewController.swift in Sources */,
@@ -684,8 +702,10 @@
 				E99EEC0626BEE328006A65CF /* RMainTabViewController.swift in Sources */,
 				E98135B926B390B400C75AA1 /* Extension.swift in Sources */,
 				E98135BD26B390B400C75AA1 /* Clabel.swift in Sources */,
+				E92AEB3426CD328C0036674E /* OrderCounterView.swift in Sources */,
 				E9865DFE26BFAF5500C7348E /* FilterReusableView.swift in Sources */,
 				E9EFC97126B83E8A00FFC603 /* CameraOverlayView.swift in Sources */,
+				E92AEB3226CCB0150036674E /* OptionModifyPopupViewController.swift in Sources */,
 				E9A94FAE26B6E893005BC1EA /* StoreInofViewController2.swift in Sources */,
 				E9A5B4B626B3DE3C0002AE81 /* StaffStoreInfoViewController.swift in Sources */,
 				E9A6ABFE26B29E9C00F53885 /* AppDelegate.swift in Sources */,
@@ -711,7 +731,7 @@
 				E99EEC0B26BEE4F8006A65CF /* RPartnerProductViewController.swift in Sources */,
 				E9A94FB026B6F4AC005BC1EA /* ProductStyleSelectionViewController.swift in Sources */,
 				E9CE23FC26CA257400A09B16 /* ProdcutCell.swift in Sources */,
-				E9CE23EF26C967A400A09B16 /* OrderViewController.swift in Sources */,
+				E9CE23EF26C967A400A09B16 /* BasketListViewController.swift in Sources */,
 				E9EFC97026B83E8A00FFC603 /* CImagePickerController.swift in Sources */,
 				E9865E0D26C00C7800C7348E /* FilterViewController.swift in Sources */,
 				E98135BF26B390B400C75AA1 /* CToolbar.swift in Sources */,

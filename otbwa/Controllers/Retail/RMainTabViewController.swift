@@ -58,7 +58,7 @@ class RMainTabViewController: BaseViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else if sender.tag == TAG_NAVI_CART {
-            let vc = OrderViewController.instantiateFromStoryboard(.main)!
+            let vc = BasketListViewController.instantiateFromStoryboard(.main)!
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

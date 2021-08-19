@@ -47,11 +47,13 @@ class ProductDetailViewController: BaseViewController {
     }
     
     var tagsField = WSTagsField()
-    var orderSelectionView: ProductOrderSelectionview!
+    var orderSelectionView: OrderSelectionView!
     var passData:JSON!
     var data:JSON = JSON()
     var similar = [JSON]()
     var matching = [JSON]()
+    
+    var options: [JSON]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +62,7 @@ class ProductDetailViewController: BaseViewController {
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
         CNavigationBar.drawTitle(self, title, nil)
         
-        orderSelectionView = Bundle.main.loadNibNamed("ProductOrderSelectionview", owner: nil, options: nil)?.first as? ProductOrderSelectionview
+        orderSelectionView = Bundle.main.loadNibNamed("OrderSelectionView", owner: nil, options: nil)?.first as? OrderSelectionView
         orderSelectionView.layer.cornerRadius = 20
         orderSelectionView.layer.maskedCorners = CACornerMask(TL: true, TR: true, BL: false, BR: false)
         svBottomContainer.insertArrangedSubview(orderSelectionView, at: 0)
@@ -197,9 +199,34 @@ class ProductDetailViewController: BaseViewController {
             }
             
             lbDetailInfo.text = data["info"].stringValue
-            
-            self.orderSelectionView.configurationUi(option)
-            
+        
+            let colorArr = option["color"].stringValue.components(separatedBy: ",")
+            let sizesArr = option["size"].stringValue.components(separatedBy: ",")
+            if let cacheFilter = UserDefaults.standard.object(forKey: Dfskey.filterCacheData) as? [String:Any],
+               let data = cacheFilter["data"] as? [String:Any], let color = data["color"] as? [[String:Any]],
+               colorArr.isEmpty == false, sizesArr.isEmpty == false {
+                
+                let colorList:JSON = JSON(color)
+                var colors = [JSON]()
+                for name in colorArr {
+                    let trimmedString = name.trimmingCharacters(in: .whitespaces)
+                    for item in colorList.arrayValue {
+                        if trimmedString == item["value"].stringValue {
+                            colors.append(item)
+                        }
+                    }
+                }
+                
+                var sizes = [JSON]()
+                for name in sizesArr {
+                    let trimmedString = name.trimmingCharacters(in: .whitespaces)
+                    sizes.append(JSON(trimmedString))
+                }
+                orderSelectionView.configurationData(colors, sizes)
+                orderSelectionView.completion = {(options:[JSON]?) ->Void in
+                    self.options = options
+                }
+            }
         }
         
         svSimularProduct.isHidden = true
@@ -264,15 +291,22 @@ class ProductDetailViewController: BaseViewController {
                 }
             }
             else {
-                guard let orders = orderSelectionView.getOrderProductInfo() as? [[String:Any]] else {
+                guard let options = options, options.isEmpty == false else {
                     self.showToast("주문 옵션을 선택해주세요.", 80)
                     return
                 }
+                print(options)
                 
-                print(orders)
-                
+                var ops = [[String:Any]]()
+                for op in options {
+                    var item = [String:Any]()
+                    item["color"] = op["color_code"].stringValue
+                    item["size"] = op["size"].stringValue
+                    item["cnt"] = op["cnt"].intValue
+                    ops.append(item)
+                }
                 var param = [String:Any]()
-                param["product_option"] = orders
+                param["product_option"] = ops
                 param["product_no"] = data["product_no"].intValue
                 param["user_no"] = ShareData.ins.userNo
                 ApiManager.ins.requestProductPutBasket(param: param) { res in
