@@ -323,4 +323,120 @@ class ApiManager: NSObject {
         }
     }
     
+    ///거래처 공지사항 목록 조회
+    func requestNoticeList(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/comp/notices", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///공지사항 등록
+    ///- Parameters:   "cntnt": "공지사항입니다/", "comp_no": 2, "title": "title", "user_no": 2
+    func requestRegiestCompNotice(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/comp/notice", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///공지사항 수정
+    ///- Parameters:   "cntnt": "공지사항입니다/", "comp_no": 2, "notice_no": 41, "title": "title", "user_no": 2
+    func requestModifyCompNotice(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.put, "/api/v1/comp/notice", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///공지사항 삭제
+    ///- Parameters:   "comp_no": 2, "notice_no": 2
+    func requestDeleteCompNotice(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.delete, "/api/v1/comp/notice", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    
+    ///거래처 신청
+    ///- Parameters:  "client_comp_no": 2, "comp_no": 2
+    func requestClientApply(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/comp/client_apply", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///거래처 관리
+    ///- Parameters:  "client_no": 3, "comp_no": 4, "fn_value": "approved", "kind": "retail", "search": "허브", "type": "client"
+    func requestManagerClient(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.put, "/api/v1/comp/client_Management", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///거래처 검색
+    ///- Parameters:    "comp_no": 3, "kind": "retail", "p_current": 3, "search": "허브", "type": "client"
+    func requestSearchClients(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/comp/clients", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    /// 도매장 대표 이미지 등록
+    ///- Parameters:    "comp_img": file, "comp_no": 21, "user_no": 3
+    func rquestRegistCompImg(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/comp/comp_img", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    
+    ///도매매장 정보페이지
+    func requestCompanyInfo(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/comp/comp_info", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///인기 검색어
+    func requestPopularSearchWord(success: ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.get, "/api/v1/etc/top_searched") { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///상품 검색
+    ///- Parameters:   "p_current": 1, "search": "인기", "user_no": 44
+    func requestProductSearch(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/product/search", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///내 최근 검색어 조회
+    func requestMySearchHistoryList(userNo: Int, success: ResSuccess?, fail: ResFailure?) {
+        NetworkManager.ins.request(.get, "/api/v1/user/recent_searched/\(userNo)") { res in
+            success?(res)
+        }  failure: { error in
+            fail?(error)
+        }
+    }
+    /// 최근 검색어 삭제
+    ///- Parameters: "search": "셔츠", "user_no": 2
+    func requestDeleteMyRecentSeached(_ param:[String:Any], success: ResSuccess?, fail: ResFailure?) {
+        NetworkManager.ins.request(.delete, "/api/v1/user/recent_searched", param) { res in
+            success?(res)
+        }  failure: { error in
+            fail?(error)
+        }
+    }
+    
 }

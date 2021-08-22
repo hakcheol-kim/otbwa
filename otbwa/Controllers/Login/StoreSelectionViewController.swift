@@ -65,7 +65,7 @@ class StoreSelectionViewController: BaseViewController {
     var selItem: JSON?
     var toolBar = CToolbar(barItems: [.keyboardDown])
     static func initWithType(_ type: String, _ kind: String, _ completion:((_ item:JSON?) ->Void)?) -> StoreSelectionViewController {
-        let vc = StoreSelectionViewController.instantiateFromStoryboard(.login)!
+        let vc = StoreSelectionViewController.instantiateFromStoryboard(.common)!
         vc.completion = completion
         vc.type = type
         return vc

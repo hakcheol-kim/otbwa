@@ -18,7 +18,10 @@ class RMainTabViewController: BaseViewController {
         CNavigationBar.drawRight(self, UIImage(named: "ico_search"), nil, TAG_NAVI_SEARCH, #selector(onClickedBtnActions(_:)))
         CNavigationBar.drawRight(self, UIImage(named: "ico_cart"), nil, TAG_NAVI_CART, #selector(onClickedBtnActions(_:)))
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
     func setupTabContainer() {
         self.tabContainer = TabContainerController.init(nibName: "TabContainerController", bundle: nil)
         self.view.addSubview(tabContainer!.view)

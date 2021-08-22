@@ -60,40 +60,10 @@ class CImagePickerController: UIImagePickerController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.clear
-        self.checkPermissionAfterShowImagePicker()
-    }
-    
-    func checkPermissionAfterShowImagePicker() {
-        let authStatus = AVCaptureDevice.authorizationStatus(for: .video)
-        if authStatus == AVAuthorizationStatus.denied {
-            let alert = UIAlertController(title: "Unable to access the Camera", message: "To enable access, go to Settings > Privacy > Camera and turn on Camera access for this app.", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (action) in
-                alert.dismiss(animated: false, completion: nil)
-            }))
-            alert.addAction(UIAlertAction(title: "설정", style: .default, handler: { (action) in
-                let settingsUrl = URL(string: UIApplication.openSettingsURLString)!
-                if UIApplication.shared.canOpenURL(settingsUrl) {
-                    UIApplication.shared.open(settingsUrl, options: [:], completionHandler: nil)
-                } else {
-                    alert.dismiss(animated: false, completion: nil)
-                }
-            }))
-            self.present(alert, animated: true, completion: nil)
-        }
-        else if authStatus == AVAuthorizationStatus.notDetermined {
-            AVCaptureDevice.requestAccess(for: .video, completionHandler: { [self] granted in
-                if granted {
-//                    DispatchQueue.main.async(execute: { [self] in
-//                        displayImagePicker()
-//                    })
-                }
-            })
-        }
-//        else {
-//            displayImagePicker()
-//        }
     }
 }
+
+
 extension CImagePickerController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

@@ -14,23 +14,24 @@ class ProductColCell: UICollectionViewCell {
     @IBOutlet weak var lbProductName: UILabel!
     @IBOutlet weak var lbAmount: UILabel!
     @IBOutlet weak var lbLikeCnt: UILabel!
-    @IBOutlet weak var bottomBgView: UIView!
-    
+
+    static let identifier = "ProductColCell"
     override func awakeFromNib() {
         super.awakeFromNib()
         bgView.layer.cornerRadius = 6
-        bottomBgView.layer.cornerRadius = 6
-        bottomBgView.layer.maskedCorners = CACornerMask(TL: false, TR: false, BL: true, BR: true)
         ivThumb.layer.cornerRadius = 6
         ivThumb.layer.maskedCorners = CACornerMask(TL: true, TR: true, BL: false, BR: false)
         
     }
     func configurationData(_ data:JSON) {
-        let name = data["name"].stringValue
+        var name = data["name"].stringValue
         let price = data["price"].numberValue
         let likes = data["likes"].numberValue
         let img = data["img"].stringValue
-        
+        let product_nm = data["product_nm"].stringValue
+        if name.isEmpty == true {
+            name = product_nm
+        }
         lbProductName.text = name
         lbAmount.text = "\(price.stringValue.addComma())원"
         lbLikeCnt.text = likes.stringValue.addComma()

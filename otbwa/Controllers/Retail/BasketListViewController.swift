@@ -98,17 +98,6 @@ class BasketListCell: UITableViewCell {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 class BasketListViewController: BaseViewController {
     @IBOutlet var tblView: UITableView!
     @IBOutlet weak var btnCheckAll: UIButton!

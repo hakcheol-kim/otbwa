@@ -18,7 +18,7 @@ class ShareData: NSObject {
     var token: String = ""
     var kind: EcomerceKind = .retail
     var type: UserType = .employee
-    var compNo: String = ""
+    var compNo: NSInteger = 0
     var compNm: String = ""
     
     var selectedFilterList:[JSON] = [JSON]()
@@ -58,7 +58,7 @@ class ShareData: NSObject {
             ShareData.ins.type = .employee
         }
         self.token = data["token"].stringValue
-        self.compNo = data["comp_no"].stringValue
+        self.compNo = data["comp_no"].intValue
         self.compNm = data["comp_nm"].stringValue
         
     }

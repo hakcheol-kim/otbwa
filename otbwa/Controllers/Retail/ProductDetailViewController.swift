@@ -73,7 +73,10 @@ class ProductDetailViewController: BaseViewController {
         self.requestProductDetail()
         self.requestRecommendProducts()
     }
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setToolbarHidden(false, animated: true)
+    }
     func initUI() {
         self.view.layoutIfNeeded()
         

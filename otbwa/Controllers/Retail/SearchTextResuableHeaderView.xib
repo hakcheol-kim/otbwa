@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SearchTextResuableHeaderView" id="U6b-Vx-4bR" customClass="SearchTextResuableHeaderView" customModule="otbwa" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="26"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FSV-uK-gbL">
+                    <rect key="frame" x="18" y="0.0" width="284" height="26"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="FSV-uK-gbL" secondAttribute="trailing" constant="18" id="N6z-PN-inU"/>
+                <constraint firstItem="FSV-uK-gbL" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="18" id="eTg-cC-6Vd"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="FSV-uK-gbL" secondAttribute="bottom" id="kel-iL-Bj3"/>
+                <constraint firstItem="FSV-uK-gbL" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="tiU-sB-ZGL"/>
+            </constraints>
+            <connections>
+                <outlet property="lbTitle" destination="FSV-uK-gbL" id="tg8-p3-pxm"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="93.75"/>
+        </collectionReusableView>
+    </objects>
+</document>
