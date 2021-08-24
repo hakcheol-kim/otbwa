@@ -3666,7 +3666,7 @@
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9TU-0d-dAe">
                                 <rect key="frame" x="0.0" y="88" width="375" height="690"/>
-                                <color key="backgroundColor" name="Gray241"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9g4-g8-8en">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -3674,10 +3674,14 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="kwN-rF-Jby" id="NTc-1h-1nb"/>
+                                    <outlet property="delegate" destination="kwN-rF-Jby" id="HbL-23-Kz6"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Mt6-2K-Rfb"/>
-                        <color key="backgroundColor" name="Gray241"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Mt6-2K-Rfb" firstAttribute="trailing" secondItem="9TU-0d-dAe" secondAttribute="trailing" id="6zg-k7-pWe"/>
                             <constraint firstItem="9TU-0d-dAe" firstAttribute="leading" secondItem="Mt6-2K-Rfb" secondAttribute="leading" id="78f-4B-CDg"/>
@@ -3691,6 +3695,7 @@
                     <connections>
                         <outlet property="btnBack" destination="34a-5Z-UAc" id="rDd-H6-nyu"/>
                         <outlet property="btnPhoto" destination="xlx-yX-uk7" id="QjQ-Fa-BPZ"/>
+                        <outlet property="collectionVeiw" destination="9TU-0d-dAe" id="0SE-AT-qkn"/>
                         <outlet property="tfSearch" destination="uVs-Ob-rHM" id="igM-32-Sh4"/>
                     </connections>
                 </viewController>

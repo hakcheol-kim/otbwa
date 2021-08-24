@@ -24,6 +24,9 @@
 		E945566E26B687D600F6268D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945566D26B687D600F6268D /* MainTabBarController.swift */; };
 		E94632BE26C2CAFA00E469B4 /* FilterColCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94632BC26C2CAFA00E469B4 /* FilterColCell.swift */; };
 		E94632BF26C2CAFA00E469B4 /* FilterColCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94632BD26C2CAFA00E469B4 /* FilterColCell.xib */; };
+		E97C749126D48CF8002C2D15 /* FitImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C749026D48CF8002C2D15 /* FitImageView.swift */; };
+		E97C749326D48D0B002C2D15 /* FitImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E97C749226D48D0B002C2D15 /* FitImageView.xib */; };
+		E97C749526D4A59F002C2D15 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E97C749426D4A59F002C2D15 /* CoreGraphics.framework */; };
 		E97C7AD826B52C6300D5EA93 /* StoreInofViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C7AD726B52C6300D5EA93 /* StoreInofViewController.swift */; };
 		E97C7ADA26B55D1300D5EA93 /* HashTagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E97C7AD926B55D1300D5EA93 /* HashTagViewController.swift */; };
 		E981358326B37F3B00C75AA1 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E981358226B37F3B00C75AA1 /* Login.storyboard */; };
@@ -73,6 +76,10 @@
 		E98DE23C26D2194B00B85956 /* PermissionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DE23B26D2194B00B85956 /* PermissionsController.swift */; };
 		E98DE23F26D237B500B85956 /* SearchImageReusableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98DE23D26D237B500B85956 /* SearchImageReusableHeaderView.swift */; };
 		E98DE24026D237B500B85956 /* SearchImageReusableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E98DE23E26D237B500B85956 /* SearchImageReusableHeaderView.xib */; };
+		E99344F826D2A8E2000D0354 /* EmptyColCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99344F626D2A8E2000D0354 /* EmptyColCell.swift */; };
+		E99344F926D2A8E2000D0354 /* EmptyColCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99344F726D2A8E2000D0354 /* EmptyColCell.xib */; };
+		E99344FC26D2AA5C000D0354 /* NoDataResuableColView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99344FA26D2AA5C000D0354 /* NoDataResuableColView.swift */; };
+		E99344FD26D2AA5C000D0354 /* NoDataResuableColView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E99344FB26D2AA5C000D0354 /* NoDataResuableColView.xib */; };
 		E99A7A9926BAA29A0036525E /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99A7A9826BAA29A0036525E /* KeychainItem.swift */; };
 		E99A7A9B26BAD2990036525E /* CFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99A7A9A26BAD2990036525E /* CFlowLayout.swift */; };
 		E99BEEFE26CFC60500635187 /* SearchTextViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99BEEFD26CFC60500635187 /* SearchTextViewController.swift */; };
@@ -155,6 +162,9 @@
 		E945566D26B687D600F6268D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		E94632BC26C2CAFA00E469B4 /* FilterColCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterColCell.swift; sourceTree = "<group>"; };
 		E94632BD26C2CAFA00E469B4 /* FilterColCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterColCell.xib; sourceTree = "<group>"; };
+		E97C749026D48CF8002C2D15 /* FitImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FitImageView.swift; path = otbwa/Controllers/Retail/FitImageView.swift; sourceTree = SOURCE_ROOT; };
+		E97C749226D48D0B002C2D15 /* FitImageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FitImageView.xib; sourceTree = "<group>"; };
+		E97C749426D4A59F002C2D15 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E97C7AD726B52C6300D5EA93 /* StoreInofViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInofViewController.swift; sourceTree = "<group>"; };
 		E97C7AD926B55D1300D5EA93 /* HashTagViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HashTagViewController.swift; sourceTree = "<group>"; };
 		E981358226B37F3B00C75AA1 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -205,6 +215,10 @@
 		E98DE23B26D2194B00B85956 /* PermissionsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionsController.swift; sourceTree = "<group>"; };
 		E98DE23D26D237B500B85956 /* SearchImageReusableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchImageReusableHeaderView.swift; sourceTree = "<group>"; };
 		E98DE23E26D237B500B85956 /* SearchImageReusableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchImageReusableHeaderView.xib; sourceTree = "<group>"; };
+		E99344F626D2A8E2000D0354 /* EmptyColCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyColCell.swift; sourceTree = "<group>"; };
+		E99344F726D2A8E2000D0354 /* EmptyColCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyColCell.xib; sourceTree = "<group>"; };
+		E99344FA26D2AA5C000D0354 /* NoDataResuableColView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoDataResuableColView.swift; sourceTree = "<group>"; };
+		E99344FB26D2AA5C000D0354 /* NoDataResuableColView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoDataResuableColView.xib; sourceTree = "<group>"; };
 		E99A7A9826BAA29A0036525E /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		E99A7A9A26BAD2990036525E /* CFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CFlowLayout.swift; sourceTree = "<group>"; };
 		E99BEEFD26CFC60500635187 /* SearchTextViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTextViewController.swift; sourceTree = "<group>"; };
@@ -274,6 +288,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E97C749526D4A59F002C2D15 /* CoreGraphics.framework in Frameworks */,
 				9A97876B2D23DA8B31ADC544 /* Pods_otbwa.framework in Frameworks */,
 				E9EFC97426B83EA800FFC603 /* Photos.framework in Frameworks */,
 			);
@@ -285,6 +300,7 @@
 		4FF4CDFFB9211631C7D6B1EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E97C749426D4A59F002C2D15 /* CoreGraphics.framework */,
 				E9EFC97326B83EA800FFC603 /* Photos.framework */,
 				C115972814BDA77BFAF97CC2 /* Pods_otbwa.framework */,
 			);
@@ -350,6 +366,8 @@
 		E98135C226B392CD00C75AA1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				E97C749026D48CF8002C2D15 /* FitImageView.swift */,
+				E97C749226D48D0B002C2D15 /* FitImageView.xib */,
 				E98DE23B26D2194B00B85956 /* PermissionsController.swift */,
 				E99A7A9A26BAD2990036525E /* CFlowLayout.swift */,
 				E99A7A9826BAA29A0036525E /* KeychainItem.swift */,
@@ -444,11 +462,15 @@
 				E99BEEFF26CFC62800635187 /* SearchImageViewController.swift */,
 				E98DE23D26D237B500B85956 /* SearchImageReusableHeaderView.swift */,
 				E98DE23E26D237B500B85956 /* SearchImageReusableHeaderView.xib */,
+				E99344F626D2A8E2000D0354 /* EmptyColCell.swift */,
+				E99344F726D2A8E2000D0354 /* EmptyColCell.xib */,
 				E99BEEFD26CFC60500635187 /* SearchTextViewController.swift */,
 				E98DE23126D0B44C00B85956 /* SearchTextResuableHeaderView.swift */,
 				E98DE23226D0B44C00B85956 /* SearchTextResuableHeaderView.xib */,
 				E98DE23526D0B4CE00B85956 /* SearchTextWholesaleColCell.swift */,
 				E98DE23626D0B4CE00B85956 /* SearchTextWholesaleColCell.xib */,
+				E99344FA26D2AA5C000D0354 /* NoDataResuableColView.swift */,
+				E99344FB26D2AA5C000D0354 /* NoDataResuableColView.xib */,
 				E92AEB3726CD7AC60036674E /* StoreInfoHearderView.swift */,
 				E92AEB3826CD7AC60036674E /* StoreInfoHearderView.xib */,
 				E92AEB2F26CC05DE0036674E /* StoreInfoViewController.swift */,
@@ -623,8 +645,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9865E0B26C000B500C7348E /* ProductColCell.xib in Resources */,
+				E99344F926D2A8E2000D0354 /* EmptyColCell.xib in Resources */,
 				E9ABCD3D26CAB2AD0032A73F /* OrderSelectionView.xib in Resources */,
 				E9A6AC0A26B29E9E00F53885 /* LaunchScreen.storyboard in Resources */,
+				E97C749326D48D0B002C2D15 /* FitImageView.xib in Resources */,
 				E92AEB3A26CD7AC60036674E /* StoreInfoHearderView.xib in Resources */,
 				E9A6AC1326B2A25B00F53885 /* GoogleService-Info.plist in Resources */,
 				E9865E0F26C0114400C7348E /* Common.storyboard in Resources */,
@@ -636,6 +660,7 @@
 				E9CE23FD26CA257400A09B16 /* ProdcutCell.xib in Resources */,
 				E9BBC0D726C41A86001ED68C /* FilterColorColCell.xib in Resources */,
 				E98DE23426D0B44C00B85956 /* SearchTextResuableHeaderView.xib in Resources */,
+				E99344FD26D2AA5C000D0354 /* NoDataResuableColView.xib in Resources */,
 				E9EFC97226B83E8A00FFC603 /* CameraOverlayView.xib in Resources */,
 				E9865DFF26BFAF5500C7348E /* FilterReusableView.xib in Resources */,
 				E9865DFB26BF947000C7348E /* BannerColCell.xib in Resources */,
@@ -711,9 +736,11 @@
 				E945566C26B67F1F00F6268D /* JoinCompletionViewController.swift in Sources */,
 				E981358B26B380A000C75AA1 /* IntroViewController.swift in Sources */,
 				E99EB83326B4397700084684 /* FlowSelectedViewController.swift in Sources */,
+				E99344FC26D2AA5C000D0354 /* NoDataResuableColView.swift in Sources */,
 				E9B2350326C2B31B0089BB6D /* FtColorViewController.swift in Sources */,
 				E9BBC0D626C41A86001ED68C /* FilterColorColCell.swift in Sources */,
 				E9B234FF26C2B2F80089BB6D /* FtCategoryViewController.swift in Sources */,
+				E97C749126D48CF8002C2D15 /* FitImageView.swift in Sources */,
 				E9865DF626BF93B900C7348E /* FSPagerViewObjcCompat.m in Sources */,
 				E9CE23ED26C9677900A09B16 /* SearchViewController.swift in Sources */,
 				E9865DF226BF93B900C7348E /* FSPagerViewCell.swift in Sources */,
@@ -790,6 +817,7 @@
 				E9EFC97026B83E8A00FFC603 /* CImagePickerController.swift in Sources */,
 				E9865E0D26C00C7800C7348E /* FilterViewController.swift in Sources */,
 				E98135BF26B390B400C75AA1 /* CToolbar.swift in Sources */,
+				E99344F826D2A8E2000D0354 /* EmptyColCell.swift in Sources */,
 				E9A5B4B426B3DDCA0002AE81 /* CeoInofViewController.swift in Sources */,
 				E98DE23C26D2194B00B85956 /* PermissionsController.swift in Sources */,
 				E9A5B4AC26B3CA3D0002AE81 /* SelectedButton.swift in Sources */,

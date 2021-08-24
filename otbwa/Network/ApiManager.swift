@@ -438,5 +438,12 @@ class ApiManager: NSObject {
             fail?(error)
         }
     }
-    
+    ///AI 이미지 속성 태그
+    func requestSearchAiImageTag(_ param:[String:Any], success:ResSuccess?, fail: ResFailure?) {
+        NetworkManager.ins.requestFileUpload(.post, "/api/v1/product/product_img", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
 }

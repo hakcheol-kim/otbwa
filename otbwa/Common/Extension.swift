@@ -34,6 +34,11 @@ extension UICollectionView {
             completion()
         }
     }
+    func reloadData(_ delay: Double = 0.1, _ completion:@escaping() ->Void) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + delay) {
+            completion()
+        }
+    }
 }
 //FIXME:: UIViewController
 extension UIViewController {

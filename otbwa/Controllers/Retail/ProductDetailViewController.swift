@@ -58,7 +58,13 @@ class ProductDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let title = passData["name"].stringValue
+        var title = passData["name"].stringValue
+        if title.isEmpty == true {
+            title = passData["product_nm"].stringValue
+        }
+        if title.isEmpty == true {
+            title = "상품 상세"
+        }
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
         CNavigationBar.drawTitle(self, title, nil)
         
@@ -75,7 +81,7 @@ class ProductDetailViewController: BaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     func initUI() {
         self.view.layoutIfNeeded()
@@ -170,7 +176,6 @@ class ProductDetailViewController: BaseViewController {
             for subview in tagContainer.subviews {
                 subview.removeFromSuperview()
             }
-            
             
             self.tagContainer.addSubview(tagsField)
             tagsField.translatesAutoresizingMaskIntoConstraints = false
