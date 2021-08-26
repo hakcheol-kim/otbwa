@@ -138,6 +138,6 @@ extension ProductLikeViewController: UITableViewDelegate, UITableViewDataSource 
         let item = listData[indexPath.row]
         let vc = ProductDetailViewController.instantiateFromStoryboard(.main)!
         vc.passData = item
-        self.navigationController?.pushViewController(vc, animated: true)
+        appDelegate.mainNaviCtrl.pushViewController(vc, animated: true)
     }
 }

@@ -51,7 +51,7 @@ class StoreInfoViewController: BaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setToolbarHidden(false, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     func dataReset() {
         page = 1
@@ -144,7 +144,7 @@ extension StoreInfoViewController: UICollectionViewDelegate, UICollectionViewDat
             }
             headerView.completion = {(action, item) ->Void in
                 if action == 100 { //notice
-                    let vc = NoticeListController.instantiateFromStoryboard(.main)!
+                    let vc = ClientNoticeListController.instantiateFromStoryboard(.main)!
                     vc.comp_no = self.data["comp_no"].intValue
                     self.navigationController?.pushViewController(vc, animated: true)
                 }

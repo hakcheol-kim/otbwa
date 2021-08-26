@@ -7,6 +7,7 @@
 
 import UIKit
 import PanModal
+import SwiftyJSON
 
 enum PopupType {
     case normal
@@ -137,6 +138,16 @@ class PopupListViewController: BaseViewController {
                     listData.append(item)
                 }
             }
+            else if let item = item as? JSON, let keys = keys {
+                var tmpStr = ""
+                for key in keys {
+                    let value = item[key].stringValue
+                    tmpStr.append("\(value) ")
+                }
+                if tmpStr.contains(text) {
+                    listData.append(item)
+                }
+            }
         }
         
         tblView.reloadData()
@@ -169,6 +180,16 @@ extension PopupListViewController: UITableViewDataSource, UITableViewDelegate {
                         if let value = item[key] {
                             result.append("\(value) ")
                         }
+                    }
+                }
+                cell.lbTitle.text = result
+            }
+            else if let item = listData[indexPath.row] as? JSON {
+                var result = ""
+                if let keys = keys {
+                    for key in keys {
+                        let value = item[key].stringValue
+                        result.append("\(value) ")
                     }
                 }
                 cell.lbTitle.text = result

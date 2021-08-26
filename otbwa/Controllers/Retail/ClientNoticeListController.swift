@@ -1,5 +1,5 @@
 //
-//  PartnerNoticeController.swift
+//  ClientNoticeListController.swift
 //  otbwa
 //
 //  Created by 김학철 on 2021/08/19.
@@ -11,7 +11,7 @@ import SwiftyJSON
 enum NoticeViewType {
     case normal, edting
 }
-class NoticeCell: UITableViewCell {
+class ClientNoticeCell: UITableViewCell {
     @IBOutlet weak var svContainer: UIStackView!
     @IBOutlet weak var lbDate: UILabel!
     @IBOutlet weak var lbTitle: UILabel!
@@ -47,7 +47,7 @@ class NoticeCell: UITableViewCell {
     }
 }
 
-class NoticeListController: BaseViewController {
+class ClientNoticeListController: BaseViewController {
     @IBOutlet weak var tblView: UITableView!
 
     var comp_no: Int = 0
@@ -135,12 +135,12 @@ class NoticeListController: BaseViewController {
     }
 }
 
-extension NoticeListController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
+extension ClientNoticeListController: UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.listData.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoticeCell") as? NoticeCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ClientNoticeCell") as? ClientNoticeCell else {
             return UITableViewCell()
         }
         let item = listData[indexPath.row]

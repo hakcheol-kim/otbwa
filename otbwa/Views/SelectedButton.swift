@@ -9,9 +9,14 @@ import UIKit
 
 class SelectedButton: UIButton {
     var data:Any? = nil
+    var selIndex: Int = 0
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         self.decorationNormalBtn()

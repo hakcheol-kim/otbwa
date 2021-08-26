@@ -127,7 +127,6 @@ extension ProductRecentViewController: UITableViewDelegate, UITableViewDataSourc
                 self.btnDel.setTitle("선택삭제(\(self.selectedItems.count))", for: .normal)
             }
         }
-        
         return cell!
     }
     
@@ -136,6 +135,6 @@ extension ProductRecentViewController: UITableViewDelegate, UITableViewDataSourc
         let item = listData[indexPath.row]
         let vc = ProductDetailViewController.instantiateFromStoryboard(.main)!
         vc.passData = item
-        self.navigationController?.pushViewController(vc, animated: true)
+        appDelegate.mainNaviCtrl.pushViewController(vc, animated: true)
     }
 }

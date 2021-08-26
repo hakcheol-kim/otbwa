@@ -12,6 +12,7 @@ class PhotoSelectAlertViewController: UIViewController {
     @IBOutlet weak var btnAlbem: CButton!
     @IBOutlet weak var btnCamera: CButton!
     @IBOutlet weak var btnFullClose: UIButton!
+    @IBOutlet weak var btnClose: UIButton!
     
     var completion: ((UIImagePickerController.SourceType) ->Void)?
     static func initWithCompletion(_ completion:((_ sourceType:UIImagePickerController.SourceType) ->Void)?) ->PhotoSelectAlertViewController {

@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ivLoading.heightAnchor.constraint(equalToConstant: 50).isActive = true
             ivLoading.widthAnchor.constraint(equalToConstant: 50).isActive = true
             ivLoading.color = UIColor(named: "AccentColor")
-            ivLoading.style = .large
+            ivLoading.style = .medium
             ivLoading.startAnimating()
             ivLoading.tag = 215001
             //혹시라라도 indicator 계속 돌고 있으면 강제로 제거 해준다. 10초후에
@@ -107,5 +107,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ivLoading.stopAnimating()
             loadingView.removeFromSuperview()
         })
+    }
+    
+    func openUrl(_ url:String, completion: ((_ success:Bool) -> Void)?) {
+        let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        guard let requestUrl = URL.init(string: encodedUrl) else {
+            completion?(false)
+            return
+        }
+        UIApplication.shared.open(requestUrl, options: [:]) { (success) in
+            completion?(success)
+        }
     }
 }

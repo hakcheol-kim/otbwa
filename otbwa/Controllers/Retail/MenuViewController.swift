@@ -37,11 +37,15 @@ class MenuViewController: BaseViewController {
         arrMenu = arrMenu.sorted(by: { (btn1, btn2) -> Bool in
             return btn1.tag < btn2.tag
         })
+        arrMenu.forEach { btn in
+            btn.addTarget(self, action: #selector(onClickedBtnActions(_:)), for: .touchUpInside)
+        }
         
         requestMyInfo()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
     }
     
     func requestMyInfo() {
@@ -76,7 +80,7 @@ class MenuViewController: BaseViewController {
             self.transitionPop(duration: 0.25, type: .fromRight)
         }
         else if sender == btnMyProduct {
-            let vc = MyPageStoreInfoViewController.instantiateFromStoryboard(.main)!
+            let vc = MyInfoViewController.instantiateFromStoryboard(.main)!
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else if sender == btnLike {
@@ -95,33 +99,42 @@ class MenuViewController: BaseViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else if let btn = sender as? CButton, arrMenu.contains(btn) == true {
-            
             if sender.tag == 0 {
-                
+                let vc = ProductOrderManagerViewController.instantiateFromStoryboard(.main)!
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             else if sender.tag == 1 {
-                
+                let vc = ClientMangerTabViewController.init()
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             else if sender.tag == 2 {
-                
+                let vc = EmployeeManagementViewController.instantiateFromStoryboard(.main)!
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             else if sender.tag == 3 {
-                
+                CAlertViewController.show(type: .alert, message: "옷봐 App 다운로드 주소가\n복사되었습니다.\nSNS, 카카오톡을 통해 옷봐를\n알려주세요.", actions: [.ok]) { (vcs, action) in
+                    vcs.dismiss(animated: true, completion: nil)
+                    if action == 0 {
+                        
+                    }
+                }
             }
             else if sender.tag == 4 {
-                
+                let vc = AdminNoticeListViewController.instantiateFromStoryboard(.main)!
+                self.navigationController?.pushViewController(vc, animated: true)
             }
-            else if sender.tag == 5 {
-                
+            else if sender.tag == 5 { //고객센터
+                let vc = ContatUsViewController.instantiateFromStoryboard(.main)!
+                self.navigationController?.pushViewController(vc, animated: true)
             }
-            else if sender.tag == 6 {
-                
+            else if sender.tag == 6 {   // 이용약관
+                let vc = TermsTabViewController.init()
+                self.navigationController?.pushViewController(vc, animated: true)
             }
-            else if sender.tag == 7 {
-                
-            }
-            else if sender.tag == 8 {
-                
+            else if sender.tag == 7 { //로그아웃
+                UserDefaults.standard.removeObject(forKey: Dfskey.userId)
+                UserDefaults.standard.removeObject(forKey: Dfskey.userPw)
+                appDelegate.callLoginVc()
             }
         }
     }

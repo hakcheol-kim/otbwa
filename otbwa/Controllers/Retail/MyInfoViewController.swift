@@ -1,5 +1,5 @@
 //
-//  MyPageStoreInfoViewController.swift
+//  MyInfoViewController.swift
 //  otbwa
 //
 //  Created by 김학철 on 2021/08/16.
@@ -8,7 +8,7 @@
 import UIKit
 import SwiftyJSON
 
-class MyPageStoreInfoViewController: BaseViewController {
+class MyInfoViewController: BaseViewController {
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbSubTitle: UILabel!
     
@@ -126,10 +126,14 @@ class MyPageStoreInfoViewController: BaseViewController {
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnModiMyInfo {
-            
+            let vc = ModifyMyInfoViewController.instantiateFromStoryboard(.main)!
+            vc.data = data
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         else if sender == btnModiStore {
-            
+            let vc = ModifyStoreInfoViewController.instantiateFromStoryboard(.main)!
+            vc.data = data
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         else if sender == btnCompImage {
             let vc = ImageShowViewController.instantiateFromStoryboard(.common)!

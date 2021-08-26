@@ -1,5 +1,5 @@
 //
-//  NoticeEdtingViewController.swift
+//  ClientNoticeEdtingViewController.swift
 //  otbwa
 //
 //  Created by 김학철 on 2021/08/19.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NoticeEdtingViewController: BaseViewController {
+class ClientNoticeEdtingViewController: BaseViewController {
 
     @IBOutlet weak var tfTitle: CTextField!
     @IBOutlet weak var tvContent: CTextView!

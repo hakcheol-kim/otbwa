@@ -446,4 +446,104 @@ class ApiManager: NSObject {
             fail?(error)
         }
     }
+    ///주문한 상폼 목록 조회
+    ///- Parameters: building: 건물번호, month: 3d:3일, 1w:1주일, 1m:1개월, 3m:3개월, 6m:6개월, name: 검색 매장명, p_current: 1, user_no: 1
+    func requestOrderProductList(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/user/order", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///주문 상세 내역 조회
+    ///- Parameters: order_no: 건물번호, user_no:2
+    func requestOrderDetailInfo(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/user/order_detail", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///거래처 검색
+    ///- Parameters: "comp_no": 3, "kind": "retail", "p_current": 3, "search": "허브", "type": "client"
+    func requestSearchCompClients(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/comp/clients", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///거래처관리 요청 취소, 삭제
+    ///- Parameters: "client_no": 3, "comp_no": 4, "fn_value": "approved", "kind": "retail", "search": "허브", "type": "client"
+    ///- fn_value : 'approved’ : 승인, 'reject’ : 거절, 'cancel’ : 요청취소, 'stop’ : 거래중지/거래처삭제
+    func requestClientMangement(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.put, "/api/v1/comp/client_Management", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///직원 리스트 조회
+    ///- Parameters: "comp_no": 34, "p_current": 3
+    func requestEmployeeList(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/comp/employee", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///직원 승인여부 처리
+    ///- Parameters: "comp_no": 4, "fn_value": "approved", "user_no": 2
+    ///- "fn_value": "approved" 승인, "reject" 취소
+    func requestEmployeeManagement(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.put, "/api/v1/comp/employee/management", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+        
+    /// 이용약관 조회
+    func requestTermText(success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.get, "/api/v1/etc/term_use_txt") { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///관리자 공지 리스트
+    ///- Parameters: "kind": "wsale", "p_current": 1
+    func requestAdminNoticeList(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/etc/manager_notice", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///관리자 공지 리스트
+    ///- Parameters: "kind": "wsale", "p_current": 1
+    func requestAdminNoticeDetail(noticeNo:Int, success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.get, "/api/v1/etc/manager_notice_info/\(noticeNo)") { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///기본정보 수정
+    ///- Parameters: "id": "user0022", "new_pw": "qlalf11!!", "phone": "010-4613-4455", "pw": "votmdnjsme11", "user_no": 2
+    func requestModifyMyInfo(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.put, "/api/v1/user/user_info", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///사업자정보 수정
+    func requestModifyStoreInfo(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.put, "/api/v1/user/comp_info", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
 }
