@@ -15,11 +15,14 @@ class HashTagViewController: BaseViewController {
     @IBOutlet weak var btnNext: CButton!
     @IBOutlet weak var safetyView: UIView!
 
+    var type: FitlerViewType = .hastagThree
+    
     var completion:((_ items:Any?) ->Void)?
     var filters:JSON!
-    static func initWithCompletion(completion:((_ items:Any) ->Void)?) ->HashTagViewController {
+    static func initWithType(_ type:FitlerViewType, completion:((_ items:Any) ->Void)?) ->HashTagViewController {
         let vc = HashTagViewController.instantiateFromStoryboard(.login)!
         vc.completion = completion
+        vc.type = type
         return vc
     }
     
@@ -31,7 +34,7 @@ class HashTagViewController: BaseViewController {
         
         btnNext.isEnabled = false
         safetyView.isHidden = !isEdgePhone
-        
+        ShareData.ins.selectedFilterList.removeAll()
         self.requestFilter()
         
     }
@@ -70,7 +73,7 @@ class HashTagViewController: BaseViewController {
         for item in  level1 {
             let tagView = Bundle.main.loadNibNamed("FilterSectionView", owner: nil, options: nil)?.first as! FilterSectionView
             svContent.addArrangedSubview(tagView)
-            tagView.configurationData(item, category, .hasTag)
+            tagView.configurationData(item, category, type)
             tagView.completion = {(data, isSelected) ->Void in
                 guard let data = data as? JSON else {
                     return
@@ -81,7 +84,7 @@ class HashTagViewController: BaseViewController {
                 else {
                     ShareData.ins.selectedFilterList.append(data)
                 }
-                self.btnNext.isSelected = !(ShareData.ins.selectedFilterList.isEmpty)
+                self.btnNext.isEnabled = !(ShareData.ins.selectedFilterList.isEmpty)
                 print(ShareData.ins.selectedFilterList)
             }
             
@@ -94,13 +97,10 @@ class HashTagViewController: BaseViewController {
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnCose {
-            self.requestFilter()
             self.dismiss(animated: true, completion: nil)
         }
         else if sender == btnNext {
-            guard let tags = ShareData.ins.objectForKey("hashtags") as? [JSON] else {
-                return
-            }
+            let tags = ShareData.ins.selectedFilterList
             self.completion?(tags)
             self.dismiss(animated: true, completion: nil)
         }

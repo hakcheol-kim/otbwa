@@ -11,7 +11,7 @@ class FilterGropView: UIView {
     @IBOutlet weak var btnGroupTitle: CButton!
     @IBOutlet weak var svList: UIStackView!
     
-    var type: FitlerViewType = .hasTag
+    var type: FitlerViewType = .hastagThree
     var listData:[JSON]?
     var completion:((_ data:Any, _ isSelected:Bool)->Void)?
     var display: JSON!
@@ -101,15 +101,22 @@ class FilterGropView: UIView {
             guard let data = btnGroupTitle.data else {
                 return
             }
-            self.completion?(data, sender.isSelected)
+            
+            if type == .address {
+                self.completion?(data, sender.isSelected)
+            }
         }
         else if let sender = sender as? CButton {
             guard var data = sender.data as? JSON else {
                 return
             }
             if (sender.isSelected == false) {
-                if  self.type == .hasTag && ShareData.ins.selectedFilterList.count >= 3 {
+                if  self.type == .hastagThree && ShareData.ins.selectedFilterList.count >= 3 {
                     appDelegate.window!.makeToast("해시태그는 최대 3개까지 선택할 수 있습니다.")
+                    return
+                }
+                else if self.type == .hastagOne && ShareData.ins.selectedFilterList.count >= 1 {
+                    appDelegate.window!.makeToast("해시태그는 최대 1개까지 선택할 수 있습니다.")
                     return
                 }
                 else if self.type == .address {
@@ -136,7 +143,7 @@ class FilterSectionView: UIView {
     
     var display:JSON!
     var listData: [JSON]?
-    var type: FitlerViewType = .hasTag
+    var type: FitlerViewType = .hastagThree
     var completion:((_ data: Any?, _ isSelected:Bool)->Void)?
     
     override func awakeFromNib() {
@@ -173,20 +180,22 @@ class FilterSectionView: UIView {
             groupView.completion = {(item, isSelected) ->Void in
                 self.completion?(item, isSelected)
             }
-            if (self.type == .hasTag) {
-                svGroup.isHidden = true
+        }
+       
+        if (self.type == .hastagThree) {
+            svGroup.isHidden = true
+        }
+        else {
+            svGroup.isHidden = false
+            btnSection.isSelected = true
+            if let lbTitle = btnSection.viewWithTag(100) as? UILabel {
+                lbTitle.font = UIFont.systemFont(ofSize: lbTitle.font.pointSize, weight: .bold)
             }
-            else {
-                svGroup.isHidden = false
-                btnSection.isSelected = true
-                if let lbTitle = btnSection.viewWithTag(100) as? UILabel {
-                    lbTitle.font = UIFont.systemFont(ofSize: lbTitle.font.pointSize, weight: .bold)
-                }
-                if let ivArrow = btnSection.viewWithTag(101) as? UIImageView {
-                    ivArrow.image = UIImage(systemName: "chevron.up")
-                }
+            if let ivArrow = btnSection.viewWithTag(101) as? UIImageView {
+                ivArrow.image = UIImage(systemName: "chevron.up")
             }
         }
+
     }
     
     @IBAction func onClickedBtnActions(_ sender:UIButton) {
@@ -194,6 +203,13 @@ class FilterSectionView: UIView {
             sender.isSelected = !sender.isSelected
             if sender.isSelected {
                 svGroup.isHidden = false
+            
+                for sub in svGroup.subviews {
+                    if let sub = sub as? FilterGropView {
+                        sub.btnGroupTitle.setNeedsDisplay()
+                    }
+                }
+                
                 if let lbTitle = btnSection.viewWithTag(100) as? UILabel {
                     lbTitle.font = UIFont.systemFont(ofSize: lbTitle.font.pointSize, weight: .bold)
                 }

@@ -18,7 +18,7 @@ class ImageShowViewController: BaseViewController {
         super.viewDidLoad()
         
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
-        CNavigationBar.drawTitle(self, vcTitle, nil)
+        CNavigationBar.drawTitle(self, vcTitle)
         
         
         self.view.layoutIfNeeded()

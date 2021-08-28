@@ -30,7 +30,7 @@ class ProductRecentViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tblView.tableFooterView = UIView()
-        safetyView.isHidden = !Utility.isEdgePhone()
+        safetyView.isHidden = !isEdgePhone
     }
     
     func dataRest() {

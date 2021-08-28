@@ -43,7 +43,8 @@ struct FitlerKey {
     static let minPrice = "min_price"
 }
 enum FitlerViewType: String {
-    case hasTag = "hasTag"
+    case hastagOne = "hastagOne"
+    case hastagThree = "hastagThree"
     case address = "address"
 }
 
@@ -51,6 +52,10 @@ enum Storyboard: String {
     case login = "Login"
     case main = "Main"
     case common = "Common"
+    case wsale = "WSale"
+}
+enum ListType: Int {
+    case normal, editing
 }
 enum EcomerceKind: String {
     case wsale = "wsale"

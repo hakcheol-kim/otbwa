@@ -115,7 +115,7 @@ class BasketListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
-        CNavigationBar.drawTitle(self, "장바구니", nil)
+        CNavigationBar.drawTitle(self, "장바구니")
         
         tblView.estimatedRowHeight = 100
         tblView.rowHeight = UITableView.automaticDimension

@@ -31,7 +31,7 @@ class ModifyStoreInfoViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        safetyView.isHidden = !Utility.isEdgePhone()
+        safetyView.isHidden = !isEdgePhone
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
         CNavigationBar.drawTitle(self, "사업자정보 수정", nil)
         

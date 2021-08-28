@@ -30,7 +30,7 @@ class ModifyMyInfoViewController: BaseViewController {
         
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
         CNavigationBar.drawTitle(self, "기본정보 수정", nil)
-        safetyView.isHidden = !Utility.isEdgePhone()
+        safetyView.isHidden = !isEdgePhone
         
         self.addTapGestureKeyBoardDown()
         tfCurrentPw.inputAccessoryView = toolBar

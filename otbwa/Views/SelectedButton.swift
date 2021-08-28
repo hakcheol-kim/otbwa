@@ -12,6 +12,7 @@ class SelectedButton: UIButton {
     var selIndex: Int = 0
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.clipsToBounds = true
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -94,7 +95,7 @@ class SelectedButton: UIButton {
         setNeedsDisplay()
     }
     func decorationNormalBtn() {
-        self.setTitleColor(UIColor.label, for: .normal)
+        self.setTitleColor(titleLabel?.textColor, for: .normal)
         self.titleLabel?.font = UIFont.systemFont(ofSize: (self.titleLabel?.font.pointSize)!, weight: .regular)
         setNeedsDisplay()
     }

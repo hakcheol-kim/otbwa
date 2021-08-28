@@ -38,7 +38,7 @@ class FtAddrViewController: BaseViewController {
         btnReset.setBackgroundImage(UIImage.color(from: RGB(233, 233, 233)), for: .normal)
         btnReset.setBackgroundImage(UIImage.color(from: UIColor(named: "AccentColor")!), for: .selected)
         
-        safetyView.isHidden = !Utility.isEdgePhone()
+        safetyView.isHidden = !isEdgePhone
         
         configurationUi()
     }

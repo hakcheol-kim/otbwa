@@ -30,7 +30,7 @@ class ProductLikeViewController: BaseViewController {
         super.viewDidLoad()
         tblView.tableFooterView = UIView()
         
-        safetyView.isHidden = !Utility.isEdgePhone()
+        safetyView.isHidden = !isEdgePhone
         bottomBar.isHidden = true
     }
 

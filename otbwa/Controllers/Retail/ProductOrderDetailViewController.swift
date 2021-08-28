@@ -26,7 +26,7 @@ class ProductOrderDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        safetyView.isHidden = !Utility.isEdgePhone()
+        safetyView.isHidden = !isEdgePhone
         
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
         CNavigationBar.drawTitle(self, "주문 상세", nil)

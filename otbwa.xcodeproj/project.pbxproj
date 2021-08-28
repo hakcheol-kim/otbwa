@@ -21,9 +21,11 @@
 		E945566826B64BCE00F6268D /* ShareData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945566726B64BCE00F6268D /* ShareData.swift */; };
 		E945566A26B66B7400F6268D /* StoreSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945566926B66B7400F6268D /* StoreSelectionViewController.swift */; };
 		E945566C26B67F1F00F6268D /* JoinCompletionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945566B26B67F1F00F6268D /* JoinCompletionViewController.swift */; };
-		E945566E26B687D600F6268D /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945566D26B687D600F6268D /* MainTabBarController.swift */; };
+		E945566E26B687D600F6268D /* WMainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E945566D26B687D600F6268D /* WMainTabBarController.swift */; };
 		E94632BE26C2CAFA00E469B4 /* FilterColCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E94632BC26C2CAFA00E469B4 /* FilterColCell.swift */; };
 		E94632BF26C2CAFA00E469B4 /* FilterColCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E94632BD26C2CAFA00E469B4 /* FilterColCell.xib */; };
+		E96F54F326D8970D00E1C7F5 /* WProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96F54F226D8970D00E1C7F5 /* WProductDetailViewController.swift */; };
+		E96F54F526D8A00900E1C7F5 /* WProductModifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E96F54F426D8A00900E1C7F5 /* WProductModifyViewController.swift */; };
 		E977E6D726D5C803001E92ED /* ProductOrderManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E977E6D626D5C803001E92ED /* ProductOrderManagerViewController.swift */; };
 		E977E6D926D5CBB8001E92ED /* ProductOrderManagerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E977E6D826D5CBB8001E92ED /* ProductOrderManagerCell.swift */; };
 		E977E6DB26D5E75D001E92ED /* POMItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E977E6DA26D5E75D001E92ED /* POMItemView.swift */; };
@@ -137,6 +139,14 @@
 		E9AAAD0626D759D20065A6C3 /* ModifyStoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAAD0526D759D20065A6C3 /* ModifyStoreInfoViewController.swift */; };
 		E9AAAD0926D762720065A6C3 /* WkWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9AAAD0726D762720065A6C3 /* WkWebViewController.xib */; };
 		E9AAAD0A26D762720065A6C3 /* WkWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAAD0826D762720065A6C3 /* WkWebViewController.swift */; };
+		E9AAAD0C26D7756D0065A6C3 /* WSale.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9AAAD0B26D7756D0065A6C3 /* WSale.storyboard */; };
+		E9AAAD1026D776250065A6C3 /* WHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAAD0F26D776250065A6C3 /* WHomeViewController.swift */; };
+		E9AAAD1226D7763B0065A6C3 /* WOrderManagementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAAD1126D7763B0065A6C3 /* WOrderManagementViewController.swift */; };
+		E9AAAD1426D7764A0065A6C3 /* WProductRegiestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAAD1326D7764A0065A6C3 /* WProductRegiestViewController.swift */; };
+		E9AAAD1626D776760065A6C3 /* WClientTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAAD1526D776760065A6C3 /* WClientTabViewController.swift */; };
+		E9AAAD1826D776810065A6C3 /* WMyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAAD1726D776810065A6C3 /* WMyPageViewController.swift */; };
+		E9AAAD1B26D789070065A6C3 /* WProductColCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAAD1926D789070065A6C3 /* WProductColCell.swift */; };
+		E9AAAD1C26D789070065A6C3 /* WProductColCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9AAAD1A26D789070065A6C3 /* WProductColCell.xib */; };
 		E9ABCD3B26CAB2A60032A73F /* OrderSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ABCD3A26CAB2A60032A73F /* OrderSelectionView.swift */; };
 		E9ABCD3D26CAB2AD0032A73F /* OrderSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9ABCD3C26CAB2AD0032A73F /* OrderSelectionView.xib */; };
 		E9B234FF26C2B2F80089BB6D /* FtCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B234FE26C2B2F80089BB6D /* FtCategoryViewController.swift */; };
@@ -180,9 +190,11 @@
 		E945566726B64BCE00F6268D /* ShareData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareData.swift; sourceTree = "<group>"; };
 		E945566926B66B7400F6268D /* StoreSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSelectionViewController.swift; sourceTree = "<group>"; };
 		E945566B26B67F1F00F6268D /* JoinCompletionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinCompletionViewController.swift; sourceTree = "<group>"; };
-		E945566D26B687D600F6268D /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		E945566D26B687D600F6268D /* WMainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMainTabBarController.swift; sourceTree = "<group>"; };
 		E94632BC26C2CAFA00E469B4 /* FilterColCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterColCell.swift; sourceTree = "<group>"; };
 		E94632BD26C2CAFA00E469B4 /* FilterColCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterColCell.xib; sourceTree = "<group>"; };
+		E96F54F226D8970D00E1C7F5 /* WProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WProductDetailViewController.swift; sourceTree = "<group>"; };
+		E96F54F426D8A00900E1C7F5 /* WProductModifyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WProductModifyViewController.swift; sourceTree = "<group>"; };
 		E977E6D626D5C803001E92ED /* ProductOrderManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOrderManagerViewController.swift; sourceTree = "<group>"; };
 		E977E6D826D5CBB8001E92ED /* ProductOrderManagerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductOrderManagerCell.swift; sourceTree = "<group>"; };
 		E977E6DA26D5E75D001E92ED /* POMItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POMItemView.swift; sourceTree = "<group>"; };
@@ -299,6 +311,14 @@
 		E9AAAD0526D759D20065A6C3 /* ModifyStoreInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyStoreInfoViewController.swift; sourceTree = "<group>"; };
 		E9AAAD0726D762720065A6C3 /* WkWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WkWebViewController.xib; sourceTree = "<group>"; };
 		E9AAAD0826D762720065A6C3 /* WkWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WkWebViewController.swift; sourceTree = "<group>"; };
+		E9AAAD0B26D7756D0065A6C3 /* WSale.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WSale.storyboard; sourceTree = "<group>"; };
+		E9AAAD0F26D776250065A6C3 /* WHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WHomeViewController.swift; sourceTree = "<group>"; };
+		E9AAAD1126D7763B0065A6C3 /* WOrderManagementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WOrderManagementViewController.swift; sourceTree = "<group>"; };
+		E9AAAD1326D7764A0065A6C3 /* WProductRegiestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WProductRegiestViewController.swift; sourceTree = "<group>"; };
+		E9AAAD1526D776760065A6C3 /* WClientTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WClientTabViewController.swift; sourceTree = "<group>"; };
+		E9AAAD1726D776810065A6C3 /* WMyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMyPageViewController.swift; sourceTree = "<group>"; };
+		E9AAAD1926D789070065A6C3 /* WProductColCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WProductColCell.swift; sourceTree = "<group>"; };
+		E9AAAD1A26D789070065A6C3 /* WProductColCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WProductColCell.xib; sourceTree = "<group>"; };
 		E9ABCD3A26CAB2A60032A73F /* OrderSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSelectionView.swift; sourceTree = "<group>"; };
 		E9ABCD3C26CAB2AD0032A73F /* OrderSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderSelectionView.xib; sourceTree = "<group>"; };
 		E9B234FE26C2B2F80089BB6D /* FtCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FtCategoryViewController.swift; sourceTree = "<group>"; };
@@ -391,11 +411,11 @@
 		E981358426B37F4900C75AA1 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E9859EFF26CE0C960089DA48 /* PopupListViewController.swift */,
+				E9AAAD0E26D775C70065A6C3 /* WSale */,
+				E9AAAD0D26D775B50065A6C3 /* Common */,
 				E9B234FB26C2A8BA0089BB6D /* Filter */,
 				E99EEC0726BEE3F1006A65CF /* Retail */,
 				E981358526B37F6300C75AA1 /* Login */,
-				E9865E0626BFEB6E00C7348E /* ImageShowViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -603,6 +623,7 @@
 				E9A6AC0326B29E9C00F53885 /* Main.storyboard */,
 				E981358226B37F3B00C75AA1 /* Login.storyboard */,
 				E9865E0E26C0114400C7348E /* Common.storyboard */,
+				E9AAAD0B26D7756D0065A6C3 /* WSale.storyboard */,
 				E99EC7EA26B7861B00520D44 /* Network */,
 				E9A94FAA26B6DD67005BC1EA /* Models */,
 				E981358426B37F4900C75AA1 /* Controllers */,
@@ -624,7 +645,6 @@
 				E9A6ABFD26B29E9C00F53885 /* AppDelegate.swift */,
 				E981358626B37FFB00C75AA1 /* BaseViewController.swift */,
 				E981358826B3803100C75AA1 /* BaseNavigationController.swift */,
-				E945566D26B687D600F6268D /* MainTabBarController.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -636,6 +656,32 @@
 				E9A94FAB26B6DD8D005BC1EA /* UserInfo.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		E9AAAD0D26D775B50065A6C3 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				E9865E0626BFEB6E00C7348E /* ImageShowViewController.swift */,
+				E9859EFF26CE0C960089DA48 /* PopupListViewController.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		E9AAAD0E26D775C70065A6C3 /* WSale */ = {
+			isa = PBXGroup;
+			children = (
+				E945566D26B687D600F6268D /* WMainTabBarController.swift */,
+				E9AAAD0F26D776250065A6C3 /* WHomeViewController.swift */,
+				E96F54F226D8970D00E1C7F5 /* WProductDetailViewController.swift */,
+				E96F54F426D8A00900E1C7F5 /* WProductModifyViewController.swift */,
+				E9AAAD1126D7763B0065A6C3 /* WOrderManagementViewController.swift */,
+				E9AAAD1326D7764A0065A6C3 /* WProductRegiestViewController.swift */,
+				E9AAAD1526D776760065A6C3 /* WClientTabViewController.swift */,
+				E9AAAD1726D776810065A6C3 /* WMyPageViewController.swift */,
+				E9AAAD1926D789070065A6C3 /* WProductColCell.swift */,
+				E9AAAD1A26D789070065A6C3 /* WProductColCell.xib */,
+			);
+			path = WSale;
 			sourceTree = "<group>";
 		};
 		E9B234FB26C2A8BA0089BB6D /* Filter */ = {
@@ -718,6 +764,7 @@
 				E9865E0B26C000B500C7348E /* ProductColCell.xib in Resources */,
 				E99344F926D2A8E2000D0354 /* EmptyColCell.xib in Resources */,
 				E9AAAD0926D762720065A6C3 /* WkWebViewController.xib in Resources */,
+				E9AAAD0C26D7756D0065A6C3 /* WSale.storyboard in Resources */,
 				E9ABCD3D26CAB2AD0032A73F /* OrderSelectionView.xib in Resources */,
 				E9A6AC0A26B29E9E00F53885 /* LaunchScreen.storyboard in Resources */,
 				E97C749326D48D0B002C2D15 /* FitImageView.xib in Resources */,
@@ -742,6 +789,7 @@
 				E9865DEF26BF93B900C7348E /* README-OBJECTIVE-C.md in Resources */,
 				E99EB83926B43DEF00084684 /* PopupCell.xib in Resources */,
 				E9A6AC0526B29E9C00F53885 /* Main.storyboard in Resources */,
+				E9AAAD1C26D789070065A6C3 /* WProductColCell.xib in Resources */,
 				E945566226B55DF100F6268D /* FilterSectionView.xib in Resources */,
 				E98DE24026D237B500B85956 /* SearchImageReusableHeaderView.xib in Resources */,
 				E99EEC0426BECE71006A65CF /* TabContainerController.xib in Resources */,
@@ -804,10 +852,12 @@
 				E94632BE26C2CAFA00E469B4 /* FilterColCell.swift in Sources */,
 				E98135C126B3910000C75AA1 /* Constants.swift in Sources */,
 				E99EB83826B43DEF00084684 /* PopupCell.swift in Sources */,
+				E9AAAD1B26D789070065A6C3 /* WProductColCell.swift in Sources */,
 				E98135C626B3A1AF00C75AA1 /* FindPwViewController.swift in Sources */,
 				E98135BA26B390B400C75AA1 /* CImageView.swift in Sources */,
 				E9063FF726CA8C4800F7954D /* ProductDetailViewController.swift in Sources */,
 				E977E6DF26D60884001E92ED /* ProductOrderDetailViewController.swift in Sources */,
+				E9AAAD1026D776250065A6C3 /* WHomeViewController.swift in Sources */,
 				E98135B626B390B400C75AA1 /* CTextField.swift in Sources */,
 				E945566C26B67F1F00F6268D /* JoinCompletionViewController.swift in Sources */,
 				E981358B26B380A000C75AA1 /* IntroViewController.swift in Sources */,
@@ -820,6 +870,7 @@
 				E977E6D926D5CBB8001E92ED /* ProductOrderManagerCell.swift in Sources */,
 				E977E6F526D6AA7F001E92ED /* ContatUsViewController.swift in Sources */,
 				E97C749126D48CF8002C2D15 /* FitImageView.swift in Sources */,
+				E9AAAD1826D776810065A6C3 /* WMyPageViewController.swift in Sources */,
 				E9865DF626BF93B900C7348E /* FSPagerViewObjcCompat.m in Sources */,
 				E9CE23ED26C9677900A09B16 /* SearchViewController.swift in Sources */,
 				E9865DF226BF93B900C7348E /* FSPagerViewCell.swift in Sources */,
@@ -829,12 +880,13 @@
 				E977E6F326D6A53B001E92ED /* TermDetailViewController.swift in Sources */,
 				E99EC7EC26B7865A00520D44 /* ApiManager.swift in Sources */,
 				E981358926B3803100C75AA1 /* BaseNavigationController.swift in Sources */,
+				E9AAAD1426D7764A0065A6C3 /* WProductRegiestViewController.swift in Sources */,
 				E99C0AE026CE7C010004AE7F /* ClientNoticeDetailViewController.swift in Sources */,
 				E9865E0726BFEB6E00C7348E /* ImageShowViewController.swift in Sources */,
 				E98135BC26B390B400C75AA1 /* DateExtension.swift in Sources */,
 				E99BEEFE26CFC60500635187 /* SearchTextViewController.swift in Sources */,
 				E99A7A9926BAA29A0036525E /* KeychainItem.swift in Sources */,
-				E945566E26B687D600F6268D /* MainTabBarController.swift in Sources */,
+				E945566E26B687D600F6268D /* WMainTabBarController.swift in Sources */,
 				E99EEC0326BECE71006A65CF /* TabContainerController.swift in Sources */,
 				E9B2350526C2B32D0089BB6D /* FtAddrViewController.swift in Sources */,
 				E9AAAD0026D71D290065A6C3 /* AdminNoticeDetailViewController.swift in Sources */,
@@ -865,10 +917,13 @@
 				E9865DF126BF93B900C7348E /* FSPageViewTransformer.swift in Sources */,
 				E9B2350126C2B3140089BB6D /* FtStyleViewController.swift in Sources */,
 				E98DE23F26D237B500B85956 /* SearchImageReusableHeaderView.swift in Sources */,
+				E96F54F326D8970D00E1C7F5 /* WProductDetailViewController.swift in Sources */,
 				E977E6D726D5C803001E92ED /* ProductOrderManagerViewController.swift in Sources */,
 				E9AAAD0626D759D20065A6C3 /* ModifyStoreInfoViewController.swift in Sources */,
 				E99EEC0626BEE328006A65CF /* RMainTabViewController.swift in Sources */,
 				E977E6EE26D6940D001E92ED /* CAlertViewController.swift in Sources */,
+				E96F54F526D8A00900E1C7F5 /* WProductModifyViewController.swift in Sources */,
+				E9AAAD1626D776760065A6C3 /* WClientTabViewController.swift in Sources */,
 				E98135B926B390B400C75AA1 /* Extension.swift in Sources */,
 				E98135BD26B390B400C75AA1 /* Clabel.swift in Sources */,
 				E92AEB3426CD328C0036674E /* OrderCounterView.swift in Sources */,
@@ -917,6 +972,7 @@
 				E9063FF926CA8C5B00F7954D /* MyInfoViewController.swift in Sources */,
 				E99EC7EE26B7866400520D44 /* NetworkManager.swift in Sources */,
 				E9B2350926C2B3460089BB6D /* FtCountyViewController.swift in Sources */,
+				E9AAAD1226D7763B0065A6C3 /* WOrderManagementViewController.swift in Sources */,
 				E9A5B4AA26B3C28B0002AE81 /* JoinGateWayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

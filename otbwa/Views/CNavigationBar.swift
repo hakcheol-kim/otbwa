@@ -60,7 +60,7 @@ class CNavigationBar: UINavigationBar {
         button.setTitleColor(button.tintColor, for: .normal)
     }
     
-    class func drawTitle(_ controller: UIViewController, _ title: Any?, _ selctor:Selector?) {
+    class func drawTitle(_ controller: UIViewController, _ title: Any?, _ selctor:Selector? = nil) {
         let button: UIButton = UIButton.init(frame: CGRect(x: 0, y: 0, width: 200, height: 44))
         button.setTitleColor(UIColor.white, for: .normal)
        

@@ -12,7 +12,7 @@ import SwiftyJSON
 
 class ApiManager: NSObject {
     static let ins = ApiManager()
-    
+    //FIXME: 소매 API
      ///상가 호수 카테고리 조회
      ///- Parameters : "category_no": 3, "p_current": 3
     func requestBuildingUnit(_ param:[String:Any] , success:ResSuccess?, fail: ResFailure?) {
@@ -255,6 +255,7 @@ class ApiManager: NSObject {
     
     
     ///상품상세 보기
+    /// - Parameters: "kind": "retail", "product_no": 23, "user_no": 2
     func requestProductDetail(param: [String:Any], success:ResSuccess?, fail:ResFailure?) {
         NetworkManager.ins.request(.post, "/api/v1/product/product_detail", param) { res in
             success?(res)
@@ -324,6 +325,7 @@ class ApiManager: NSObject {
     }
     
     ///거래처 공지사항 목록 조회
+    /// - Parameters: "comp_no": 34, "p_current": 3
     func requestNoticeList(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
         NetworkManager.ins.request(.post, "/api/v1/comp/notices", param) { res in
             success?(res)
@@ -529,7 +531,7 @@ class ApiManager: NSObject {
             fail?(error)
         }
     }
-    ///기본정보 수정
+    /// 기본정보 수정
     ///- Parameters: "id": "user0022", "new_pw": "qlalf11!!", "phone": "010-4613-4455", "pw": "votmdnjsme11", "user_no": 2
     func requestModifyMyInfo(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
         NetworkManager.ins.request(.put, "/api/v1/user/user_info", param) { res in
@@ -538,9 +540,56 @@ class ApiManager: NSObject {
             fail?(error)
         }
     }
-    ///사업자정보 수정
+    /// 사업자정보 수정
     func requestModifyStoreInfo(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
         NetworkManager.ins.request(.put, "/api/v1/user/comp_info", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    
+    //FIXME: 도매 API
+    ///도매매장 상품 검색 리스트
+    func requestCompProductSearch(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/comp/products", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    /// 주문 상세정보 조회
+    /// - Parameters: "comp_no": 3, "order_no": 200928162513760
+    func requestCompOrderDetail(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/comp/order_detail", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    /// 주문관리 목록 조회
+    /// - Parameters: "comp_no": 34, "p_current": 3, "search": "허브"
+    func requestCompOrderList(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/comp/order", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///도매 상품 상태관리
+    ///- Parameters: "comp_no": 34, "disp": "client", "order_type": "latest", "product_no": 23, "search": "린넨",
+    ///- "status": "soldout", restock
+    func requestChangeProductStatus(_ param: [String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.put, "/api/v1/product/product_status", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///도매 상품 품절처리 (상품상세보기에서 처리. 리턴리스트 없음)
+    ///- Prameters:  "comp_no": 29, "product_no": 1258
+    func requestProductSoldout(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.put, "/api/v1/product/soldout", param) { res in
             success?(res)
         } failure: { error in
             fail?(error)

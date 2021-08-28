@@ -62,7 +62,7 @@ class StoreInofViewController: BaseViewController {
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnHashTag {
-            let vc = HashTagViewController.initWithCompletion { items in
+            let vc = HashTagViewController.initWithType(.hastagThree) { items in
                 guard let tags = items as? [JSON] else {
                     return
                 }

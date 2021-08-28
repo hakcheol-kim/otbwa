@@ -35,12 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     func callIntroVc() {
-//        let vc = HashTagViewController.initWithCompletion { item in
-//            guard let item = item as? JSON else {
-//                return
-//            }
-//            print(item)
-//        }
         let vc = IntroViewController.instantiateFromStoryboard(.login)!
         window?.rootViewController = vc
         window?.makeKeyAndVisible()
@@ -53,9 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func calllWsaleMainVc() {
-//        self.mainTabBarCtrl = MainTabBarController.instantiateFromStoryboard(.main)!
-//        window?.rootViewController = mainTabBarCtrl
-//        window?.makeKeyAndVisible()
+        let vc = WMainTabBarController.init()
+        self.mainNaviCtrl = BaseNavigationController.init(rootViewController: vc)
+        window?.rootViewController = mainNaviCtrl
+        window?.makeKeyAndVisible()
     }
     
     func callRetailMainVc() {

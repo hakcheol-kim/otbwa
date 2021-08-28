@@ -73,7 +73,7 @@ class ProductDetailViewController: BaseViewController {
         orderSelectionView.layer.maskedCorners = CACornerMask(TL: true, TR: true, BL: false, BR: false)
         svBottomContainer.insertArrangedSubview(orderSelectionView, at: 0)
         orderSelectionView.isHidden = true
-        safetyView.isHidden = !Utility.isEdgePhone()
+        safetyView.isHidden = !isEdgePhone
         
         self.initUI()
         self.requestProductDetail()

@@ -35,7 +35,7 @@ class AdminNoticeListViewController: BaseViewController {
         super.viewDidLoad()
 
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
-        CNavigationBar.drawTitle(self, "관리자 공지사항", nil)
+        CNavigationBar.drawTitle(self, "관리자 공지사항")
         self.tblView.tableFooterView = UIView()
     }
  

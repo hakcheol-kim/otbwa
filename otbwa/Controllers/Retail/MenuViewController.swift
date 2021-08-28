@@ -24,7 +24,7 @@ class MenuViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        CNavigationBar.drawTitle(self, UIImage(named: "logo_top"), nil)
+        CNavigationBar.drawTitle(self, UIImage(named: "logo_top"))
         CNavigationBar.drawRight(self, UIImage(named: "ico_close"), nil, 101010, #selector(onClickedBtnActions(_:)))
         self.navigationItem.setHidesBackButton(true, animated: false)
         

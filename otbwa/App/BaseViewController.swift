@@ -10,7 +10,6 @@ import Photos
 import Lightbox
 
 class BaseViewController: UIViewController {
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -169,4 +168,3 @@ class BaseViewController: UIViewController {
         
     }
 }
-

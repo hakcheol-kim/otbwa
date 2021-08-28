@@ -70,7 +70,7 @@ class FilterViewController: BaseViewController {
         })
         
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
-        CNavigationBar.drawTitle(self, "필터 설정", nil)
+        CNavigationBar.drawTitle(self, "필터 설정")
         
         for btn in arrMenu {
             btn.addTarget(self, action: #selector(onClickedBtnActions(_ :)), for: .touchUpInside)

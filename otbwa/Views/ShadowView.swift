@@ -85,10 +85,10 @@ class ShadowView: UIView {
                 layer.shadowColor = sColor.cgColor
                 layer.shadowRadius = sdRadius
                 layer.shadowOpacity = sdOpacity
-                self.backgroundColor = UIColor.clear
-//                let backgroundCGColor = backgroundColor?.cgColor
-//                backgroundColor = nil
-//                layer.backgroundColor = backgroundCGColor
+                
+                let backgroundCGColor = backgroundColor?.cgColor
+                backgroundColor = nil
+                layer.backgroundColor = backgroundCGColor
             }
         }
     }
