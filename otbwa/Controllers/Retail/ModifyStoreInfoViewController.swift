@@ -97,8 +97,9 @@ class ModifyStoreInfoViewController: BaseViewController {
             self.navigationController?.pushViewController(vc, animated: true)
         }
         else if sender == btnFile {
-            let vc = PhotoSelectAlertViewController.initWithCompletion { soureType in
-                self.checkPermissionPhoto(soureType)
+            let vc = ImageSelectOptionViewController.initWithCompletion { vcs, soureType in
+                vcs?.dismiss(animated: true, completion: nil)
+//                self.checkPermissionPhoto(soureType)
             }
             self.present(vc, animated: true, completion: nil)
         }
@@ -150,19 +151,19 @@ class ModifyStoreInfoViewController: BaseViewController {
 
         }
     }
-    override func displayImagePicker(_ sourceType: UIImagePickerController.SourceType) {
-        let picker = CImagePickerController.init(sourceType) { (orig, crop) in
-            guard let orig = orig, let crop = crop else {
-                return
-            }
-            let fileName = Date().stringDateWithFormat("yyyyMMddHHmmss")
-            let ext = "jpg"
-            self.tfFile.text = fileName+"."+ext
-            self.file = crop
-            print("== orig: \(orig), crop:\(crop)")
-        }
-        self.present(picker, animated: true, completion: nil)
-    }
+//    override func displayImagePicker(_ sourceType: UIImagePickerController.SourceType) {
+//        let picker = CImagePickerController.init(sourceType) { (orig, crop) in
+//            guard let orig = orig, let crop = crop else {
+//                return
+//            }
+//            let fileName = Date().stringDateWithFormat("yyyyMMddHHmmss")
+//            let ext = "jpg"
+//            self.tfFile.text = fileName+"."+ext
+//            self.file = crop
+//            print("== orig: \(orig), crop:\(crop)")
+//        }
+//        self.present(picker, animated: true, completion: nil)
+//    }
 }
 
 extension ModifyStoreInfoViewController: UITextFieldDelegate {

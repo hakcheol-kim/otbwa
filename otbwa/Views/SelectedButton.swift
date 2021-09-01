@@ -10,6 +10,7 @@ import UIKit
 class SelectedButton: UIButton {
     var data:Any? = nil
     var selIndex: Int = 0
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.clipsToBounds = true
@@ -62,6 +63,17 @@ class SelectedButton: UIButton {
             setNeedsDisplay()
         }
     }
+    @IBInspectable var titleColor: UIColor = UIColor.label {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    @IBInspectable var selTitleColor: UIColor = UIColor(named: "AccentColor")! {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         if self.isSelected {
@@ -90,12 +102,12 @@ class SelectedButton: UIButton {
     }
 
     func decorationSelectedBtn() {
-        self.setTitleColor(selBorderColor, for: .normal)
+        self.setTitleColor(selTitleColor, for: .normal)
         self.titleLabel?.font = UIFont.systemFont(ofSize: (self.titleLabel?.font.pointSize)!, weight: .bold)
         setNeedsDisplay()
     }
     func decorationNormalBtn() {
-        self.setTitleColor(titleLabel?.textColor, for: .normal)
+        self.setTitleColor(titleColor, for: .normal)
         self.titleLabel?.font = UIFont.systemFont(ofSize: (self.titleLabel?.font.pointSize)!, weight: .regular)
         setNeedsDisplay()
     }

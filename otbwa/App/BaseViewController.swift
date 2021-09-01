@@ -50,7 +50,7 @@ class BaseViewController: UIViewController {
     @objc func actionKeybardDown() {
         self.view.endEditing(true)
     }
-    func showToast(_ message:String?, _ bottom: CGFloat = 56) {
+    func showToast(_ message:String?, _ bottom: CGFloat = 64) {
         guard let message = message, message.isEmpty == false else {
             return
         }
@@ -58,7 +58,9 @@ class BaseViewController: UIViewController {
             self.view.makeToast(message, position:.center)
         }
         else {
-            self.view.makeToast(message, point: CGPoint(x: UIScreen.main.bounds.size.width/2, y: self.view.bounds.size.height - (self.view.window?.safeAreaInsets.bottom ?? 0) - bottom), title: nil, image: nil, completion: nil)
+            let b = bottom + (tabBarController?.tabBar.bounds.height ?? 0)
+
+            self.view.makeToast(message, point: CGPoint(x: UIScreen.main.bounds.size.width/2, y: self.view.bounds.size.height - (self.view.window?.safeAreaInsets.bottom ?? 0) - b), title: nil, image: nil, completion: nil)
         }
     }
     
@@ -127,44 +129,5 @@ class BaseViewController: UIViewController {
         let controller = LightboxController(images: images, startIndex: 0)
         controller.dynamicBackground = true
         present(controller, animated: true, completion: nil)
-    }
-    func showSettingAlert(_ title:String?, _ message: String?) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (action) in
-            alert.dismiss(animated: false, completion: nil)
-        }))
-        alert.addAction(UIAlertAction(title: "설정", style: .default, handler: { (action) in
-            let settingsUrl = URL(string: UIApplication.openSettingsURLString)!
-            if UIApplication.shared.canOpenURL(settingsUrl) {
-                UIApplication.shared.open(settingsUrl, options: [:], completionHandler: nil)
-            } else {
-                alert.dismiss(animated: false, completion: nil)
-            }
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-    func checkPermissionPhoto(_ soureType: UIImagePickerController.SourceType) {
-        if soureType == .camera {
-            PermissionsController.gloableInstance.checkPermissionAccessForCamera {
-                self.displayImagePicker(soureType)
-            } failureBlock: {
-                self.showSettingAlert("카메라에 액세스할 수 없습니다", "액세스를 활성화하려면 설정 > 개인 정보 보호 > 카메라로 이동하여 이 앱에 대한 카메라 액세스를 켜십시오.")
-            } deniedBlock: {
-                self.showSettingAlert("카메라에 액세스할 수 없습니다", "액세스를 활성화하려면 설정 > 개인 정보 보호 > 카메라로 이동하여 이 앱에 대한 카메라 액세스를 켜십시오.")
-            }
-        }
-        else if soureType == .photoLibrary {
-            PermissionsController.gloableInstance.checkPermissionAccessGallery {
-                self.displayImagePicker(soureType)
-            } failureBlock: {
-                self.showSettingAlert("카메라에 액세스할 수 없습니다", "액세스를 활성화하려면 설정 > 개인 정보 보호 > 카메라로 이동하여 이 앱에 대한 카메라 액세스를 켜십시오.")
-            } deniedBlock: {
-                self.showSettingAlert("캘러리를 액세스할 수 없습니다", "액세스를 활성화하려면 설정 > 개인 정보 보호 > 사진을 이동하여 이 앱에 대한 접근권한을 켜십시오.")
-            }
-        }
-    }
-    ///overried method
-    func displayImagePicker(_ sourceType: UIImagePickerController.SourceType) {
-        
     }
 }

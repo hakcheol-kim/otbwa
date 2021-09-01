@@ -15,8 +15,10 @@ class ClientMangerTabViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
-        CNavigationBar.drawTitle(self, "거래처 관리", nil)
+        if ShareData.ins.kind == .retail {
+            CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
+            CNavigationBar.drawTitle(self, "거래처 관리", nil)
+        }
         self.view.backgroundColor = UIColor.systemBackground
         self.setupTabContainer()
     }

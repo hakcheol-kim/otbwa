@@ -47,8 +47,9 @@ class SearchViewController: BaseViewController {
             self.navigationController?.popViewController(animated: true)
         }
         else if sender == btnPhoto || sender == btnPhotoSearch {
-            let vc = PhotoSelectAlertViewController.initWithCompletion { souretype in
-                self.checkPermissionPhoto(souretype)
+            let vc = ImageSelectOptionViewController.initWithCompletion { vcs, souretype in
+                vcs?.dismiss(animated: true, completion: nil)
+//                self.checkPermissionPhoto(souretype)
             }
             self.present(vc, animated: true, completion: nil)
         }
@@ -81,17 +82,17 @@ class SearchViewController: BaseViewController {
         }
     }
     
-    override func displayImagePicker(_ sourceType: UIImagePickerController.SourceType) {
-        let vc = CImagePickerController.init(sourceType, false) { origin, crop in
-            guard let image = origin else {
-                return
-            }
-            let vc = SearchImageViewController.instantiateFromStoryboard(.main)!
-            vc.searchImg = image
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        self.present(vc, animated: true, completion: nil)
-    }
+//    override func displayImagePicker(_ sourceType: UIImagePickerController.SourceType) {
+//        let vc = CImagePickerController.init(sourceType, false) { origin, crop in
+//            guard let image = origin else {
+//                return
+//            }
+//            let vc = SearchImageViewController.instantiateFromStoryboard(.main)!
+//            vc.searchImg = image
+//            self.navigationController?.pushViewController(vc, animated: true)
+//        }
+//        self.present(vc, animated: true, completion: nil)
+//    }
     
     func requestMySearch() {
         ApiManager.ins.requestMySearchHistoryList(userNo: ShareData.ins.userNo) { res in

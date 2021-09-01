@@ -10,13 +10,14 @@ import PanModal
 import SwiftyJSON
 
 enum PopupType {
-    case normal
+    case normal, check
 }
 
 class PopupListCell: UITableViewCell {
     @IBOutlet weak var ivIcon: UIImageView!
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbSubTitle: UILabel!
+    @IBOutlet weak var btnCheck: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,24 +29,30 @@ class PopupListCell: UITableViewCell {
 
 class PopupListViewController: BaseViewController {
     
+    @IBOutlet weak var svContainer: UIStackView!
+    @IBOutlet var bottomView: UIView!
     @IBOutlet weak var tfSearch: CTextField!
     @IBOutlet weak var svSearch: UIStackView!
     @IBOutlet weak var svTitle: UIStackView!
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var tblView: UITableView!
     @IBOutlet weak var btnClose: UIButton!
+    @IBOutlet weak var btnOk: CButton!
+    @IBOutlet weak var heightTblView: NSLayoutConstraint!
     
     var listData:[Any] = []
     var originData:[Any] = []
     var keys:[String]? = nil
     var type:PopupType = .normal
     var vcTitle: Any?
-    var fitHeight:CGFloat = 100
+    var fitHeight:CGFloat = 0
     
     var completion:((_ vcs: UIViewController, _ selItem:Any?, _ index:NSInteger) -> Void)?
     let toolBar = CToolbar.init(barItems: [.keyboardDown], itemColor: RGB(230, 100, 100))
     
     var showSearchBar:Bool = false
+    var selIndexPaths = [IndexPath]()
+    
     
     static func initWithType(_ type: PopupType, _ title:Any?, _ data:[Any], _ keys:[String]?, completion:((_ vcs: UIViewController, _ selItem:Any?, _ index:NSInteger) -> Void)?) -> PopupListViewController {
         
@@ -73,19 +80,9 @@ class PopupListViewController: BaseViewController {
             lbTitle.attributedText = vcTitle
         }
         
-        
         btnClose.imageView?.contentMode = .scaleAspectFill
         self.btnClose.addTarget(self, action: #selector(onClickedBtnActions(_ :)), for: .touchUpInside)
-        
-        self.tblView.tableFooterView = UIView.init()
-        self.tblView.reloadData()
-        self.view.layoutIfNeeded()
-        self.fitHeight = self.tblView.contentSize.height
-        if self.svTitle.isHidden == false {
-            self.fitHeight += self.svTitle.bounds.height
-        }
-        self.panModalSetNeedsLayoutUpdate()
-        
+     
         let attr = NSMutableAttributedString()
         var placeHolder = "검색"
         if let image = UIImage(systemName: "magnifyingglass") {
@@ -102,8 +99,38 @@ class PopupListViewController: BaseViewController {
         tfSearch.inputAccessoryView = toolBar
         toolBar.addTarget(self, selctor: #selector(actionKeybardDown))
         
+        self.bottomView.isHidden = true
+        self.view.layoutIfNeeded()
+        self.tblView.tableFooterView = UIView()
+        self.tblView.reloadData()
+        self.view.layoutIfNeeded()
+        var maxContentH = UIScreen.main.bounds.size.height - 44 - 34
         
+        if self.svTitle.isHidden == false {
+            self.fitHeight += self.svTitle.bounds.height
+            maxContentH -= self.svTitle.bounds.height
+        }
+        if self.svSearch.isHidden == false {
+            self.fitHeight += self.svSearch.bounds.height
+            maxContentH -= self.svSearch.bounds.height
+        }
+        
+        if (self.type == .check) {
+            self.bottomView.isHidden = false
+            self.fitHeight += self.bottomView.bounds.height
+            maxContentH -= self.bottomView.bounds.height
+        }
+        
+        var contetnH  = self.tblView.contentSize.height
+        if contetnH > maxContentH {
+            contetnH = maxContentH
+        }
+        
+        self.heightTblView.constant = contetnH
+        self.fitHeight += contetnH
+        self.panModalSetNeedsLayoutUpdate()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.addKeyboardNotification()
@@ -153,8 +180,22 @@ class PopupListViewController: BaseViewController {
         tblView.reloadData()
     }
     
-    @objc func onClickedBtnActions(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+    @IBAction func onClickedBtnActions(_ sender: UIButton) {
+        if sender == btnClose {
+            self.dismiss(animated: true, completion: nil)
+        }
+        else if sender == btnOk {
+            guard selIndexPaths.isEmpty == false else {
+                self.dismiss(animated: true, completion: nil)
+                return
+            }
+            var list = [Any]()
+            for index in selIndexPaths {
+                let item = listData[index.row]
+                list.append(item)
+            }
+            self.completion?(self, list, 100)
+        }
     }
 }
 
@@ -166,42 +207,66 @@ extension PopupListViewController: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PopupListCell") as? PopupListCell else {
             return UITableViewCell()
         }
-        if type == .normal {
-            cell.ivIcon.isHidden = true
-            cell.lbSubTitle.isHidden = true
-            
-            if let title = listData[indexPath.row] as? String {
-                cell.lbTitle.text = title
-            }
-            else if let item = listData[indexPath.row] as? [String:Any] {
-                var result = ""
-                if let keys = keys {
-                    for key in keys {
-                        if let value = item[key] {
-                            result.append("\(value) ")
-                        }
-                    }
-                }
-                cell.lbTitle.text = result
-            }
-            else if let item = listData[indexPath.row] as? JSON {
-                var result = ""
-                if let keys = keys {
-                    for key in keys {
-                        let value = item[key].stringValue
+        if let title = listData[indexPath.row] as? String {
+            cell.lbTitle.text = title
+        }
+        else if let item = listData[indexPath.row] as? [String:Any] {
+            var result = ""
+            if let keys = keys {
+                for key in keys {
+                    if let value = item[key] {
                         result.append("\(value) ")
                     }
                 }
-                cell.lbTitle.text = result
+            }
+            cell.lbTitle.text = result
+        }
+        else if let item = listData[indexPath.row] as? JSON {
+            var result = ""
+            if let keys = keys {
+                for key in keys {
+                    let value = item[key].stringValue
+                    result.append("\(value) ")
+                }
+            }
+            cell.lbTitle.text = result
+        }
+        
+        if type == .normal {
+            cell.ivIcon.isHidden = true
+            cell.lbSubTitle.isHidden = true
+            cell.btnCheck.isHidden = true
+        }
+        else {
+            cell.ivIcon.isHidden = true
+            cell.lbSubTitle.isHidden = true
+            cell.btnCheck.isHidden = false
+            
+            if selIndexPaths.contains(indexPath) == true {
+                cell.btnCheck.isSelected = true
+            }
+            else {
+                cell.btnCheck.isSelected = false
             }
         }
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        let item = listData[indexPath.row]
-        self.completion?(self, item, indexPath.row)
+        if type == .check {
+            if let index = selIndexPaths.firstIndex(of: indexPath) {
+                selIndexPaths.remove(at: index)
+            }
+            else {
+                selIndexPaths.append(indexPath)
+            }
+            self.tblView.reloadData()
+        }
+        else {
+            let item = listData[indexPath.row]
+            self.completion?(self, item, indexPath.row)
+        }
     }
 }
 
@@ -230,21 +295,13 @@ extension PopupListViewController: PanModalPresentable {
     var panScrollable: UIScrollView? {
         return self.tblView
     }
-//    var topOffset: CGFloat {
-//        guard let window = appDelegate.window else {
-//            return 100
-//        }
-//        return window.safeAreaInsets.top + 50
-//    }
-//    var shortFormHeight: PanModalHeight {
-//        return PanModalHeight.contentHeight(fitHeight)
-//    }
     var shortFormHeight: PanModalHeight {
         return .contentHeight(fitHeight)
     }
     var longFormHeight: PanModalHeight {
-        return .maxHeightWithTopInset(40)
+        return .maxHeightWithTopInset(44)
     }
+    
     var cornerRadius : CGFloat {
         return 16.0
     }

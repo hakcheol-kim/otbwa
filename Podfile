@@ -18,7 +18,9 @@ target 'otbwa' do
   pod 'UIImageViewAlignedSwift'
   pod 'PanModal'
   pod 'Toast-Swift', '~> 5.0.1'
+  pod "BSImagePicker", "~> 3.1"
   pod 'Mantis'
   pod "WSTagsField" #tags
   pod 'Lightbox' #photo show
+  pod 'TagListView', '~> 1.0'
 end

@@ -560,7 +560,7 @@ class ApiManager: NSObject {
     }
     /// 주문 상세정보 조회
     /// - Parameters: "comp_no": 3, "order_no": 200928162513760
-    func requestCompOrderDetail(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+    func requestCompOrderDetailInfo(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
         NetworkManager.ins.request(.post, "/api/v1/comp/order_detail", param) { res in
             success?(res)
         } failure: { error in
@@ -595,4 +595,37 @@ class ApiManager: NSObject {
             fail?(error)
         }
     }
+    /// 상품 수정페이지 조회
+    func requestProductInfo(productNo:String, success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.get, "/api/v1/product/product_info/\(productNo)") { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///상품 수정
+    func requestModifyProductInfo(_ param:[String:Any], succes:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.requestFileUpload(.put, "/api/v1/product", param) { res in
+            succes?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///상품 등록
+    func requestRegistProductInfo(_ param:[String:Any], succes:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.requestFileUpload(.post, "/api/v1/product", param) { res in
+            succes?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///상품 삭제
+    func requestDeleteProductInfo(_ param:[String:Any], succes:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.delete, "/api/v1/product", param) { res in
+            succes?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
 }
+

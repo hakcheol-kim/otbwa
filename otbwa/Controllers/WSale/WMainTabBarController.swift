@@ -10,9 +10,9 @@ import UIKit
 class WMainTabBarController: UITabBarController {
 
     let homeVc = WHomeViewController.instantiateFromStoryboard(.wsale)!
-    let orderMangementVc = WOrderManagementViewController.instantiateFromStoryboard(.wsale)!
+    let orderMangementVc = WCompOrderListViewController.instantiateFromStoryboard(.wsale)!
     let productRegistVc = WProductRegiestViewController.instantiateFromStoryboard(.wsale)!
-    let clientTabVc = WClientTabViewController.instantiateFromStoryboard(.wsale)!
+    let clientTabVc = ClientMangerTabViewController.init()
     let myPaygeVc = WMyPageViewController.instantiateFromStoryboard(.wsale)!
     
     override func viewDidLoad() {
@@ -61,6 +61,8 @@ extension WMainTabBarController: UITabBarControllerDelegate {
         return true
     }
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        
+        if let viewController = viewController as? WProductRegiestViewController {
+            viewController.reloadData()
+        }
     }
 }

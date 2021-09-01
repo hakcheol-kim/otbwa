@@ -108,33 +108,34 @@ class SearchTextViewController: BaseViewController {
             self.navigationController?.popViewController(animated: true)
         }
         else if sender == btnPhoto {
-            let vc = PhotoSelectAlertViewController.initWithCompletion { souretype in
-                self.checkPermissionPhoto(souretype)
+            let vc = ImageSelectOptionViewController.initWithCompletion { vcs, souretype in
+                vcs?.dismiss(animated: true, completion: nil)
+//                self.checkPermissionPhoto(souretype)
             }
             self.present(vc, animated: true, completion: nil)
         }
     }
-    override func displayImagePicker(_ sourceType: UIImagePickerController.SourceType) {
-        let vc = CImagePickerController.init(sourceType, false) { origin, crop in
-            guard let image = origin else {
-                return
-            }
-            
-            if let findVc = self.navigationController?.viewControllers.filter({ vc ->Bool in
-                return (vc is SearchTextViewController || vc is SearchImageViewController)
-            }).first {
-                self.navigationController?.popToViewController(findVc, animated: false)
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-                let vc = SearchImageViewController.instantiateFromStoryboard(.main)!
-                vc.searchImg = image
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
-        
-        self.present(vc, animated: true, completion: nil)
-    }
+//    override func displayImagePicker(_ sourceType: UIImagePickerController.SourceType) {
+//        let vc = CImagePickerController.init(sourceType, false) { origin, crop in
+//            guard let image = origin else {
+//                return
+//            }
+//
+//            if let findVc = self.navigationController?.viewControllers.filter({ vc ->Bool in
+//                return (vc is SearchTextViewController || vc is SearchImageViewController)
+//            }).first {
+//                self.navigationController?.popToViewController(findVc, animated: false)
+//            }
+//
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+//                let vc = SearchImageViewController.instantiateFromStoryboard(.main)!
+//                vc.searchImg = image
+//                self.navigationController?.pushViewController(vc, animated: true)
+//            }
+//        }
+//
+//        self.present(vc, animated: true, completion: nil)
+//    }
 }
 
 extension SearchTextViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {

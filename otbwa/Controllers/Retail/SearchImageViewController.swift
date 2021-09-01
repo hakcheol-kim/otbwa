@@ -53,8 +53,9 @@ class SearchImageViewController: BaseViewController {
             self.navigationController?.popViewController(animated: true)
         }
         else if sender == btnPhoto {
-            let vc = PhotoSelectAlertViewController.initWithCompletion { sourceType in
-                self.checkPermissionPhoto(sourceType)
+            let vc = ImageSelectOptionViewController.initWithCompletion { vcs, sourceType in
+                vcs?.dismiss(animated: true, completion: nil)
+//                self.checkPermissionPhoto(sourceType)
             }
             self.present(vc, animated: true, completion: nil)
         }
@@ -82,16 +83,16 @@ class SearchImageViewController: BaseViewController {
         }
 
     }
-    override func displayImagePicker(_ sourceType: UIImagePickerController.SourceType) {
-        let vc = CImagePickerController.init(sourceType, false) { origin, crop in
-            guard let image = origin else {
-                return
-            }
-            self.searchImg = image
-            self.dataReset()
-        }
-        self.present(vc, animated: true, completion: nil)
-    }
+//    override func displayImagePicker(_ sourceType: UIImagePickerController.SourceType) {
+//        let vc = CImagePickerController.init(sourceType, false) { origin, crop in
+//            guard let image = origin else {
+//                return
+//            }
+//            self.searchImg = image
+//            self.dataReset()
+//        }
+//        self.present(vc, animated: true, completion: nil)
+//    }
     
     func gotoSearchTextVc(_ search: String) {
         if let findVc = self.navigationController?.viewControllers.filter({ vc ->Bool in

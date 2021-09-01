@@ -81,6 +81,7 @@ class ShadowView: UIView {
             }
             
             if let sColor = sdColor {
+                layer.cornerRadius = cornerRadius
                 layer.shadowOffset = sdOffset
                 layer.shadowColor = sColor.cgColor
                 layer.shadowRadius = sdRadius

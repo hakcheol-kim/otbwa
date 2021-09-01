@@ -166,28 +166,43 @@ class WProductDetailViewController: BaseViewController {
             naviCtrl?.pushViewController(vc, animated: true)
         }
         else if sender == btnSoldout {
-            self.requestProductSoldout()
+            var param = [String:Any]()
+            param["comp_no"] = ShareData.ins.compNo
+            param["product_no"] = data["product_no"].intValue
+           
+            ApiManager.ins.requestProductSoldout(param) { res in
+                if res["success"].boolValue {
+                    appDelegate.window?.makeToast("품절 처리되었습니다.")
+                    self.navigationController?.popViewController(animated: true)
+                }
+                else {
+                    self.showErrorToast(res)
+                }
+            } fail: { error in
+                self.showErrorToast(error)
+            }
         }
         else if sender == btnDel {
-            
-        }
-    }
-    
-    func requestProductSoldout() {
-        var param = [String:Any]()
-        param["comp_no"] = ShareData.ins.compNo
-        param["product_no"] = data["product_no"].intValue
-       
-        ApiManager.ins.requestProductSoldout(param) { res in
-            if res["success"].boolValue {
-                appDelegate.window?.makeToast("품절 처리되었습니다.")
-                self.navigationController?.popViewController(animated: true)
+            CAlertViewController.show(type: .alert, message: "상품을 삭제하시겠습니까?\n삭제 시 복구할 수 없습니다.", actions:[.cancel, .ok]) { vcs, action in
+                vcs.dismiss(animated: true, completion: nil)
+                if action == 1 {
+                    var param = [String:Any]()
+                    param["user_no"] = ShareData.ins.userNo
+                    param["comp_no"] = ShareData.ins.compNo
+                    param["product_no"] = self.data["product_no"].intValue
+                    
+                    ApiManager.ins.requestDeleteProductInfo(param) { res in
+                        if res["success"].boolValue {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                        else {
+                            self.showErrorToast(res)
+                        }
+                    } fail: { error in
+                        self.showErrorToast(error)
+                    }
+                }
             }
-            else {
-                self.showErrorToast(res)
-            }
-        } fail: { error in
-            self.showErrorToast(error)
         }
     }
 }

@@ -48,7 +48,7 @@ class NetworkManager: NSObject {
         if isStartIndicator {
             appDelegate.startIndicator()
         }
-        var headers:HTTPHeaders = [.contentType(ContentType.json.rawValue)]
+        var headers:HTTPHeaders = [.contentType(ContentType.json.rawValue), .accept(ContentType.json.rawValue)]
         if ShareData.ins.token.isEmpty == false {
             print("======= access_token: \(ShareData.ins.token), user_no: \(ShareData.ins.userNo)")
             let cusHeader = HTTPHeader(name:"X-AUTH-TOKEN", value: ShareData.ins.token)
@@ -86,7 +86,7 @@ class NetworkManager: NSObject {
         
         appDelegate.startIndicator()
         
-        var headers:HTTPHeaders = [.contentType(ContentType.json.rawValue)]
+        var headers:HTTPHeaders = [.contentType(ContentType.formdata.rawValue), .accept(ContentType.json.rawValue)]
         if ShareData.ins.token.isEmpty == false {
             let cusHeader = HTTPHeader(name:"X-AUTH-TOKEN", value: ShareData.ins.token)
             headers.add(cusHeader)

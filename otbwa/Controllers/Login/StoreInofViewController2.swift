@@ -263,45 +263,45 @@ class StoreInofViewController2: BaseViewController {
         }
     }
     func uploadFile() {
-        var alertStyle = UIAlertController.Style.actionSheet
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            alertStyle = .alert
-        }
-        let alert = UIAlertController(title:nil, message: nil, preferredStyle: alertStyle)
-        alert.addAction(UIAlertAction(title: "카메라로 사진 촬영하기", style: .default, handler: { (action) in
-            alert.dismiss(animated: true, completion: nil)
-            self.showCameraPicker(.camera)
-        }))
-        alert.addAction(UIAlertAction(title: "갤러리에서 사진 가져오기", style: .default, handler: { (action) in
-            alert.dismiss(animated: true, completion: nil)
-            self.showCameraPicker(.photoLibrary)
-        }))
-        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (action) in
-            alert.dismiss(animated: true, completion: nil)
-        }))
-        
-        present(alert, animated: true, completion: nil)
+//        var alertStyle = UIAlertController.Style.actionSheet
+//        if UIDevice.current.userInterfaceIdiom == .pad {
+//            alertStyle = .alert
+//        }
+//        let alert = UIAlertController(title:nil, message: nil, preferredStyle: alertStyle)
+//        alert.addAction(UIAlertAction(title: "카메라로 사진 촬영하기", style: .default, handler: { (action) in
+//            alert.dismiss(animated: true, completion: nil)
+//            self.showCameraPicker(.camera)
+//        }))
+//        alert.addAction(UIAlertAction(title: "갤러리에서 사진 가져오기", style: .default, handler: { (action) in
+//            alert.dismiss(animated: true, completion: nil)
+//            self.showCameraPicker(.photoLibrary)
+//        }))
+//        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (action) in
+//            alert.dismiss(animated: true, completion: nil)
+//        }))
+//        
+//        present(alert, animated: true, completion: nil)
     }
-    func showCameraPicker(_ sourceType: UIImagePickerController.SourceType) {
-        let picker = CImagePickerController.init(sourceType) { (orig, crop) in
-            guard let orig = orig, let crop = crop else {
-                return
-            }
-            
-            let fileName = Date().stringDateWithFormat("yyyyMMddHHmmss")
-            let ext = "jpg"
-            if self.btnFile.isSelected {
-                self.tfFileName.text = fileName+"."+ext
-                self.user.comp_reg_img = crop
-            }
-            else {
-                self.tfStoreImageName.text = fileName+"."+ext
-                self.user.img = crop
-            }
-            print("== orig: \(orig), crop:\(crop)")
-        }
-        self.present(picker, animated: true, completion: nil)
-    }
+//    func showCameraPicker(_ sourceType: UIImagePickerController.SourceType) {
+//        let picker = CImagePickerController.init(sourceType) { (orig, crop) in
+//            guard let orig = orig, let crop = crop else {
+//                return
+//            }
+//
+//            let fileName = Date().stringDateWithFormat("yyyyMMddHHmmss")
+//            let ext = "jpg"
+//            if self.btnFile.isSelected {
+//                self.tfFileName.text = fileName+"."+ext
+//                self.user.comp_reg_img = crop
+//            }
+//            else {
+//                self.tfStoreImageName.text = fileName+"."+ext
+//                self.user.img = crop
+//            }
+//            print("== orig: \(orig), crop:\(crop)")
+//        }
+//        self.present(picker, animated: true, completion: nil)
+//    }
 }
 
 extension StoreInofViewController2: UITextFieldDelegate {

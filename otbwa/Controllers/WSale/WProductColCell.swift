@@ -10,7 +10,6 @@ import SwiftyJSON
 
 class WProductColCell: UICollectionViewCell {
     @IBOutlet weak var ivBadge: UIImageView!
-    @IBOutlet weak var bgView: CView!
     @IBOutlet weak var ivThumb: UIImageView!
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var lbPrice: UILabel!
@@ -41,7 +40,7 @@ class WProductColCell: UICollectionViewCell {
         btnCheck.isHidden = !(listType == .editing)
         
         if status == "waiting" {
-            ivBadge.isHidden = true
+            ivBadge.isHidden = false
         }
         else if status == "soldout" {
             btnSoldOut.isHidden = false
@@ -50,6 +49,7 @@ class WProductColCell: UICollectionViewCell {
         }
         
         lbName.text = name
+        ivThumb.image = nil
         if img.isEmpty == false {
             ivThumb.setImageCache(img)
         }
