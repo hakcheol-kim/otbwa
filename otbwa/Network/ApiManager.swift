@@ -391,7 +391,7 @@ class ApiManager: NSObject {
     /// 도매장 대표 이미지 등록
     ///- Parameters:    "comp_img": file, "comp_no": 21, "user_no": 3
     func rquestRegistCompImg(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
-        NetworkManager.ins.request(.post, "/api/v1/comp/comp_img", param) { res in
+        NetworkManager.ins.requestFileUpload(.post, "/api/v1/comp/comp_img", param) { res in
             success?(res)
         } failure: { error in
             fail?(error)
@@ -542,7 +542,7 @@ class ApiManager: NSObject {
     }
     /// 사업자정보 수정
     func requestModifyStoreInfo(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
-        NetworkManager.ins.request(.put, "/api/v1/user/comp_info", param) { res in
+        NetworkManager.ins.requestFileUpload(.put, "/api/v1/user/comp_info", param) { res in
             success?(res)
         } failure: { error in
             fail?(error)
@@ -623,6 +623,24 @@ class ApiManager: NSObject {
     func requestDeleteProductInfo(_ param:[String:Any], succes:ResSuccess?, fail:ResFailure?) {
         NetworkManager.ins.request(.delete, "/api/v1/product", param) { res in
             succes?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    /// 회원 알림/방해금지모드 설정값 세팅
+    /// - Parameters : "disturb_end": "10:00", "disturb_start": "23:00", "disturb_yn": "N", "notification_yn": "Y", "user_no": 2
+    func requestNotificationStting(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/user/notification_disturb", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
+    ///계좌정보 수정
+    /// - Parameters: "account": "121345-01-45613", "bank": "국민은행", "comp_no": 4, "holder": "김밀리", "user_no": 2
+    func requestModifyBankAccount(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.put, "/api/v1/user/account", param) { res in
+            success?(res)
         } failure: { error in
             fail?(error)
         }

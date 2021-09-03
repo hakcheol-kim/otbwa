@@ -56,7 +56,7 @@ class FtAddrViewController: BaseViewController {
             let tagView = Bundle.main.loadNibNamed("FilterSectionView", owner: nil, options: nil)?.first as! FilterSectionView
             svContent.addArrangedSubview(tagView)
             
-            tagView.configurationData(item, listData, .address)
+            tagView.configurationData(item, listData, .hastagAll)
             tagView.completion = {(data, isSelected) ->Void in
                 guard let data = data as? JSON else {
                     return

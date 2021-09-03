@@ -33,7 +33,7 @@ class FilterGropView: UIView {
         let title = display["name"].stringValue
         btnGroupTitle.setTitle(title, for: .normal)
         
-        if type == .address {
+        if type == .hastagAll {
             let attrNor = NSAttributedString.init(string: title, attributes: [.foregroundColor: UIColor.white, .font:UIFont.systemFont(ofSize: 12, weight: .regular)])
             let attrSel = NSAttributedString.init(string: title, attributes: [.foregroundColor: UIColor(named: "AccentColor")!, .font:UIFont.systemFont(ofSize: 12, weight: .regular)])
             
@@ -66,7 +66,7 @@ class FilterGropView: UIView {
     }
     
     func reloadUi() {
-        if self.type == .address {
+        if self.type == .hastagAll {
             for subview in svList.subviews {
                 if let btn = subview as? CButton, let data = btn.data as? JSON, let selData = ShareData.ins.selectedFilterList.last {
                     if data["ctgr_id"].stringValue == selData["ctgr_id"].stringValue {
@@ -102,7 +102,7 @@ class FilterGropView: UIView {
                 return
             }
             
-            if type == .address {
+            if type == .hastagAll {
                 self.completion?(data, sender.isSelected)
             }
         }
@@ -119,7 +119,7 @@ class FilterGropView: UIView {
                     appDelegate.window!.makeToast("해시태그는 최대 1개까지 선택할 수 있습니다.")
                     return
                 }
-                else if self.type == .address {
+                else if self.type == .hastagAll {
                     for btn in svList.subviews {
                         if let btn = btn as? CButton {
                             btn.isSelected = false

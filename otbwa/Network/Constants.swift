@@ -32,6 +32,10 @@ struct Dfskey {
     static let uuid = "uuid"
     static let autoLogin = "autoLogin"
     static let filterCacheData = "filterCacheData"
+    static let notification_yn = "notification_yn"
+    static let disturb_yn = "disturb_yn"
+    static let disturb_st = "disturb_st"
+    static let disturb_end = "disturb_end"
 }
 struct FitlerKey {
     static let ftAddr = "ft_addr"
@@ -45,7 +49,7 @@ struct FitlerKey {
 enum FitlerViewType: String {
     case hastagOne = "hastagOne"
     case hastagThree = "hastagThree"
-    case address = "address"
+    case hastagAll = "hastagAll"
 }
 
 enum Storyboard: String {

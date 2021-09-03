@@ -15,7 +15,16 @@ class ModifyStoreInfoViewController: BaseViewController {
     @IBOutlet weak var tfStore: CTextField!
     @IBOutlet weak var tfPreStore: CTextField!
     @IBOutlet weak var tfCompNm: CTextField!
+    @IBOutlet weak var svStoreName: UIStackView!
+    @IBOutlet weak var svPreStoreName: UIStackView!
     
+    @IBOutlet weak var svStoreAddr: UIStackView!
+    @IBOutlet weak var btnStoreAddrSearch: CButton!
+    @IBOutlet weak var tfStoreAddr: CTextField!
+    @IBOutlet weak var svHashTag: UIStackView!
+    @IBOutlet weak var tfHashTag: CTextField!
+    
+    @IBOutlet weak var svAddress: UIStackView!
     @IBOutlet weak var tfTel: CTextField!
     @IBOutlet weak var btnPost: CButton!
     @IBOutlet weak var tfPostCode: CTextField!
@@ -28,7 +37,10 @@ class ModifyStoreInfoViewController: BaseViewController {
     let toolBar = CToolbar.init(barItems: [.keyboardDown])
     var data: JSON!
     var file: UIImage?
+    var isWsale = (ShareData.ins.kind.rawValue == "wsale")
+    var selStoreAddr: JSON!
     
+    var selHastags: [JSON]?
     override func viewDidLoad() {
         super.viewDidLoad()
         safetyView.isHidden = !isEdgePhone
@@ -51,6 +63,7 @@ class ModifyStoreInfoViewController: BaseViewController {
         super.viewWillDisappear(animated)
         self.removeKeyboardNotification()
     }
+    
     func decorationUI() {
         let representation = data["representation"].stringValue
         let comp_nm = data["comp_nm"].stringValue
@@ -65,14 +78,38 @@ class ModifyStoreInfoViewController: BaseViewController {
             mainAddr.append("\(comps[i]) ")
         }
         mainAddr.removeLast()
-        
+    
         tfCeo.text = representation
         tfStore.text = comp_nm
         tfPreStore.text = comp_nm_scd
         tfCompNm.text = comp_num
         
-        tfAddr.text = mainAddr
-        tfDetailAddr.text = detailAddr
+        svStoreAddr.isHidden = true
+        svHashTag.isHidden = true
+        svAddress.isHidden = true
+        svStoreName.isHidden = true
+        svPreStoreName.isHidden = true
+        
+        if isWsale {
+            svStoreAddr.isHidden = false
+            svHashTag.isHidden = false
+            let hashtag = data["hashtag"].arrayValue
+            var title = ""
+            for tag in hashtag {
+                title.append("\(tag["name"].stringValue),")
+            }
+            if title.length > 0 {
+                title.removeLast()
+            }
+            tfHashTag.text = title
+        }
+        else {
+            svAddress.isHidden = false
+            svStoreName.isHidden = false
+            svPreStoreName.isHidden = false
+            tfAddr.text = mainAddr
+            tfDetailAddr.text = detailAddr
+        }
         tfTel.text = tel
     }
     
@@ -99,7 +136,7 @@ class ModifyStoreInfoViewController: BaseViewController {
         else if sender == btnFile {
             let vc = ImageSelectOptionViewController.initWithCompletion { vcs, soureType in
                 vcs?.dismiss(animated: true, completion: nil)
-//                self.checkPermissionPhoto(soureType)
+                self.showImagePicker(soureType)
             }
             self.present(vc, animated: true, completion: nil)
         }
@@ -109,34 +146,64 @@ class ModifyStoreInfoViewController: BaseViewController {
             vc.url = data["img"].stringValue
             self.navigationController?.pushViewController(vc, animated: true)
         }
+        else if sender == btnStoreAddrSearch {
+            let vc = StoreLocationInfoViewController.instantiateFromStoryboard(.login)!
+            vc.type = "modify"
+            self.navigationController?.pushViewController(vc, animated: true)
+            vc.completion = {(address, display) -> Void in
+                guard let address = address as? JSON, let display = display else {
+                    return
+                }
+                self.selStoreAddr = address
+                self.tfStoreAddr.text = display
+            }
+        }
         else if sender == btnSave {
-            guard let addr = tfAddr.text, addr.isEmpty == false else {
-                self.showToast("주소를 입력해주세요.")
-                return
+            var param = [String:Any]()
+            if isWsale {
+                guard let selStoreAddr = selStoreAddr, selStoreAddr.isEmpty == false else {
+                    self.showToast("주소를 입력해주세요.")
+                    return
+                }
+                param["comp_addr"] = selStoreAddr["ctgr_no"].stringValue
+            }
+            else {
+                guard let addr = tfAddr.text, addr.isEmpty == false else {
+                    self.showToast("주소를 입력해주세요.")
+                    return
+                }
+                var fullAddr = addr
+                if let detailAddr = tfDetailAddr.text, detailAddr.isEmpty == false {
+                    fullAddr.append(" \(detailAddr)")
+                }
+                param["comp_addr"] = fullAddr
             }
             guard let tel = tfTel.text, tel.isEmpty == false else {
                 self.showToast("전화번호를 입력해주세요.")
                 return
             }
-            guard tel.contains("-") == true else {
-                self.showToast("전화번호 '-'를 포함한 값이어야 합니다.")
-                return
-            }
             
-            var param = [String:Any]()
-            var fullAddr = addr
-            if let detailAddr = tfDetailAddr.text, detailAddr.isEmpty == false {
-                fullAddr.append(" \(detailAddr)")
+            if let selHastags = selHastags, selHastags.isEmpty == false {
+                var tags = "["
+                for tag in selHastags {
+                    tags.append("\(tag["ctgr_no"].stringValue),")
+                }
+                tags.removeLast()
+                tags.append("]")
+                param["hashtag"] = tags
             }
+//            guard tel.contains("-") == true else {
+//                self.showToast("전화번호 '-'를 포함한 값이어야 합니다.")
+//                return
+//            }
             
-            param["comp_addr"] = fullAddr
-            param["comp_no"] = data["comp_num"].stringValue
-            param["comp_tel"] = tel
+            param["comp_no"] = "\(ShareData.ins.compNo)"
+            param["comp_tel"] = "\(tel)"
             if let file = file {
                 param["comp_reg_img"] = file
             }
             param["kind"] = ShareData.ins.kind.rawValue
-            param["user_no"] = ShareData.ins.userNo
+            param["user_no"] = "\(ShareData.ins.userNo)"
             
             ApiManager.ins.requestModifyStoreInfo(param) { res in
                 if res["success"].boolValue {
@@ -148,25 +215,54 @@ class ModifyStoreInfoViewController: BaseViewController {
             } fail: { error in
                 self.showErrorToast(error)
             }
-
         }
     }
-//    override func displayImagePicker(_ sourceType: UIImagePickerController.SourceType) {
-//        let picker = CImagePickerController.init(sourceType) { (orig, crop) in
-//            guard let orig = orig, let crop = crop else {
-//                return
-//            }
-//            let fileName = Date().stringDateWithFormat("yyyyMMddHHmmss")
-//            let ext = "jpg"
-//            self.tfFile.text = fileName+"."+ext
-//            self.file = crop
-//            print("== orig: \(orig), crop:\(crop)")
-//        }
-//        self.present(picker, animated: true, completion: nil)
-//    }
+    
+    func showImagePicker(_ soureType: UIImagePickerController.SourceType) {
+        let vc = CImagePickerController.initWithSouretType(soureType, false, 1) { data, sub in
+            var image: UIImage? = nil
+            if let data = data as? UIImage {
+                image = data
+            }
+            else if let data = data as? [UIImage], let img = data.first {
+                image = img
+            }
+            guard let image = image else {
+                return
+            }
+            
+            let fileName = Date().stringDateWithFormat("yyyyMMddHHmmss")
+            let ext = "jpg"
+            self.tfFile.text = fileName+"."+ext
+            self.file = image
+        }
+        appDelegate.window?.rootViewController?.present(vc, animated: true, completion: nil)
+    }
 }
 
 extension ModifyStoreInfoViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == tfHashTag {
+            let vc = HashTagViewController.initWithType(.hastagThree) { tags in
+                guard let tags = tags as? [JSON] else {
+                    return
+                }
+                self.selHastags = tags
+                
+                var title = ""
+                for tag in tags {
+                    title.append("\(tag["name"].stringValue),")
+                }
+                if title.length > 0 {
+                    title.removeLast()
+                }
+                self.tfHashTag.text = title
+            }
+            self.present(vc, animated: true, completion: nil)
+            return false
+        }
+        return true
+    }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         return true
     }

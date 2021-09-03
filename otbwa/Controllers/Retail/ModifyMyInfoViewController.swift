@@ -59,6 +59,8 @@ class ModifyMyInfoViewController: BaseViewController {
         tfName.text = name
         tfId.text = id
         tfPhone.text = phone
+        
+        
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {

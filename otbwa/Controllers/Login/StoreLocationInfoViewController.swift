@@ -7,7 +7,9 @@
 
 import UIKit
 import SwiftyJSON
+
 class StoreLocationInfoViewController: BaseViewController {
+    @IBOutlet weak var topBg: CView!
     @IBOutlet weak var topStepView: UIView!
     @IBOutlet weak var safetyView: UIView!
     @IBOutlet weak var btnNext: CButton!
@@ -19,12 +21,19 @@ class StoreLocationInfoViewController: BaseViewController {
     var selBuilding: JSON?
     var selFloor: JSON?
     var selRoom: JSON?
-    
+    var type = "join" //modify
+    var completion:((_ address:Any?, _ display: String?) ->Void)?
     override func viewDidLoad() {
         super.viewDidLoad()
-        CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
-        CNavigationBar.drawTitle(self, "도매 회원가입", nil)
         
+        CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
+        if type == "join" {
+            CNavigationBar.drawTitle(self, "도매 회원가입", nil)
+        }
+        else {
+            topBg.isHidden = true
+            CNavigationBar.drawTitle(self, "주소", nil)
+        }
         topStepView.layer.cornerRadius = 20
         topStepView.layer.maskedCorners = CACornerMask(TL: false, TR: false, BL: true, BR: true)
 
@@ -106,24 +115,37 @@ class StoreLocationInfoViewController: BaseViewController {
         }
         else if sender == btnNext {
             
-            guard let _ = selBuilding else {
+            guard let selBuilding = selBuilding else {
                 self.view.makeToast("주소를 빠짐없이 선택해주세요.")
                 return
             }
-            guard let _ = selFloor else {
+            guard let selFloor = selFloor else {
                 self.view.makeToast("건물을 선택해주세요.")
                 return
             }
-            
-            if let selRoom = selRoom {
-                user.building = selRoom["ctgr_id"].stringValue
+        
+            if type == "join" {
+                let vc = CeoInofViewController.instantiateFromStoryboard(.login)!
+                if let selRoom = selRoom {
+                    user.building = selRoom["ctgr_id"].stringValue
+                }
+                else {
+                    user.building = selFloor["ctgr_id"].stringValue
+                }
+                vc.user = user
+                self.navigationController?.pushViewController(vc, animated: true)
             }
             else {
-                user.building = selFloor!["ctgr_id"].stringValue
+                var display = selBuilding["name"].stringValue + " " + selFloor["name"].stringValue
+                if let selRoom = selRoom {
+                    display.append(" \(selRoom["name"].stringValue)")
+                    self.completion?(selRoom, display)
+                }
+                else {
+                    self.completion?(selFloor, display)
+                }
+                self.navigationController?.popViewController(animated: true)
             }
-            let vc = CeoInofViewController.instantiateFromStoryboard(.login)!
-            vc.user = user
-            self.navigationController?.pushViewController(vc, animated: true)
         }
         
     }

@@ -33,14 +33,25 @@ class MyInfoViewController: BaseViewController {
     @IBOutlet var lbHolderName: UILabel!
     
     var data:JSON!
+    let isWsale = (ShareData.ins.kind.rawValue == "wsale")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.initUi()
+        
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
-        CNavigationBar.drawTitle(self, "상점 정보", nil)
+        if ShareData.ins.kind.rawValue == "wsale" {
+            CNavigationBar.drawTitle(self, "매장정보 수정", nil)
+            lbTitle.textAlignment = .center
+            lbSubTitle.textAlignment = .center
+        }
+        else {
+            CNavigationBar.drawTitle(self, "상점 정보", nil)
+        }
         svBank.isHidden = true
         
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.requestMyPageStoreInfo()
@@ -62,7 +73,15 @@ class MyInfoViewController: BaseViewController {
             self.showErrorToast(error)
         }
     }
-    
+    func initUi() {
+        lbTitle.text = ""
+        lbSubTitle.text = ""
+        lbUserName.text = ""
+        lbUserPhoneNum.text = ""
+        lbBankName.text = ""
+        lbBankNum.text = ""
+        lbHolderName.text = ""
+    }
     func decorationUi() {
         let id = data["id"].stringValue     ///abc005",
         let name = data["name"].stringValue     ///서은결",
@@ -71,10 +90,10 @@ class MyInfoViewController: BaseViewController {
         let tel = data["tel"].stringValue     ///02-0608-1614",
         let bank = data["bank"].stringValue     ///",
         let representation = data["representation"].stringValue     ///서은결",
-        let hashtag = data["hashtag"].stringValue     ///ull,
+        let hashtag = data["hashtag"].arrayValue     ///ull,
         let holder = data["holder"].stringValue     ///",
         let account = data["account"].stringValue     ///",
-        let img = data["img"].stringValue     ///https:\/\/s3.ap-northeast-2.amazonaws.com\/otbwabucket\/20210608\/1623136530963H6E0QOQ3DJV0B2I7SU1RTEKUQ.jpg",
+        let img = data["img"].stringValue
         let comp_num = data["comp_num"].stringValue     ///123-0608-1614",
         let category_no = data["category_no"].stringValue     ///,
         let phone = data["phone"].stringValue     ///011-4877-2700",
@@ -94,10 +113,15 @@ class MyInfoViewController: BaseViewController {
         svAddress.isHidden = true
         svTel.isHidden = true
         
-        if representation.isEmpty == false, let lbTitle = svCeoName.viewWithTag(101) as? UILabel {
+        
+        if isWsale {
+            svCeoName.isHidden = true
+        }
+        else if representation.isEmpty == false, let lbTitle = svCeoName.viewWithTag(101) as? UILabel {
             svCeoName.isHidden = false
             lbTitle.text = representation
         }
+        
         if comp_nm.isEmpty == false, let lbTitle = svStoreName.viewWithTag(101) as? UILabel {
             svStoreName.isHidden = false
             lbTitle.text = comp_nm
@@ -118,9 +142,23 @@ class MyInfoViewController: BaseViewController {
             svTel.isHidden = false
             lbTitle.text = tel
         }
-        if hashtag.isEmpty == false, let lbTitle = svHastags.viewWithTag(101) as? UILabel {
+        
+        if isWsale == true && hashtag.isEmpty == false, let lbTitle = svHastags.viewWithTag(101) as? UILabel {
             svHastags.isHidden = false
-            lbTitle.text = hashtag
+            var title = ""
+            for item in hashtag {
+                let tmp = item["name"].stringValue
+                title.append("\(tmp),")
+            }
+            title.removeLast()
+            lbTitle.text = title
+        }
+        
+        if ShareData.ins.kind.rawValue == "wsale" {
+            svBank.isHidden = false
+            lbBankName.text = bank
+            lbBankNum.text = account
+            lbHolderName.text = holder
         }
     }
     
@@ -132,6 +170,11 @@ class MyInfoViewController: BaseViewController {
         }
         else if sender == btnModiStore {
             let vc = ModifyStoreInfoViewController.instantiateFromStoryboard(.main)!
+            vc.data = data
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if sender == btnModiBank {
+            let vc = ModifyBankInfoViewController.instantiateFromStoryboard(.main)!
             vc.data = data
             self.navigationController?.pushViewController(vc, animated: true)
         }

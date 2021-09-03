@@ -37,6 +37,7 @@ class WMyPageViewController: BaseViewController {
         btnModify.layer.cornerRadius = 15
         btnModify.layer.maskedCorners = CACornerMask(TL: true, TR: false, BL: true, BR: false)
         
+        btnSetting.titleLabel?.numberOfLines = 0
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -79,11 +80,11 @@ class WMyPageViewController: BaseViewController {
             svTags.addArrangedSubview(btnTag)
             
             btnTag.setTitle("#\(name)", for: .normal)
-            btnTag.contentEdgeInsets = UIEdgeInsets(top: 8, left: 12, bottom: 8, right: 12)
+            btnTag.contentEdgeInsets = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
             btnTag.backgroundColor = RGB(241, 241, 241)
-            btnTag.layer.cornerRadius = 12
+            btnTag.layer.cornerRadius = 11
             btnTag.translatesAutoresizingMaskIntoConstraints = false
-            btnTag.heightAnchor.constraint(equalToConstant: 24).isActive = true
+            btnTag.heightAnchor.constraint(equalToConstant: 22).isActive = true
             btnTag.titleLabel?.font = UIFont.systemFont(ofSize: 11, weight: .medium)
             btnTag.setTitleColor(RGB(136 , 136, 136), for: .normal)
             btnTag.isUserInteractionEnabled = false
@@ -93,6 +94,24 @@ class WMyPageViewController: BaseViewController {
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender.tag == 101010 {
             self.transitionPop(duration: 0.25, type: .fromRight)
+        }
+        else if sender == btnSetting {
+            let vc = ImageSelectOptionViewController.initWithCompletion { vcs, soureType in
+                vcs?.dismiss(animated: true, completion: nil)
+                self.showImagePicker(soureType)
+            }
+            appDelegate.window?.rootViewController?.present(vc, animated: true, completion: nil)
+        }
+        else if sender == btnModify {
+            let vc = MyInfoViewController.instantiateFromStoryboard(.main)!
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        else if sender == btnTel {
+            let tel = data["comp_tel"].stringValue
+            guard tel.isEmpty == false  else {
+                return
+            }
+            appDelegate.openUrl("tel:\(tel)", completion: nil)
         }
         else if let btn = sender as? CButton, arrMenu.contains(btn) == true {
             if sender.tag == 0 {
@@ -105,6 +124,7 @@ class WMyPageViewController: BaseViewController {
             }
             else if sender.tag == 2 {
                 let vc = NotificationViewController.instantiateFromStoryboard(.wsale)!
+                vc.passData = data
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             else if sender.tag == 3 { //고객센터
@@ -120,6 +140,36 @@ class WMyPageViewController: BaseViewController {
                 UserDefaults.standard.removeObject(forKey: Dfskey.userPw)
                 appDelegate.callLoginVc()
             }
+        }
+    }
+    func showImagePicker(_ sourceType:UIImagePickerController.SourceType) {
+        let vc = CImagePickerController.initWithSouretType(sourceType, false, 1) { data, sub in
+            if let data = data as? UIImage {
+                self.ivthumb.image = data
+                self.requestModifyCompInfo(data)
+            }
+            else if let imgs = data as? [UIImage], let img = imgs.first {
+                self.ivthumb.image = img
+                self.requestModifyCompInfo(img)
+            }
+        }
+        appDelegate.window?.rootViewController?.present(vc, animated: true)
+    }
+    func requestModifyCompInfo(_ img:UIImage) {
+        var param = [String:Any]()
+        param["comp_no"] = ShareData.ins.compNo
+        param["comp_img"] = img
+        param["user_no"] = ShareData.ins.userNo
+        
+        ApiManager.ins.rquestRegistCompImg(param) { res in
+            if res["success"].boolValue {
+                
+            }
+            else {
+                self.showErrorToast(res)
+            }
+        } fail: { error in
+            self.showErrorToast(error)
         }
     }
 }

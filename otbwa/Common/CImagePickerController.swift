@@ -11,7 +11,7 @@ import Mantis
 import Photos
 import BSImagePicker
 
-public let maxResizeImge:CGFloat = 600
+public let maxResizeImge:CGFloat = 1000
 
 class CImagePickerController: UIViewController {
     var overlayView: CameraOverlayView? = nil

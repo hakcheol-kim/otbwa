@@ -37,6 +37,7 @@ class AdminNoticeListViewController: BaseViewController {
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
         CNavigationBar.drawTitle(self, "관리자 공지사항")
         self.tblView.tableFooterView = UIView()
+        self.dataReset()
     }
  
     func dataReset() {
@@ -67,14 +68,17 @@ class AdminNoticeListViewController: BaseViewController {
                     self.listData.append(contentsOf: list)
                 }
                 self.page += 1
-                self.tblView.reloadData()
+                
+                if (self.listData.isEmpty == true) {
+                    self.tblView.isHidden = true
+                }
+                else {
+                    self.tblView.isHidden = false
+                    self.tblView.reloadData()
+                }
             }
             else {
                 self.isPageEnd = true
-                if self.page == 1 {
-                    self.listData.removeAll()
-                }
-                self.tblView.reloadData()
             }
         } fail: { error in
             self.showErrorToast(error)

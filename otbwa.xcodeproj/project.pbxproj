@@ -121,6 +121,7 @@
 		E99EEC0626BEE328006A65CF /* RMainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99EEC0526BEE328006A65CF /* RMainTabViewController.swift */; };
 		E99EEC0926BEE4A2006A65CF /* RTotalProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99EEC0826BEE4A2006A65CF /* RTotalProductViewController.swift */; };
 		E99EEC0B26BEE4F8006A65CF /* RPartnerProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99EEC0A26BEE4F8006A65CF /* RPartnerProductViewController.swift */; };
+		E99F431F26E1FC0B00524BE4 /* ModifyBankInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E99F431E26E1FC0B00524BE4 /* ModifyBankInfoViewController.swift */; };
 		E9A4C49726DD349B007216A8 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A4C49626DD349B007216A8 /* NotificationViewController.swift */; };
 		E9A5B4A826B3B7900002AE81 /* CNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A5B4A726B3B7900002AE81 /* CNavigationBar.swift */; };
 		E9A5B4AA26B3C28B0002AE81 /* JoinGateWayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A5B4A926B3C28B0002AE81 /* JoinGateWayViewController.swift */; };
@@ -296,6 +297,7 @@
 		E99EEC0526BEE328006A65CF /* RMainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMainTabViewController.swift; sourceTree = "<group>"; };
 		E99EEC0826BEE4A2006A65CF /* RTotalProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RTotalProductViewController.swift; sourceTree = "<group>"; };
 		E99EEC0A26BEE4F8006A65CF /* RPartnerProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RPartnerProductViewController.swift; sourceTree = "<group>"; };
+		E99F431E26E1FC0B00524BE4 /* ModifyBankInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyBankInfoViewController.swift; sourceTree = "<group>"; };
 		E9A4C49626DD349B007216A8 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		E9A5B4A726B3B7900002AE81 /* CNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CNavigationBar.swift; sourceTree = "<group>"; };
 		E9A5B4A926B3C28B0002AE81 /* JoinGateWayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinGateWayViewController.swift; sourceTree = "<group>"; };
@@ -395,6 +397,7 @@
 				E9063FF826CA8C5B00F7954D /* MyInfoViewController.swift */,
 				E9AAAD0326D72FF60065A6C3 /* ModifyMyInfoViewController.swift */,
 				E9AAAD0526D759D20065A6C3 /* ModifyStoreInfoViewController.swift */,
+				E99F431E26E1FC0B00524BE4 /* ModifyBankInfoViewController.swift */,
 				E9CE23F226CA123400A09B16 /* ProductHistoryMenuViewController.swift */,
 				E9CE23F426CA124C00A09B16 /* ProductLikeViewController.swift */,
 				E9CE23F826CA128900A09B16 /* ProductNotifyViewController.swift */,
@@ -987,6 +990,7 @@
 				E9A5B4B426B3DDCA0002AE81 /* CeoInofViewController.swift in Sources */,
 				E98DE23C26D2194B00B85956 /* PermissionsController.swift in Sources */,
 				E9A5B4AC26B3CA3D0002AE81 /* SelectedButton.swift in Sources */,
+				E99F431F26E1FC0B00524BE4 /* ModifyBankInfoViewController.swift in Sources */,
 				E9CE23F926CA128900A09B16 /* ProductNotifyViewController.swift in Sources */,
 				E977E6EB26D68AEB001E92ED /* EmployeeManagementViewController.swift in Sources */,
 				E9063FF926CA8C5B00F7954D /* MyInfoViewController.swift in Sources */,
