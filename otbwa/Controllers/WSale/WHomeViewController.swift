@@ -151,7 +151,9 @@ class WHomeViewController: BaseViewController {
             tfSearch.becomeFirstResponder()
         }
         else if sender == btnSpeaker {
-            
+            let vc = ClientNoticeListController.instantiateFromStoryboard(.main)!
+            vc.comp_no = ShareData.ins.compNo
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         else if sender == btnProdManagement {
             sender.isSelected = !sender.isSelected

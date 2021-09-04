@@ -333,6 +333,15 @@ class ApiManager: NSObject {
             fail?(error)
         }
     }
+    ///공지사항 상세
+    ///- Parameters: notice_no
+    func requestCompNoticeDetail(_ noticeNo:Int, success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.get, "/api/v1/comp/notice/\(noticeNo)") { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
     ///공지사항 등록
     ///- Parameters:   "cntnt": "공지사항입니다/", "comp_no": 2, "title": "title", "user_no": 2
     func requestRegiestCompNotice(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
@@ -342,6 +351,7 @@ class ApiManager: NSObject {
             fail?(error)
         }
     }
+    
     ///공지사항 수정
     ///- Parameters:   "cntnt": "공지사항입니다/", "comp_no": 2, "notice_no": 41, "title": "title", "user_no": 2
     func requestModifyCompNotice(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {

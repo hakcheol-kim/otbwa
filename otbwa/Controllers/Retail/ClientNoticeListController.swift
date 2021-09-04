@@ -18,38 +18,47 @@ class ClientNoticeCell: UITableViewCell {
     @IBOutlet weak var btnModify: CButton!
     @IBOutlet weak var btnDel: CButton!
     
-    var completion:((_ action: Int) -> Void)?
+    var data: JSON!
+    
+    var completion:((_ data: Any?, _ action: Int) -> Void)?
     override func awakeFromNib() {
         super.awakeFromNib()
     }
     
     func configurationData(_ data:JSON, _ type: NoticeViewType = .normal) {
+        self.data = data
         if type == .edting {
             btnModify.isHidden = false
             btnDel.isHidden = false
             svContainer.spacing = 0
+            btnDel.setNeedsDisplay()
+            btnModify.setNeedsDisplay()
         }
         else {
             btnModify.isHidden = true
             btnDel.isHidden = true
             svContainer.spacing = 4
         }
+        let date = data["date"].stringValue
+        let title = data["title"].stringValue
         
-        
+        lbTitle.text = title
+        lbDate.text = date
     }
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnModify {
-            self.completion?(1)
+            self.completion?(data, 1)
         }
         else if sender == btnDel {
-            self.completion?(2)
+            self.completion?(data, 2)
         }
     }
 }
 
 class ClientNoticeListController: BaseViewController {
     @IBOutlet weak var tblView: UITableView!
-
+    @IBOutlet weak var btnWrite: CButton!
+    
     var comp_no: Int = 0
     
     var page:Int = 1
@@ -71,6 +80,14 @@ class ClientNoticeListController: BaseViewController {
         self.tblView.layer.cornerRadius = 6
         tblView.clipsToBounds = true
         
+        self.tblView.tableFooterView = UIView()
+        tblView.estimatedRowHeight = 60
+        tblView.rowHeight = UITableView.automaticDimension
+        
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.dataReset()
     }
     
@@ -85,8 +102,9 @@ class ClientNoticeListController: BaseViewController {
                 type = .normal
             }
         }
-        else {
-            
+        else if sender ==  btnWrite {
+            let vc = ClientNoticeEdtingViewController.initWithType(.regist)
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     func dataReset() {
@@ -122,8 +140,8 @@ class ClientNoticeListController: BaseViewController {
                 }
                 else {
                     self.tblView.isHidden = false
-                    self.tblView.reloadData()
                 }
+                self.tblView.reloadData()
                 self.page += 1
             }
             else {
@@ -132,6 +150,13 @@ class ClientNoticeListController: BaseViewController {
         } fail: { error in
             self.showErrorToast(error)
         }
+    }
+    func gotoModifyVc(_ item:JSON) {
+        let vc = ClientNoticeEdtingViewController.initWithType(.modify, item)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    func deleteNotice(_ item:JSON) {
+        
     }
 }
 
@@ -145,19 +170,25 @@ extension ClientNoticeListController: UITableViewDelegate, UITableViewDataSource
         }
         let item = listData[indexPath.row]
         cell.configurationData(item, type)
-        cell.completion = {(action) ->Void in
+        cell.completion = {(data, action) ->Void in
+            guard let data = data as? JSON else {
+                return
+            }
             if action == 1 { //수정
-                
+                self.gotoModifyVc(data)
             }
             else if action == 2 { //삭제
-                
+                self.deleteNotice(data)
             }
         }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        let item = listData[indexPath.row]
+        let vc = ClientNoticeDetailViewController.instantiateFromStoryboard(.main)!
+        vc.data = item
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

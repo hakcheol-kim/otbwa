@@ -64,9 +64,10 @@ class CAlertViewController: UIViewController {
     func configurationUi() {
         self.view.layoutIfNeeded()
         
-        btnBgView.isHidden = true
+        for sub in svBtn.subviews {
+            sub.removeFromSuperview()
+        }
         if let actions = actions {
-            btnBgView.isHidden = false
             var index = 0
             for action in actions {
                 let btn = self.getButton(action)
@@ -75,9 +76,7 @@ class CAlertViewController: UIViewController {
                 index += 1
             }
         }
-        for sub in svBtn.subviews {
-            sub.removeFromSuperview()
-        }
+        btnBgView.isHidden = arrBtn.isEmpty
         
         for btn in arrBtn {
             svBtn.addArrangedSubview(btn)
