@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         
         FirebaseApp.configure()
+        self.registApnsPushKey()
         window?.overrideUserInterfaceStyle = .light
 
         //최초 디바이스 키없으면
@@ -113,5 +114,91 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UIApplication.shared.open(requestUrl, options: [:]) { (success) in
             completion?(success)
         }
+    }
+    func removeApnsPushKey() {
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        Messaging.messaging().delegate = nil
+    }
+    func registApnsPushKey() {
+        self.removeApnsPushKey()
+        Messaging.messaging().delegate = self
+        self.registerForRemoteNoti()
+    }
+    func registerForRemoteNoti() {
+        UNUserNotificationCenter.current().delegate = self
+        let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+        UNUserNotificationCenter.current().requestAuthorization(options: authOptions) { (granted: Bool, error:Error?) in
+            if error == nil {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        }
+    }
+
+    func setPushData(_ userInfo:[String:Any], _ isBackgroundMode:Bool = false) {
+        let userInfo = JSON(userInfo)
+        print("push data: \(userInfo)")
+    }
+}
+
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    
+    //앱이 켜진상태, Forground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        
+        guard let userInfo = notification.request.content.userInfo as? [String:Any] else {
+            return
+        }
+        
+        self.setPushData(userInfo, false)
+        print("push data willPresent: ==== \(userInfo)")
+        print("categoryIdentifier: \(notification.request.content.categoryIdentifier)")
+        completionHandler([.badge, .sound])
+    }
+    
+    //앱이 백그라운드 들어갔을때 푸쉬온것을 누르면 여기 탄다.
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+
+        defer { completionHandler() }
+        guard response.actionIdentifier == UNNotificationDefaultActionIdentifier else {
+            return
+        }
+        let content = response.notification.request.content
+        print("push data didReceive: ==== \(content)")
+        print("title: \(content.title)")
+        print("body: \(content.body)")
+        
+        if let userInfo = content.userInfo as? [String:Any] {
+            self.setPushData(userInfo, true)
+        }
+    }
+    
+}
+extension AppDelegate: MessagingDelegate {
+    func requestUpdateFcmToken() {
+        let userNo = ShareData.ins.userNo
+        guard let fcmToken = Messaging.messaging().fcmToken, userNo > 0 else {
+            return
+        }
+        let param:[String:Any] = ["new_token":fcmToken, "user_no": userNo]
+        ApiManager.ins.requestUpdateFcmToken(param) { res in
+            if res["success"].boolValue {
+                print("fcm upload success")
+            }
+            else {
+                self.window?.makeToast("fcm token update error")
+            }
+        } fail: { error in
+            self.window?.makeToast("fcm token update error")
+        }
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        guard let token = fcmToken else {
+            print("==== fcm token key not receive")
+            return
+        }
+        self.requestUpdateFcmToken()
     }
 }

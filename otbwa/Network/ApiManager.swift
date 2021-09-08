@@ -663,5 +663,13 @@ class ApiManager: NSObject {
             fail?(error)
         }
     }
+    /// 토큰 갱신
+    func requestUpdateFcmToken(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.put, "/api/v1/notification/token", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
 }
 

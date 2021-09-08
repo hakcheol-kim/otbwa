@@ -24,6 +24,9 @@ class LoginViewController: BaseViewController {
         let attr = NSMutableAttributedString.init(string: result)
         attr.addAttribute(.foregroundColor, value: UIColor(named: "AccentColor")!, range: (result as NSString).range(of: sub))
         btnJoin.setAttributedTitle(attr, for: .normal)
+        
+        let isAuto = UserDefaults.standard.bool(forKey: Dfskey.autoLogin)
+        btnAutoLogin.isSelected = isAuto
     }
     
     override func viewWillAppear(_ animated: Bool) {
