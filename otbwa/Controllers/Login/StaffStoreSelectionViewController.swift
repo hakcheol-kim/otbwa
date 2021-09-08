@@ -8,7 +8,7 @@
 import UIKit
 import SwiftyJSON
 
-class StaffStoreInfoViewController: BaseViewController {
+class StaffStoreSelectionViewController: BaseViewController {
     @IBOutlet weak var topStepView: UIView!
     @IBOutlet weak var safetyView: UIView!
     @IBOutlet weak var btnNext: CButton!
@@ -45,7 +45,7 @@ class StaffStoreInfoViewController: BaseViewController {
                 self.tfBusinessNum.text = ""
                 self.btnNext.isEnabled = true
             }
-            self.present(vc, animated: true, completion: nil)
+            appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
         }
         else if sender == btnBusinessNum {
             let vc = StoreSelectionViewController.initWithType("num", user.kind!) { item in
@@ -57,14 +57,19 @@ class StaffStoreInfoViewController: BaseViewController {
                 self.tfBusinessNum.text = self.selItem!["comp_nm"].stringValue
                 self.btnNext.isEnabled = true
             }
-            self.present(vc, animated: true, completion: nil)
+            appDelegate.window?.rootViewController!.present(vc, animated: true, completion: nil)
         }
         else if sender == btnNext {
-            if let selItem = selItem {
-                user.comp_nm = selItem["comp_nm"].stringValue
-                user.comp_num = selItem["comp_num"].stringValue
+            guard let selItem = selItem else {
+                self.showToast("상호명을 선택해주세요.")
+                return
             }
+            user.comp_nm = selItem["comp_nm"].stringValue
+            user.comp_num = selItem["comp_num"].stringValue
+            user.tel = selItem["comp_tel"].stringValue
+            
             let vc = StaffInfoViewController.instantiateFromStoryboard(.login)!
+            vc.user = user
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

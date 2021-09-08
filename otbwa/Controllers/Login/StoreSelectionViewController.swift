@@ -64,17 +64,19 @@ class StoreSelectionViewController: BaseViewController {
     
     var selItem: JSON?
     var toolBar = CToolbar(barItems: [.keyboardDown])
-    static func initWithType(_ type: String, _ kind: String, _ completion:((_ item:JSON?) ->Void)?) -> StoreSelectionViewController {
-        let vc = StoreSelectionViewController.instantiateFromStoryboard(.common)!
+    
+    class func initWithType(_ type: String, _ kind: String, _ completion:((_ item:JSON?) ->Void)?) -> StoreSelectionViewController {
+        let vc = StoreSelectionViewController.instantiateFromStoryboard(.login)!
         vc.completion = completion
         vc.type = type
         return vc
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         
-        if type == "1" {
+        if type == "name" {
             tfSearch.placeholder = "상호명을 검색해주세요."
         }
         else {

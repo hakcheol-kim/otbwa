@@ -128,8 +128,8 @@
 		E9A5B4AC26B3CA3D0002AE81 /* SelectedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A5B4AB26B3CA3D0002AE81 /* SelectedButton.swift */; };
 		E9A5B4AE26B3D6000002AE81 /* UserTypeSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A5B4AD26B3D6000002AE81 /* UserTypeSelectionViewController.swift */; };
 		E9A5B4B226B3DDA40002AE81 /* StoreLocationInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A5B4B126B3DDA40002AE81 /* StoreLocationInfoViewController.swift */; };
-		E9A5B4B426B3DDCA0002AE81 /* CeoInofViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A5B4B326B3DDCA0002AE81 /* CeoInofViewController.swift */; };
-		E9A5B4B626B3DE3C0002AE81 /* StaffStoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A5B4B526B3DE3C0002AE81 /* StaffStoreInfoViewController.swift */; };
+		E9A5B4B426B3DDCA0002AE81 /* CeoInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A5B4B326B3DDCA0002AE81 /* CeoInfoViewController.swift */; };
+		E9A5B4B626B3DE3C0002AE81 /* StaffStoreSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A5B4B526B3DE3C0002AE81 /* StaffStoreSelectionViewController.swift */; };
 		E9A5B4BC26B3DEB00002AE81 /* StaffInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A5B4BB26B3DEB00002AE81 /* StaffInfoViewController.swift */; };
 		E9A6ABFE26B29E9C00F53885 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9A6ABFD26B29E9C00F53885 /* AppDelegate.swift */; };
 		E9A6AC0526B29E9C00F53885 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9A6AC0326B29E9C00F53885 /* Main.storyboard */; };
@@ -153,6 +153,9 @@
 		E9AAAD1826D776810065A6C3 /* WMyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAAD1726D776810065A6C3 /* WMyPageViewController.swift */; };
 		E9AAAD1B26D789070065A6C3 /* WProductColCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AAAD1926D789070065A6C3 /* WProductColCell.swift */; };
 		E9AAAD1C26D789070065A6C3 /* WProductColCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9AAAD1A26D789070065A6C3 /* WProductColCell.xib */; };
+		E9AB532226E6441B004BEABE /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB532126E6441B004BEABE /* OrderViewController.swift */; };
+		E9AB532426E700B1004BEABE /* OrderItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB532326E700B1004BEABE /* OrderItemView.swift */; };
+		E9AB532626E700BC004BEABE /* OrderItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9AB532526E700BC004BEABE /* OrderItemView.xib */; };
 		E9ABCD3B26CAB2A60032A73F /* OrderSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9ABCD3A26CAB2A60032A73F /* OrderSelectionView.swift */; };
 		E9ABCD3D26CAB2AD0032A73F /* OrderSelectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9ABCD3C26CAB2AD0032A73F /* OrderSelectionView.xib */; };
 		E9B234FF26C2B2F80089BB6D /* FtCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9B234FE26C2B2F80089BB6D /* FtCategoryViewController.swift */; };
@@ -304,8 +307,8 @@
 		E9A5B4AB26B3CA3D0002AE81 /* SelectedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedButton.swift; sourceTree = "<group>"; };
 		E9A5B4AD26B3D6000002AE81 /* UserTypeSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTypeSelectionViewController.swift; sourceTree = "<group>"; };
 		E9A5B4B126B3DDA40002AE81 /* StoreLocationInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocationInfoViewController.swift; sourceTree = "<group>"; };
-		E9A5B4B326B3DDCA0002AE81 /* CeoInofViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeoInofViewController.swift; sourceTree = "<group>"; };
-		E9A5B4B526B3DE3C0002AE81 /* StaffStoreInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffStoreInfoViewController.swift; sourceTree = "<group>"; };
+		E9A5B4B326B3DDCA0002AE81 /* CeoInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CeoInfoViewController.swift; sourceTree = "<group>"; };
+		E9A5B4B526B3DE3C0002AE81 /* StaffStoreSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffStoreSelectionViewController.swift; sourceTree = "<group>"; };
 		E9A5B4BB26B3DEB00002AE81 /* StaffInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffInfoViewController.swift; sourceTree = "<group>"; };
 		E9A6ABFA26B29E9C00F53885 /* otbwa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = otbwa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9A6ABFD26B29E9C00F53885 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -331,6 +334,9 @@
 		E9AAAD1726D776810065A6C3 /* WMyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMyPageViewController.swift; sourceTree = "<group>"; };
 		E9AAAD1926D789070065A6C3 /* WProductColCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WProductColCell.swift; sourceTree = "<group>"; };
 		E9AAAD1A26D789070065A6C3 /* WProductColCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WProductColCell.xib; sourceTree = "<group>"; };
+		E9AB532126E6441B004BEABE /* OrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewController.swift; sourceTree = "<group>"; };
+		E9AB532326E700B1004BEABE /* OrderItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderItemView.swift; sourceTree = "<group>"; };
+		E9AB532526E700BC004BEABE /* OrderItemView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderItemView.xib; sourceTree = "<group>"; };
 		E9ABCD3A26CAB2A60032A73F /* OrderSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderSelectionView.swift; sourceTree = "<group>"; };
 		E9ABCD3C26CAB2AD0032A73F /* OrderSelectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderSelectionView.xib; sourceTree = "<group>"; };
 		E9B234FE26C2B2F80089BB6D /* FtCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FtCategoryViewController.swift; sourceTree = "<group>"; };
@@ -578,6 +584,9 @@
 				E92AEB3726CD7AC60036674E /* StoreInfoHearderView.swift */,
 				E92AEB3826CD7AC60036674E /* StoreInfoHearderView.xib */,
 				E92AEB2F26CC05DE0036674E /* StoreInfoViewController.swift */,
+				E9AB532126E6441B004BEABE /* OrderViewController.swift */,
+				E9AB532326E700B1004BEABE /* OrderItemView.swift */,
+				E9AB532526E700BC004BEABE /* OrderItemView.xib */,
 			);
 			path = Retail;
 			sourceTree = "<group>";
@@ -586,7 +595,7 @@
 			isa = PBXGroup;
 			children = (
 				E9A5B4B126B3DDA40002AE81 /* StoreLocationInfoViewController.swift */,
-				E9A5B4B326B3DDCA0002AE81 /* CeoInofViewController.swift */,
+				E9A5B4B326B3DDCA0002AE81 /* CeoInfoViewController.swift */,
 				E97C7AD726B52C6300D5EA93 /* StoreInofViewController.swift */,
 				E9A94FAD26B6E893005BC1EA /* StoreInofViewController2.swift */,
 				E99EB83026B4395F00084684 /* BuildingSelectedViewController.swift */,
@@ -605,7 +614,7 @@
 		E9A5B4BA26B3DE910002AE81 /* Employee */ = {
 			isa = PBXGroup;
 			children = (
-				E9A5B4B526B3DE3C0002AE81 /* StaffStoreInfoViewController.swift */,
+				E9A5B4B526B3DE3C0002AE81 /* StaffStoreSelectionViewController.swift */,
 				E9A5B4BB26B3DEB00002AE81 /* StaffInfoViewController.swift */,
 				E945566926B66B7400F6268D /* StoreSelectionViewController.swift */,
 			);
@@ -811,6 +820,7 @@
 				E9AAAD1C26D789070065A6C3 /* WProductColCell.xib in Resources */,
 				E97F306926DA452C00FA20D1 /* AiTagCellView.xib in Resources */,
 				E945566226B55DF100F6268D /* FilterSectionView.xib in Resources */,
+				E9AB532626E700BC004BEABE /* OrderItemView.xib in Resources */,
 				E98DE24026D237B500B85956 /* SearchImageReusableHeaderView.xib in Resources */,
 				E99EEC0426BECE71006A65CF /* TabContainerController.xib in Resources */,
 				E977E6EF26D6940D001E92ED /* CAlertViewController.xib in Resources */,
@@ -876,6 +886,7 @@
 				E98135C626B3A1AF00C75AA1 /* FindPwViewController.swift in Sources */,
 				E98135BA26B390B400C75AA1 /* CImageView.swift in Sources */,
 				E9063FF726CA8C4800F7954D /* ProductDetailViewController.swift in Sources */,
+				E9AB532226E6441B004BEABE /* OrderViewController.swift in Sources */,
 				E977E6DF26D60884001E92ED /* ProductOrderDetailViewController.swift in Sources */,
 				E9AAAD1026D776250065A6C3 /* WHomeViewController.swift in Sources */,
 				E98135B626B390B400C75AA1 /* CTextField.swift in Sources */,
@@ -929,6 +940,7 @@
 				E9A5B4BC26B3DEB00002AE81 /* StaffInfoViewController.swift in Sources */,
 				E97C7AD826B52C6300D5EA93 /* StoreInofViewController.swift in Sources */,
 				E9865DF026BF93B900C7348E /* FSPagerView.swift in Sources */,
+				E9AB532426E700B1004BEABE /* OrderItemView.swift in Sources */,
 				E9CE23F126C9883400A09B16 /* ShadowView.swift in Sources */,
 				E9865DF726BF93B900C7348E /* FSPagerCollectionView.swift in Sources */,
 				E945566826B64BCE00F6268D /* ShareData.swift in Sources */,
@@ -953,7 +965,7 @@
 				E9EFC97126B83E8A00FFC603 /* CameraOverlayView.swift in Sources */,
 				E92AEB3226CCB0150036674E /* OptionModifyPopupViewController.swift in Sources */,
 				E9A94FAE26B6E893005BC1EA /* StoreInofViewController2.swift in Sources */,
-				E9A5B4B626B3DE3C0002AE81 /* StaffStoreInfoViewController.swift in Sources */,
+				E9A5B4B626B3DE3C0002AE81 /* StaffStoreSelectionViewController.swift in Sources */,
 				E9A6ABFE26B29E9C00F53885 /* AppDelegate.swift in Sources */,
 				E9A5B4B226B3DDA40002AE81 /* StoreLocationInfoViewController.swift in Sources */,
 				E92AEB3026CC05DE0036674E /* StoreInfoViewController.swift in Sources */,
@@ -987,7 +999,7 @@
 				E9865E0D26C00C7800C7348E /* FilterViewController.swift in Sources */,
 				E98135BF26B390B400C75AA1 /* CToolbar.swift in Sources */,
 				E99344F826D2A8E2000D0354 /* EmptyColCell.swift in Sources */,
-				E9A5B4B426B3DDCA0002AE81 /* CeoInofViewController.swift in Sources */,
+				E9A5B4B426B3DDCA0002AE81 /* CeoInfoViewController.swift in Sources */,
 				E98DE23C26D2194B00B85956 /* PermissionsController.swift in Sources */,
 				E9A5B4AC26B3CA3D0002AE81 /* SelectedButton.swift in Sources */,
 				E99F431F26E1FC0B00524BE4 /* ModifyBankInfoViewController.swift in Sources */,

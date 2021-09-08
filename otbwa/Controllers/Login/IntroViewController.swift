@@ -42,10 +42,10 @@ class IntroViewController: BaseViewController {
                     }
                 }
                 else {
-                    self.showErrorToast(res)
+                    appDelegate.callLoginVc()
                 }
             } fail: { error in
-                self.showErrorToast(error)
+                appDelegate.callLoginVc()
             }
         }
         else {

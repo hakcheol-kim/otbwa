@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class StoreInofViewController2: BaseViewController {
     
@@ -20,10 +21,7 @@ class StoreInofViewController2: BaseViewController {
     @IBOutlet weak var tfStoreNamePre: CTextField!
     @IBOutlet weak var btnCheckStoreName: CButton!
     
-    @IBOutlet weak var btnPhonePrifix: CButton!
-    @IBOutlet weak var tfPhonePrifix: UITextField!
     @IBOutlet weak var tfPhone: CTextField!
-    
     @IBOutlet weak var btnPostCode: CButton!
     @IBOutlet weak var tfPostCode: CTextField!
     @IBOutlet weak var tfAddr: CTextField!
@@ -41,7 +39,7 @@ class StoreInofViewController2: BaseViewController {
     
     
     let toolBar = CToolbar.init(barItems: [.keyboardDown])
-    var user: UserInfo = UserInfo()
+    var user: UserInfo!
     
     var checkStoreName: Bool = false
     
@@ -72,16 +70,13 @@ class StoreInofViewController2: BaseViewController {
         btnTermPrivacy.titleLabel?.numberOfLines = 0
         btnTermSms.titleLabel?.numberOfLines = 0
         
-        user.onlineYN = "Y"
         svStoreImage.isHidden = true
         svLink.isHidden = true
         
         if user.onlineYN == "Y" {
             svLink.isHidden = false
-            svStoreImage.isHidden = true
         }
         else {
-            svLink.isHidden = true
             svStoreImage.isHidden = false
         }
     }
@@ -97,14 +92,22 @@ class StoreInofViewController2: BaseViewController {
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnFile {
-            sender.isSelected = true
+            btnFile.isSelected = true
             btnStoreImageUpload.isSelected = false
-            self.uploadFile()
+            let vc = ImageSelectOptionViewController.initWithCompletion { vcs, soureType in
+                vcs?.dismiss(animated: true, completion: nil)
+                self.showImagePicker(soureType)
+            }
+            self.present(vc, animated: true, completion: nil)
         }
         else if sender == btnStoreImageUpload {
-            sender.isSelected = false
+            btnFile.isSelected = false
             btnStoreImageUpload.isSelected = true
-            self.uploadFile()
+            let vc = ImageSelectOptionViewController.initWithCompletion { vcs, soureType in
+                vcs?.dismiss(animated: true, completion: nil)
+                self.showImagePicker(soureType)
+            }
+            self.present(vc, animated: true, completion: nil)
         }
         else if sender == btnCheckStoreName {
             guard let text = tfStoreNamePre.text, text.isEmpty == false else {
@@ -133,11 +136,23 @@ class StoreInofViewController2: BaseViewController {
             }
         }
         else if sender == btnPostCode {
-            
-        }
-        else if sender == btnPhonePrifix {
-            let phonePrifix = ["02","031","032","033","041","042","043","044","051","052","053","054","055","061","062","063","064"]
-            
+            let vc = WkWebViewController.initWithUrl(urlAddrSearch, "주소검색") { data in
+                guard let data = data as? [String : Any] else {
+                    return
+                }
+                print(data)
+                let json = JSON(data)
+                if json["userSelectedType"].stringValue == "R" {
+                    self.tfAddr.text = json["roadAddress"].stringValue
+                }
+                else {
+                    self.tfAddr.text = json["jibunAddress"].stringValue
+                }
+                self.tfPostCode.text = json["zonecode"].stringValue
+                self.tfAddrDetail.text = ""
+                self.tfAddrDetail.becomeFirstResponder()
+            }
+            self.navigationController?.pushViewController(vc, animated: true)
         }
         else if sender == btnTermTotal {
             sender.isSelected = !sender.isSelected
@@ -192,16 +207,33 @@ class StoreInofViewController2: BaseViewController {
                 self.showToast("사업자 등록증 파일 등록해주세요.")
                 return
             }
-            
-            guard let telPre = tfPhonePrifix.text, telPre.isEmpty == false else {
-                self.showToast("지역 전화번호 앞자리를 선택해주세요.")
+            guard let storeName = tfStoreName.text, storeName.isEmpty == false else {
+                self.showToast("상호명을 입력해주세요.")
                 return
             }
+            if let storeNamePre = tfStoreNamePre.text, storeNamePre.isEmpty == false {
+                if checkStoreName == false { //값이 있으면 중복 체크 요청
+                    self.showToast("예비상호명 중복체크를 해주세요.")
+                    return
+                }
+                else {
+                    user.comp_nm_scd = storeNamePre
+                }
+            }
+            
             guard let tel = tfPhone.text, tel.isEmpty == false else {
                 self.showToast("전화번호를 입력해주세요.")
                 return
             }
             
+            guard let addr = tfAddr.text, addr.isEmpty == false else {
+                self.showToast("주소를 입력해주세요.")
+                return
+            }
+            var fullAddr = addr
+            if let detailAddr = tfAddrDetail.text, detailAddr.isEmpty == false {
+                fullAddr.append(" \(detailAddr)")
+            }
             if user.onlineYN == "Y" {
                 guard let link = tfLink.text, link.isEmpty == false else {
                     self.showToast("온라인 판매 링크를 입력해주세요.")
@@ -218,12 +250,13 @@ class StoreInofViewController2: BaseViewController {
                 self.showToast("개인정보수집 및 이용에 동의해주세요.")
                 return
             }
-            
+            user.comp_nm = storeName
             user.comp_num = lincense
             user.tel = tel
             user.termUse = "Y"
             user.infoUse = "Y"
             user.smsUse = btnTermSms.isSelected ? "Y" : "N"
+            user.comp_addr = fullAddr
             
             if let address = tfAddr.text, address.isEmpty == false {
                 var addr = address;
@@ -239,7 +272,7 @@ class StoreInofViewController2: BaseViewController {
             }
             
             user.unique = KeychainItem.currentUserIdentifier
-            user.uuid = uuid
+            user.uuid = uuid.lowercased()
             
             let param = user.map()
             ApiManager.ins.requestSignup(param) { res in
@@ -262,49 +295,48 @@ class StoreInofViewController2: BaseViewController {
             }
         }
     }
-    func uploadFile() {
-//        var alertStyle = UIAlertController.Style.actionSheet
-//        if UIDevice.current.userInterfaceIdiom == .pad {
-//            alertStyle = .alert
-//        }
-//        let alert = UIAlertController(title:nil, message: nil, preferredStyle: alertStyle)
-//        alert.addAction(UIAlertAction(title: "카메라로 사진 촬영하기", style: .default, handler: { (action) in
-//            alert.dismiss(animated: true, completion: nil)
-//            self.showCameraPicker(.camera)
-//        }))
-//        alert.addAction(UIAlertAction(title: "갤러리에서 사진 가져오기", style: .default, handler: { (action) in
-//            alert.dismiss(animated: true, completion: nil)
-//            self.showCameraPicker(.photoLibrary)
-//        }))
-//        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (action) in
-//            alert.dismiss(animated: true, completion: nil)
-//        }))
-//        
-//        present(alert, animated: true, completion: nil)
+    
+    func showImagePicker(_ sourceType: UIImagePickerController.SourceType) {
+        let vc = CImagePickerController.initWithSouretType(sourceType, true, 1) { data in
+            guard let data = data as? UIImage else {
+                return
+            }
+            let fileName = Date().stringDateWithFormat("yyyyMMddHHmmss")
+            let ext = "jpg"
+            if self.btnFile.isSelected {
+                self.tfFileName.text = fileName+"."+ext
+                self.user.comp_reg_img = data
+            }
+            else {
+                self.tfStoreImageName.text = fileName+"."+ext
+                self.user.img = data
+            }
+            print("== orig: \(data)")
+        }
+        self.present(vc, animated: true, completion: nil)
     }
-//    func showCameraPicker(_ sourceType: UIImagePickerController.SourceType) {
-//        let picker = CImagePickerController.init(sourceType) { (orig, crop) in
-//            guard let orig = orig, let crop = crop else {
-//                return
-//            }
-//
-//            let fileName = Date().stringDateWithFormat("yyyyMMddHHmmss")
-//            let ext = "jpg"
-//            if self.btnFile.isSelected {
-//                self.tfFileName.text = fileName+"."+ext
-//                self.user.comp_reg_img = crop
-//            }
-//            else {
-//                self.tfStoreImageName.text = fileName+"."+ext
-//                self.user.img = crop
-//            }
-//            print("== orig: \(orig), crop:\(crop)")
-//        }
-//        self.present(picker, animated: true, completion: nil)
-//    }
 }
 
 extension StoreInofViewController2: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == tfCompanyNum {
+            tfStoreName.becomeFirstResponder()
+        }
+        else if textField == tfStoreName {
+            tfStoreNamePre.becomeFirstResponder()
+        }
+        else if textField == tfStoreNamePre {
+            tfPhone.becomeFirstResponder()
+        }
+        else if textField == tfPhone {
+            tfAddrDetail.becomeFirstResponder()
+        }
+        else {
+            self.view.endEditing(true)
+        }
+        return true
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text,
               let textRange = Range(range, in: text) else {

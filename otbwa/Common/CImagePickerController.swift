@@ -11,11 +11,10 @@ import Mantis
 import Photos
 import BSImagePicker
 
-public let maxResizeImge:CGFloat = 1000
+public let maxResizeImge:CGFloat = 300
 
 class CImagePickerController: UIViewController {
     var overlayView: CameraOverlayView? = nil
-    var originImg: UIImage?
     
     var isCrop: Bool = true
     var maxCount: Int = 1
@@ -23,9 +22,10 @@ class CImagePickerController: UIViewController {
     var isFirst = false
     var isAssets = false
     
-    var completion:((_ data: Any?, _ subData:Any?) ->Void)?
+    var completion:((_ data: Any?) ->Void)?
     
-    static func initWithSouretType(_ type:UIImagePickerController.SourceType, _ isCrop:Bool = false, _ maxCount:Int = 1, completion:((_ data: Any?, _ subData:Any?) ->Void)?) ->CImagePickerController {
+    class func initWithSouretType(_ type:UIImagePickerController.SourceType, _ isCrop:Bool = false, _ maxCount:Int = 1, completion:((_ data: Any?) ->Void)?) ->CImagePickerController {
+        
         let vc = CImagePickerController.init()
         vc.isCrop = isCrop
         vc.maxCount = maxCount
@@ -150,7 +150,7 @@ class CImagePickerController: UIViewController {
             }, finish: { (assets) in
                 print("Finished with selections: \(assets)")
                 if self.isAssets == true {
-                    self.completion?(assets, nil)
+                    self.completion?(assets)
                     imagePicker.dismiss(animated: false) {
                         self.popVc()
                     }
@@ -170,10 +170,30 @@ class CImagePickerController: UIViewController {
                             if let result = result {
                                 images.append(result)
                             }
+                            
                             if i == (assets.count - 1) {
-                                self.completion?(images, nil)
-                                imagePicker.dismiss(animated: false) {
-                                    self.popVc()
+                                if let result = result, self.maxCount == 1 {
+                                    if self.isCrop == true {
+                                        imagePicker.dismiss(animated: false) {
+                                            let vc = Mantis.cropViewController(image: result)
+                                            vc.delegate = self
+                                            vc.modalTransitionStyle = .crossDissolve
+                                            vc.modalPresentationStyle = .fullScreen
+                                            self.present(vc, animated: false)
+                                        }
+                                    }
+                                    else {
+                                        self.completion?(result)
+                                        imagePicker.dismiss(animated: false) {
+                                            self.popVc()
+                                        }
+                                    }
+                                }
+                                else {
+                                    self.completion?(images)
+                                    imagePicker.dismiss(animated: false) {
+                                        self.popVc()
+                                    }
                                 }
                             }
                         }
@@ -205,8 +225,6 @@ extension CImagePickerController: UIImagePickerControllerDelegate, UINavigationC
         let orgImg = info[UIImagePickerController.InfoKey.originalImage]
         
         if let orgImg = orgImg {
-            self.originImg = (orgImg as! UIImage)
-            
             if (self.isCrop) {
                 picker.dismiss(animated: false) {
                     let vc = Mantis.cropViewController(image: orgImg as! UIImage)
@@ -217,7 +235,7 @@ extension CImagePickerController: UIImagePickerControllerDelegate, UINavigationC
                 }
             }
             else {
-                self.completion?(self.originImg, nil)
+                self.completion?(orgImg)
                 picker.dismiss(animated: false) {
                     self.popVc()
                 }
@@ -258,7 +276,7 @@ extension CImagePickerController: CropViewControllerDelegate {
     func cropViewControllerDidCrop(_ cropViewController: CropViewController, cropped: UIImage, transformation: Transformation) {
         cropViewController.dismiss(animated: false) {
             let resizeImg = cropped.resized(toWidth: maxResizeImge)
-            self.completion?(self.originImg, resizeImg)
+            self.completion?(resizeImg)
             self.popVc()
         }
     }

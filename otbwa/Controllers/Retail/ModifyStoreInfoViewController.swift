@@ -219,7 +219,7 @@ class ModifyStoreInfoViewController: BaseViewController {
     }
     
     func showImagePicker(_ soureType: UIImagePickerController.SourceType) {
-        let vc = CImagePickerController.initWithSouretType(soureType, false, 1) { data, sub in
+        let vc = CImagePickerController.initWithSouretType(soureType, false, 1) { data in
             var image: UIImage? = nil
             if let data = data as? UIImage {
                 image = data

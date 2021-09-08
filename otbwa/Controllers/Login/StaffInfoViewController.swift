@@ -68,7 +68,6 @@ class StaffInfoViewController: BaseViewController {
         self.addTapGestureKeyBoardDown()
         safetyView.isHidden = !isEdgePhone
         arrFoucsTf = [tfId, tfPw, tfPwComfirm, tfName, tfPhoneNum, tfAuth]
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -234,6 +233,10 @@ class StaffInfoViewController: BaseViewController {
                 self.showToast("아이디를 입력해주세요")
                 return
             }
+            guard self.isCheckedId == true else {
+                self.showToast("아이디 중복체크를 해주세요.")
+                return
+            }
             guard let pw = tfPw.text, pw.isEmpty == false else {
                 self.showToast("비밀번호를 입력해주세요")
                 return
@@ -250,6 +253,7 @@ class StaffInfoViewController: BaseViewController {
                 self.showToast("이름을 입력해주세요")
                 return
             }
+            
             guard let phone = tfPhoneNum.text, phone.isEmpty == false else {
                 self.showToast("휴대폰 번호를 인증해주세요")
                 return
@@ -273,7 +277,7 @@ class StaffInfoViewController: BaseViewController {
             }
             
             user.unique = KeychainItem.currentUserIdentifier
-            user.uuid = uuid
+            user.uuid = uuid.lowercased()
             
             let param = user.map()
             ApiManager.ins.requestSignup(param) { res in
@@ -318,5 +322,14 @@ extension StaffInfoViewController: UITextFieldDelegate {
         }
         return true
     }
-    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text, let textRange = Range(range, in:text) else {
+            return false
+        }
+        let newTxt = text.replacingCharacters(in: textRange, with: string)
+        if textField == tfId {
+            self.isCheckedId = false
+        }
+        return true
+    }
 }

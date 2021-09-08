@@ -41,6 +41,7 @@ class JoinGateWayViewController: BaseViewController {
             user.kind = "retail"
         }
         else if sender == btnNext {
+            print(user.description)
             if btnWholesale.isSelected == false && btnRetail.isSelected == false  {
                 self.view.makeToast("도매회원 혹은 소매회원을 선택해주세요.")
                 return

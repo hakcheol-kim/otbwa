@@ -122,6 +122,9 @@ class BasketListViewController: BaseViewController {
         
         lbTotalPrice.text = "0"
         btnCheckAll.isSelected = true
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.dataReset()
     }
     func dataReset() {
@@ -178,13 +181,8 @@ class BasketListViewController: BaseViewController {
                 self.tblView.reloadData()
             }
             else {
-                if res["code"].intValue == -1017 {
-                    self.isPageEnd = true
-                    self.listData.removeAll()
-                    self.tblView.reloadData()
-                }
-                
-                self.showErrorToast(res)            }
+                self.isPageEnd = true
+            }
         } fail: { error in
             self.showErrorToast(error)
         }
@@ -202,6 +200,7 @@ class BasketListViewController: BaseViewController {
             }
         }
         let param:[String:Any] = ["product_no" : product_no, "user_no":ShareData.ins.userNo]
+        
         ApiManager.ins.requestDeleteBasketList(param: param) { res in
             let success = res["success"].boolValue
             if success {
@@ -232,7 +231,9 @@ class BasketListViewController: BaseViewController {
             self.requestDeleteBasket()
         }
         else if sender == btnOrder {
-            
+            let vc = OrderViewController.instantiateFromStoryboard(.main)!
+            vc.listData = listData
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
 }

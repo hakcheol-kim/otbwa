@@ -61,6 +61,7 @@ class LoginViewController: BaseViewController {
                 self.showToast("비밀번호를 입력해주세요.")
                 return
             }
+            self.view.endEditing(true)
             var param = [String:Any]()
             param["id"] = id
             param["pw"] = pw

@@ -17,11 +17,12 @@ class UserTypeSelectionViewController: BaseViewController {
     @IBOutlet weak var safetyView: UIView!
     @IBOutlet weak var btnNext: CButton!
     var user: UserInfo!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
-        if user.kind == "wsale" {
+        if user.kind! == "wsale" {
             CNavigationBar.drawTitle(self, "도매 회원가입", nil)
             svJobType.isHidden = true
         }
@@ -50,17 +51,18 @@ class UserTypeSelectionViewController: BaseViewController {
             user.type = "employee"
         }
         else if sender == btnOnline {
-            sender.isSelected = true
+            btnOnline.isSelected = true
             btnOffline.isSelected = false
             user.onlineYN = "Y"
         }
         else if sender == btnOffline {
-            sender.isSelected = true
             btnOnline.isSelected = false
+            btnOffline.isSelected = true
             user.onlineYN = "N"
         }
         else if sender == btnNext {
-            if user.kind == "retail" && btnOnline.isSelected == false && btnOffline.isSelected == false {
+            print(user.description)
+            if user.kind! == "retail" && btnOnline.isSelected == false && btnOffline.isSelected == false {
                 self.view.makeToast("업종을 선택해주세요.")
                 return
             }
@@ -71,19 +73,19 @@ class UserTypeSelectionViewController: BaseViewController {
             }
             
             if btnCeo.isSelected == true {
-                if user.kind == "wsale" {
+                if user.kind! == "wsale" {
                     let vc = StoreLocationInfoViewController.instantiateFromStoryboard(.login)!
                     vc.user = user
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
                 else {
-                    let vc = CeoInofViewController.instantiateFromStoryboard(.login)!
+                    let vc = CeoInfoViewController.instantiateFromStoryboard(.login)!
                     vc.user = user
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
             else {
-                let vc = StaffStoreInfoViewController.instantiateFromStoryboard(.login)!
+                let vc = StaffStoreSelectionViewController.instantiateFromStoryboard(.login)!
                 vc.user = user
                 self.navigationController?.pushViewController(vc, animated: true)
             }

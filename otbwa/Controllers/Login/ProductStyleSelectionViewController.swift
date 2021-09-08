@@ -90,6 +90,7 @@ class ProductStyleSelectionViewController: BaseViewController {
             }
             
             let vc = StoreInofViewController2.instantiateFromStoryboard(.login)!
+            vc.user = user
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

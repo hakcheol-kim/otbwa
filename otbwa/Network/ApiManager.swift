@@ -655,5 +655,13 @@ class ApiManager: NSObject {
             fail?(error)
         }
     }
+    ///주문하기
+    func requestProductsOrder(_ param:[String:Any], success:ResSuccess?, fail:ResFailure?) {
+        NetworkManager.ins.request(.post, "/api/v1/product/order", param) { res in
+            success?(res)
+        } failure: { error in
+            fail?(error)
+        }
+    }
 }
 

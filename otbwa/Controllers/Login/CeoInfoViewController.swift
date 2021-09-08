@@ -1,5 +1,5 @@
 //
-//  CeoInofViewController.swift
+//  CeoInfoViewController.swift
 //  otbwa
 //
 //  Created by 김학철 on 2021/07/30.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CeoInofViewController: BaseViewController {
+class CeoInfoViewController: BaseViewController {
     @IBOutlet weak var topStepView: UIView!
     @IBOutlet weak var safetyView: UIView!
     @IBOutlet weak var btnNext: CButton!
@@ -46,7 +46,7 @@ class CeoInofViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
-        if user.kind == "wsale" {
+        if user.kind! == "wsale" {
             arrFoucsTf = [tfId, tfPw, tfPwComfirm, tfStoreName, tfCeoName, tfPhoneNum, tfAuth]
             CNavigationBar.drawTitle(self, "도매 회원가입", nil)
         }
@@ -195,6 +195,10 @@ class CeoInofViewController: BaseViewController {
                 self.showToast("아이디를 입력해주세요")
                 return
             }
+            if isCheckedId == false {
+                self.showToast("아이디 중복체크를 해주세요.")
+                return
+            }
             guard let pw = tfPw.text, pw.isEmpty == false else {
                 self.showToast("비밀번호를 입력해주세요")
                 return
@@ -208,7 +212,7 @@ class CeoInofViewController: BaseViewController {
                 return
             }
             
-            if user.kind == "wsale" {
+            if user.kind! == "wsale" {
                 guard let storeName = tfStoreName.text, storeName.isEmpty == false else {
                     self.showToast("상호명을 입력해주세요")
                     return
@@ -234,7 +238,7 @@ class CeoInofViewController: BaseViewController {
             user.name = ceoName
             user.phone = phone
             
-            if user.kind == "retail" && user.type == "ceo" {
+            if user.kind! == "retail" && user.type! == "ceo" {
                 let vc = ProductStyleSelectionViewController.instantiateFromStoryboard(.login)!
                 vc.user = user
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -248,7 +252,7 @@ class CeoInofViewController: BaseViewController {
     }
 }
 
-extension CeoInofViewController: UITextFieldDelegate {
+extension CeoInfoViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if let textField = textField as? CTextField {
             tfFocus = textField

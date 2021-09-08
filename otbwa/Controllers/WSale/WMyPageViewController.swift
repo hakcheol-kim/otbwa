@@ -143,7 +143,7 @@ class WMyPageViewController: BaseViewController {
         }
     }
     func showImagePicker(_ sourceType:UIImagePickerController.SourceType) {
-        let vc = CImagePickerController.initWithSouretType(sourceType, false, 1) { data, sub in
+        let vc = CImagePickerController.initWithSouretType(sourceType, false, 1) { data in
             if let data = data as? UIImage {
                 self.ivthumb.image = data
                 self.requestModifyCompInfo(data)

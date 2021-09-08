@@ -24,6 +24,7 @@ class StoreInofViewController: BaseViewController {
     @IBOutlet weak var btnTermUsing: UIButton!
     @IBOutlet weak var btnTermPrivacy: UIButton!
     @IBOutlet weak var btnTermSms: UIButton!
+    
     var user: UserInfo!
     
     let toolBar = CToolbar.init(barItems: [.keyboardDown])
@@ -93,24 +94,11 @@ class StoreInofViewController: BaseViewController {
             self.present(vc, animated: true, completion: nil)
         }
         else if sender == btnFile {
-//            var alertStyle = UIAlertController.Style.actionSheet
-//            if UIDevice.current.userInterfaceIdiom == .pad {
-//                alertStyle = .alert
-//            }
-//            let alert = UIAlertController(title:nil, message: nil, preferredStyle: alertStyle)
-//            alert.addAction(UIAlertAction(title: "카메라로 사진 촬영하기", style: .default, handler: { (action) in
-//                alert.dismiss(animated: true, completion: nil)
-//                self.showCameraPicker(.camera)
-//            }))
-//            alert.addAction(UIAlertAction(title: "갤러리에서 사진 가져오기", style: .default, handler: { (action) in
-//                alert.dismiss(animated: true, completion: nil)
-//                self.showCameraPicker(.photoLibrary)
-//            }))
-//            alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { (action) in
-//                alert.dismiss(animated: true, completion: nil)
-//            }))
-//            
-//            present(alert, animated: true, completion: nil)
+            let vc = ImageSelectOptionViewController.initWithCompletion { vcs, soureType in
+                vcs?.dismiss(animated: true, completion: nil)
+                self.showImagePicker(soureType)
+            }
+            self.present(vc, animated: true, completion: nil)
         }
         else if sender == btnTermTotal {
             sender.isSelected = !sender.isSelected
@@ -194,7 +182,7 @@ class StoreInofViewController: BaseViewController {
             }
             
             user.unique = KeychainItem.currentUserIdentifier
-            user.uuid = uuid
+            user.uuid = uuid.lowercased()
             
             let param = user.map()
             ApiManager.ins.requestSignup(param) { res in
@@ -217,18 +205,18 @@ class StoreInofViewController: BaseViewController {
         }
     }
     
-//    func showCameraPicker(_ sourceType: UIImagePickerController.SourceType) {
-//        let picker = CImagePickerController.init(sourceType) { (orig, crop) in
-//            guard let orig = orig, let crop = crop else {
-//                return
-//            }
-//            let fileName = Date().stringDateWithFormat("yyyyMMddHHmmss")
-//            let ext = "jpg"
-//            self.tfFileName.text = fileName+"."+ext
-//            self.user.img = crop
-//            
-//            print("== orig: \(orig), crop:\(crop)")
-//        }
-//        self.present(picker, animated: true, completion: nil)
-//    }
+    func showImagePicker(_ sourceType: UIImagePickerController.SourceType) {
+        let vc = CImagePickerController.initWithSouretType(sourceType, true, 1) { data in
+            guard let data = data as? UIImage else {
+                return
+            }
+            let fileName = Date().stringDateWithFormat("yyyyMMddHHmmss")
+            let ext = "jpg"
+            self.tfFileName.text = fileName+"."+ext
+            self.user.img = data
+            
+            print("== orig: \(data)")
+        }
+        self.present(vc, animated: true, completion: nil)
+    }
 }

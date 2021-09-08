@@ -591,7 +591,7 @@ class WProductModifyViewController: BaseViewController {
     }
     
     func showImagePicker(_ sourceType: UIImagePickerController.SourceType) {
-        let vc = CImagePickerController.initWithSouretType(sourceType, false, 10) { data, sub in
+        let vc = CImagePickerController.initWithSouretType(sourceType, false, 10) { data in
             if let data = data as? UIImage {
                 self.images.removeAll()
                 self.images.append(data)

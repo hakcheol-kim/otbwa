@@ -3024,7 +3024,6 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="onClickedBtnActions:" destination="8cv-IF-jKf" eventType="touchUpInside" id="cnh-Kb-FCs"/>
-                                                            <action selector="onClickedBtnActions:" destination="VVK-QP-QQB" eventType="touchUpInside" id="yhv-Sr-yFd"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -3033,12 +3032,17 @@
                                                 </constraints>
                                                 <edgeInsets key="layoutMargins" top="10" left="10" bottom="10" right="10"/>
                                             </stackView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPm-uw-pyJ">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPm-uw-pyJ" customClass="CView" customModule="otbwa" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="64" width="375" height="34"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="34" id="TXX-5Y-foh"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="6"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                         </subviews>
                                     </stackView>
@@ -3736,6 +3740,573 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TCY-mG-G13" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2426" y="2854"/>
+        </scene>
+        <!--Order View Controller-->
+        <scene sceneID="WOO-Ws-8TN">
+            <objects>
+                <viewController storyboardIdentifier="OrderViewController" id="Y2u-3F-9ZO" customClass="OrderViewController" customModule="otbwa" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="347-yU-6Ax">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8d-Hc-DkU">
+                                <rect key="frame" x="0.0" y="44" width="375" height="670"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="B0H-gd-3KJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="1005"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="06Y-wG-NBt">
+                                                <rect key="frame" x="18" y="12" width="339" height="72.333333333333329"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="상품정보" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="47k-uR-XVg">
+                                                        <rect key="frame" x="0.0" y="0.0" width="339" height="14.333333333333334"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9z-4C-GO7" customClass="CView" customModule="otbwa" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="22.333333333333329" width="339" height="50"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lIs-Eb-vS1">
+                                                                <rect key="frame" x="0.0" y="0.0" width="339" height="50"/>
+                                                                <edgeInsets key="layoutMargins" top="8" left="0.0" bottom="8" right="0.0"/>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" priority="250" constant="48" id="3Wr-Uh-f02"/>
+                                                            <constraint firstAttribute="trailing" secondItem="lIs-Eb-vS1" secondAttribute="trailing" id="Jdx-ZC-RWf"/>
+                                                            <constraint firstItem="lIs-Eb-vS1" firstAttribute="leading" secondItem="c9z-4C-GO7" secondAttribute="leading" id="NJM-cK-0ij"/>
+                                                            <constraint firstItem="lIs-Eb-vS1" firstAttribute="top" secondItem="c9z-4C-GO7" secondAttribute="top" id="os9-4p-Nw7"/>
+                                                            <constraint firstAttribute="bottom" secondItem="lIs-Eb-vS1" secondAttribute="bottom" id="te3-Uo-hBF"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="6"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="mjs-qL-zbq">
+                                                <rect key="frame" x="18" y="104.33333333333334" width="339" height="70.333333333333343"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="총 결제 금액" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3n6-Lv-ezx">
+                                                        <rect key="frame" x="0.0" y="0.0" width="339" height="14.333333333333334"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jSl-aF-SgG" customClass="CView" customModule="otbwa" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="22.333333333333314" width="339" height="48"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aXG-8j-VgH">
+                                                                <rect key="frame" x="0.0" y="0.0" width="339" height="48"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주문금액" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaR-Hk-bzK">
+                                                                        <rect key="frame" x="16.000000000000014" y="0.0" width="252.33333333333337" height="48"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="1,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="idS-en-jkv">
+                                                                        <rect key="frame" x="268.33333333333331" y="0.0" width="41.666666666666686" height="48"/>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                        <color key="textColor" name="AccentColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="원" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3a5-EQ-acm">
+                                                                        <rect key="frame" x="310" y="0.0" width="13" height="48"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <color key="textColor" name="AccentColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                                <edgeInsets key="layoutMargins" top="0.0" left="16" bottom="0.0" right="16"/>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="aXG-8j-VgH" secondAttribute="trailing" id="PLV-fc-7a6"/>
+                                                            <constraint firstAttribute="height" priority="999" constant="48" id="Pnc-DQ-nYB"/>
+                                                            <constraint firstItem="aXG-8j-VgH" firstAttribute="leading" secondItem="jSl-aF-SgG" secondAttribute="leading" id="W1f-Ye-dWf"/>
+                                                            <constraint firstAttribute="bottom" secondItem="aXG-8j-VgH" secondAttribute="bottom" id="fkn-YZ-rhW"/>
+                                                            <constraint firstItem="aXG-8j-VgH" firstAttribute="top" secondItem="jSl-aF-SgG" secondAttribute="top" id="gDo-0M-hEg"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="6"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="qQH-4Z-uJW">
+                                                <rect key="frame" x="18" y="194.66666666666663" width="339" height="134.33333333333337"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수령 방법 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZoE-oo-RyF">
+                                                        <rect key="frame" x="0.0" y="0.0" width="339" height="14.333333333333334"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qEN-eS-Z2h" customClass="CView" customModule="otbwa" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="22.333333333333343" width="339" height="112"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hQA-Zr-bH7">
+                                                                <rect key="frame" x="0.0" y="0.0" width="339" height="112"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="800" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycn-d2-SU9">
+                                                                        <rect key="frame" x="16" y="16" width="307" height="20"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                        <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                        <state key="normal" title="직접 수령" image="radio_off">
+                                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                                        </state>
+                                                                        <state key="selected" image="radio_on"/>
+                                                                        <connections>
+                                                                            <action selector="onClickedBtnActions:" destination="Y2u-3F-9ZO" eventType="touchUpInside" id="cbj-E4-KvR"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="800" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ze-66-ad9">
+                                                                        <rect key="frame" x="16" y="46" width="307" height="20"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                        <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                        <state key="normal" title="사입사 방문" image="radio_off">
+                                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                                        </state>
+                                                                        <state key="selected" image="radio_on"/>
+                                                                        <connections>
+                                                                            <action selector="onClickedBtnActions:" destination="Y2u-3F-9ZO" eventType="touchUpInside" id="hdx-qX-hvN"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="800" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GSe-3r-1bW">
+                                                                        <rect key="frame" x="16" y="76" width="307" height="20"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                        <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                        <state key="normal" title="택배" image="radio_off">
+                                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                                        </state>
+                                                                        <state key="selected" image="radio_on"/>
+                                                                        <connections>
+                                                                            <action selector="onClickedBtnActions:" destination="Y2u-3F-9ZO" eventType="touchUpInside" id="AhN-M3-nZn"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="hQA-Zr-bH7" firstAttribute="leading" secondItem="qEN-eS-Z2h" secondAttribute="leading" id="R5f-1d-Zou"/>
+                                                            <constraint firstAttribute="height" priority="250" constant="48" id="Z4d-c0-x7Y"/>
+                                                            <constraint firstItem="hQA-Zr-bH7" firstAttribute="top" secondItem="qEN-eS-Z2h" secondAttribute="top" id="jWj-Fu-GGt"/>
+                                                            <constraint firstAttribute="trailing" secondItem="hQA-Zr-bH7" secondAttribute="trailing" id="jZL-zA-scS"/>
+                                                            <constraint firstAttribute="bottom" secondItem="hQA-Zr-bH7" secondAttribute="bottom" id="xpN-35-9iA"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="6"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="6rp-Fx-Zre">
+                                                <rect key="frame" x="18" y="349" width="339" height="58.333333333333314"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수령인" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGZ-2A-lgY">
+                                                        <rect key="frame" x="0.0" y="0.0" width="339" height="14.333333333333334"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="수령인" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="R39-MO-dGe" customClass="CTextField" customModule="otbwa" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="22.333333333333314" width="339" height="36"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" priority="999" constant="36" id="Jxz-ZK-7bx"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetT">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetB">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetL">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetR">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="6"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="Y2u-3F-9ZO" id="qws-sq-Vlj"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="UCV-T2-hak">
+                                                <rect key="frame" x="18" y="427.33333333333331" width="339" height="102.33333333333331"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주소" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVY-qr-Kz9">
+                                                        <rect key="frame" x="0.0" y="0.0" width="339" height="14.333333333333334"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Xtb-Ey-hZl">
+                                                        <rect key="frame" x="0.0" y="22.333333333333371" width="339" height="36"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="53j-dx-qiQ" customClass="CTextField" customModule="otbwa" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="246.33333333333334" height="36"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" priority="999" constant="36" id="uZW-r9-7xd"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetT">
+                                                                        <real key="value" value="0.0"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetB">
+                                                                        <real key="value" value="0.0"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetL">
+                                                                        <real key="value" value="12"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetR">
+                                                                        <real key="value" value="12"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="6"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </textField>
+                                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2w-Rf-dH6" customClass="CButton" customModule="otbwa" customModuleProvider="target">
+                                                                <rect key="frame" x="254.33333333333329" y="0.0" width="84.666666666666657" height="36"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <state key="normal" title="주소검색">
+                                                                    <color key="titleColor" name="AccentColor"/>
+                                                                </state>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isBoderAll" value="YES"/>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                        <color key="value" name="AccentColor"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                        <real key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="6"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="onClickedBtnActions:" destination="Y2u-3F-9ZO" eventType="touchUpInside" id="vtj-oR-WJQ"/>
+                                                                </connections>
+                                                            </button>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstItem="y2w-Rf-dH6" firstAttribute="width" secondItem="Xtb-Ey-hZl" secondAttribute="width" multiplier="0.25" id="D40-2U-dcl"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="상세주소 입력" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yC2-Pq-KCx" customClass="CTextField" customModule="otbwa" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="66.333333333333314" width="339" height="36"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" priority="999" constant="36" id="aK7-Od-YBZ"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetT">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetB">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetL">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetR">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="6"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="Y2u-3F-9ZO" id="2z4-eh-pnY"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="JjA-4e-6i1">
+                                                <rect key="frame" x="18" y="549.66666666666663" width="339" height="58.333333333333371"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="수령인 연락처" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPU-YW-8eG">
+                                                        <rect key="frame" x="0.0" y="0.0" width="339" height="14.333333333333334"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ex) 01012345678" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="eeE-M3-Cjn" customClass="CTextField" customModule="otbwa" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="22.333333333333371" width="339" height="36"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" priority="999" constant="36" id="Wka-c9-E5x"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="phonePad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetT">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetB">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetL">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetR">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="6"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="Y2u-3F-9ZO" id="5sS-fy-Lj2"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="huK-Jz-EQx">
+                                                <rect key="frame" x="18" y="628" width="339" height="104.33333333333337"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="결제 방법 선택" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M1a-aF-qT1">
+                                                        <rect key="frame" x="0.0" y="0.0" width="339" height="14.333333333333334"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CC2-Y9-mXH" customClass="CView" customModule="otbwa" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="22.333333333333371" width="339" height="82"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="5Lr-bu-jfT">
+                                                                <rect key="frame" x="0.0" y="0.0" width="339" height="82"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="800" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xFt-hj-qbJ">
+                                                                        <rect key="frame" x="16" y="16" width="307" height="20"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                        <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                        <state key="normal" title="현장 결제" image="radio_off">
+                                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                                        </state>
+                                                                        <state key="selected" image="radio_on"/>
+                                                                        <connections>
+                                                                            <action selector="onClickedBtnActions:" destination="Y2u-3F-9ZO" eventType="touchUpInside" id="WOO-TR-3Pp"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="800" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pb3-JI-TtX">
+                                                                        <rect key="frame" x="16" y="46" width="307" height="20"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                                        <inset key="titleEdgeInsets" minX="6" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                        <state key="normal" title="계좌이체" image="radio_off">
+                                                                            <color key="titleColor" systemColor="labelColor"/>
+                                                                        </state>
+                                                                        <state key="selected" image="radio_on"/>
+                                                                        <connections>
+                                                                            <action selector="onClickedBtnActions:" destination="Y2u-3F-9ZO" eventType="touchUpInside" id="kzA-9N-rw1"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstItem="5Lr-bu-jfT" firstAttribute="leading" secondItem="CC2-Y9-mXH" secondAttribute="leading" id="2Jb-3a-rgD"/>
+                                                            <constraint firstAttribute="trailing" secondItem="5Lr-bu-jfT" secondAttribute="trailing" id="HfF-Ho-MMu"/>
+                                                            <constraint firstAttribute="bottom" secondItem="5Lr-bu-jfT" secondAttribute="bottom" id="Hw6-iP-fYs"/>
+                                                            <constraint firstItem="5Lr-bu-jfT" firstAttribute="top" secondItem="CC2-Y9-mXH" secondAttribute="top" id="aqL-HL-DsQ"/>
+                                                            <constraint firstAttribute="height" priority="250" constant="48" id="ezI-8h-cln"/>
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="6"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Smv-Dg-Hcu">
+                                                <rect key="frame" x="18" y="752.33333333333337" width="339" height="58.333333333333371"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="입금자명" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Kl-bh-kLR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="339" height="14.333333333333334"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="입금자명" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="vz8-Ny-LgP" customClass="CTextField" customModule="otbwa" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="22.333333333333258" width="339" height="36"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" priority="999" constant="36" id="WeR-PE-Ujk"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="namePhonePad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetT">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetB">
+                                                                <real key="value" value="0.0"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetL">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="insetR">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="6"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="Y2u-3F-9ZO" id="ToA-Z8-4Uz"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2Oe-Dr-ICZ">
+                                                <rect key="frame" x="18" y="830.66666666666663" width="339" height="154.33333333333337"/>
+                                            </stackView>
+                                        </subviews>
+                                        <edgeInsets key="layoutMargins" top="12" left="18" bottom="20" right="18"/>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="B0H-gd-3KJ" secondAttribute="bottom" id="9gW-Cb-SHH"/>
+                                    <constraint firstItem="B0H-gd-3KJ" firstAttribute="leading" secondItem="I8d-Hc-DkU" secondAttribute="leading" id="NX4-iU-acc"/>
+                                    <constraint firstItem="B0H-gd-3KJ" firstAttribute="top" secondItem="I8d-Hc-DkU" secondAttribute="top" id="aV9-wd-RPp"/>
+                                    <constraint firstAttribute="trailing" secondItem="B0H-gd-3KJ" secondAttribute="trailing" id="rfF-OE-cXL"/>
+                                    <constraint firstItem="B0H-gd-3KJ" firstAttribute="width" secondItem="I8d-Hc-DkU" secondAttribute="width" id="tNY-fl-zdv"/>
+                                    <constraint firstItem="B0H-gd-3KJ" firstAttribute="height" secondItem="I8d-Hc-DkU" secondAttribute="height" priority="2" id="viu-OR-afm"/>
+                                </constraints>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VBY-Wd-zxg" customClass="ShadowView" customModule="otbwa" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="714" width="375" height="98"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="6Xj-z0-PPH">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Q5L-FM-D6O">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                                <subviews>
+                                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q9G-kj-Px7" customClass="CButton" customModule="otbwa" customModuleProvider="target">
+                                                        <rect key="frame" x="10" y="10" width="355" height="44"/>
+                                                        <color key="backgroundColor" name="AccentColor"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                        <state key="normal" title="주문하기">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="6"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="onClickedBtnActions:" destination="Y2u-3F-9ZO" eventType="touchUpInside" id="zrc-nD-ZGf"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="64" id="Dew-sJ-Rru"/>
+                                                </constraints>
+                                                <edgeInsets key="layoutMargins" top="10" left="10" bottom="10" right="10"/>
+                                            </stackView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jMH-nM-s3t">
+                                                <rect key="frame" x="0.0" y="64" width="375" height="34"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" priority="999" constant="34" id="Olu-pR-Tt8"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="6Xj-z0-PPH" firstAttribute="top" secondItem="VBY-Wd-zxg" secondAttribute="top" id="97i-bd-QbM"/>
+                                    <constraint firstItem="6Xj-z0-PPH" firstAttribute="leading" secondItem="VBY-Wd-zxg" secondAttribute="leading" id="Qdy-AZ-VgB"/>
+                                    <constraint firstAttribute="bottom" secondItem="6Xj-z0-PPH" secondAttribute="bottom" id="bxY-AX-Kor"/>
+                                    <constraint firstAttribute="trailing" secondItem="6Xj-z0-PPH" secondAttribute="trailing" id="hcs-3e-K6z"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="sdColor">
+                                        <color key="value" name="ShadowColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="sdOffset">
+                                        <size key="value" width="0.0" height="-2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="sdRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="sdOpacity">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="lrg-ZP-WGk"/>
+                        <color key="backgroundColor" name="Gray241"/>
+                        <constraints>
+                            <constraint firstItem="VBY-Wd-zxg" firstAttribute="leading" secondItem="347-yU-6Ax" secondAttribute="leading" id="17P-Jh-gdk"/>
+                            <constraint firstItem="lrg-ZP-WGk" firstAttribute="trailing" secondItem="VBY-Wd-zxg" secondAttribute="trailing" id="6Ek-gg-m7X"/>
+                            <constraint firstAttribute="bottom" secondItem="VBY-Wd-zxg" secondAttribute="bottom" id="DUh-gk-omj"/>
+                            <constraint firstItem="I8d-Hc-DkU" firstAttribute="top" secondItem="lrg-ZP-WGk" secondAttribute="top" id="Kq3-Se-cba"/>
+                            <constraint firstItem="VBY-Wd-zxg" firstAttribute="top" secondItem="I8d-Hc-DkU" secondAttribute="bottom" identifier="bottom_64" id="WDU-NZ-aHv"/>
+                            <constraint firstItem="lrg-ZP-WGk" firstAttribute="trailing" secondItem="I8d-Hc-DkU" secondAttribute="trailing" id="hOg-31-rqe"/>
+                            <constraint firstItem="I8d-Hc-DkU" firstAttribute="leading" secondItem="lrg-ZP-WGk" secondAttribute="leading" id="lNw-vg-YL0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="btnAddrSearch" destination="y2w-Rf-dH6" id="MQK-MO-bDi"/>
+                        <outlet property="btnDelivery" destination="GSe-3r-1bW" id="MSR-A4-0CU"/>
+                        <outlet property="btnDirect" destination="Ycn-d2-SU9" id="tHE-nQ-ZIr"/>
+                        <outlet property="btnOrder" destination="Q9G-kj-Px7" id="zaV-gI-8qd"/>
+                        <outlet property="btnPayMethodBankTransfer" destination="Pb3-JI-TtX" id="o1H-qD-tav"/>
+                        <outlet property="btnPayMethodDirect" destination="xFt-hj-qbJ" id="2Op-qu-uTe"/>
+                        <outlet property="btnVisit" destination="5Ze-66-ad9" id="h28-dD-jCH"/>
+                        <outlet property="lbReceiveCotact" destination="WPU-YW-8eG" id="EEP-Ss-LHH"/>
+                        <outlet property="lbTotalPrice" destination="idS-en-jkv" id="Or0-xq-8FS"/>
+                        <outlet property="safetyView" destination="jMH-nM-s3t" id="YIt-EK-OJn"/>
+                        <outlet property="svAddr" destination="UCV-T2-hak" id="Vfs-Be-7ue"/>
+                        <outlet property="svHolderName" destination="Smv-Dg-Hcu" id="TlZ-di-U88"/>
+                        <outlet property="svMsg" destination="2Oe-Dr-ICZ" id="iWT-gt-ZpP"/>
+                        <outlet property="svProduct" destination="lIs-Eb-vS1" id="tdY-kG-yYZ"/>
+                        <outlet property="svReceiveContact" destination="JjA-4e-6i1" id="9UE-Hk-jZF"/>
+                        <outlet property="svReceiveName" destination="6rp-Fx-Zre" id="vRO-gr-GBd"/>
+                        <outlet property="tfAddr" destination="53j-dx-qiQ" id="g6R-KH-7ab"/>
+                        <outlet property="tfAddrDetail" destination="yC2-Pq-KCx" id="Uta-uf-EDC"/>
+                        <outlet property="tfHolderName" destination="vz8-Ny-LgP" id="LCM-xD-byH"/>
+                        <outlet property="tfReceiveContact" destination="eeE-M3-Cjn" id="XGc-8h-e8z"/>
+                        <outlet property="tfReceiveName" destination="R39-MO-dGe" id="aAC-G3-f75"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w4b-cR-J5p" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3139" y="2851"/>
         </scene>
         <!--Product Notify View Controller-->
         <scene sceneID="g7b-Gy-sBN">
@@ -6825,6 +7396,98 @@
             <point key="canvasLocation" x="3749.5999999999999" y="2157.6354679802957"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="2d7-cH-VK8">
+            <size key="intrinsicContentSize" width="22.666666666666668" height="17.333333333333332"/>
+        </designable>
+        <designable name="2y7-xP-7f6">
+            <size key="intrinsicContentSize" width="213" height="16"/>
+        </designable>
+        <designable name="4NZ-eA-uNo">
+            <size key="intrinsicContentSize" width="108.66666666666667" height="17.333333333333332"/>
+        </designable>
+        <designable name="4aO-UE-6fn">
+            <size key="intrinsicContentSize" width="71.333333333333329" height="17.333333333333332"/>
+        </designable>
+        <designable name="53j-dx-qiQ">
+            <size key="intrinsicContentSize" width="4" height="17.333333333333332"/>
+        </designable>
+        <designable name="5vF-2i-2qc">
+            <size key="intrinsicContentSize" width="4" height="18.666666666666668"/>
+        </designable>
+        <designable name="Fc6-wl-ZDA">
+            <size key="intrinsicContentSize" width="4" height="17.333333333333332"/>
+        </designable>
+        <designable name="Fn2-Dd-xrs">
+            <size key="intrinsicContentSize" width="4" height="17.333333333333332"/>
+        </designable>
+        <designable name="GOY-Hh-3DH">
+            <size key="intrinsicContentSize" width="71.333333333333329" height="17.333333333333332"/>
+        </designable>
+        <designable name="Gvk-7K-y8Y">
+            <size key="intrinsicContentSize" width="149.33333333333334" height="17.333333333333332"/>
+        </designable>
+        <designable name="LTt-Te-uCB">
+            <size key="intrinsicContentSize" width="56.333333333333336" height="17.333333333333332"/>
+        </designable>
+        <designable name="MMV-1y-82T">
+            <size key="intrinsicContentSize" width="45" height="17.333333333333332"/>
+        </designable>
+        <designable name="Pnp-Wq-GMC">
+            <size key="intrinsicContentSize" width="131.33333333333334" height="17.333333333333332"/>
+        </designable>
+        <designable name="PtX-lZ-ofX">
+            <size key="intrinsicContentSize" width="176.66666666666666" height="16"/>
+        </designable>
+        <designable name="R39-MO-dGe">
+            <size key="intrinsicContentSize" width="34" height="17.333333333333332"/>
+        </designable>
+        <designable name="UHF-8v-Qn1">
+            <size key="intrinsicContentSize" width="106.33333333333333" height="17.333333333333332"/>
+        </designable>
+        <designable name="W4b-l0-7dv">
+            <size key="intrinsicContentSize" width="71.333333333333329" height="16"/>
+        </designable>
+        <designable name="YUd-TK-THU">
+            <size key="intrinsicContentSize" width="34" height="17.333333333333332"/>
+        </designable>
+        <designable name="aLm-FY-D9O">
+            <size key="intrinsicContentSize" width="105.66666666666667" height="17.333333333333332"/>
+        </designable>
+        <designable name="eeE-M3-Cjn">
+            <size key="intrinsicContentSize" width="106.33333333333333" height="17.333333333333332"/>
+        </designable>
+        <designable name="hpu-hc-1vS">
+            <size key="intrinsicContentSize" width="34" height="17.333333333333332"/>
+        </designable>
+        <designable name="j8r-Bv-6Xj">
+            <size key="intrinsicContentSize" width="4" height="18.666666666666668"/>
+        </designable>
+        <designable name="l55-Zk-jjU">
+            <size key="intrinsicContentSize" width="22.666666666666668" height="17.333333333333332"/>
+        </designable>
+        <designable name="uVs-Ob-rHM">
+            <size key="intrinsicContentSize" width="4" height="18.666666666666668"/>
+        </designable>
+        <designable name="vz8-Ny-LgP">
+            <size key="intrinsicContentSize" width="45" height="17.333333333333332"/>
+        </designable>
+        <designable name="xBe-wd-JeN">
+            <size key="intrinsicContentSize" width="4" height="17.333333333333332"/>
+        </designable>
+        <designable name="xgr-wV-2ce">
+            <size key="intrinsicContentSize" width="48.666666666666664" height="17.333333333333332"/>
+        </designable>
+        <designable name="yBv-m1-mmS">
+            <size key="intrinsicContentSize" width="108.66666666666667" height="17.333333333333332"/>
+        </designable>
+        <designable name="yC2-Pq-KCx">
+            <size key="intrinsicContentSize" width="71.333333333333329" height="17.333333333333332"/>
+        </designable>
+        <designable name="zEX-C7-27x">
+            <size key="intrinsicContentSize" width="82" height="17.333333333333332"/>
+        </designable>
+    </designables>
     <resources>
         <image name="check_off" width="20" height="20"/>
         <image name="check_on" width="20" height="20"/>
@@ -6858,6 +7521,8 @@
         <image name="ico_tm" width="11" height="14"/>
         <image name="ico_view" width="25" height="24"/>
         <image name="ico_write" width="24" height="24"/>
+        <image name="radio_off" width="20" height="20"/>
+        <image name="radio_on" width="20" height="20"/>
         <image name="triangle_down_gray" width="8" height="8"/>
         <namedColor name="AccentColor">
             <color red="1" green="0.43500000238418579" blue="0.28200000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

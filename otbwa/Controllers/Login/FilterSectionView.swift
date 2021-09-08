@@ -182,20 +182,14 @@ class FilterSectionView: UIView {
             }
         }
        
-        if (self.type == .hastagThree) {
-            svGroup.isHidden = true
+        svGroup.isHidden = false
+        btnSection.isSelected = true
+        if let lbTitle = btnSection.viewWithTag(100) as? UILabel {
+            lbTitle.font = UIFont.systemFont(ofSize: lbTitle.font.pointSize, weight: .bold)
         }
-        else {
-            svGroup.isHidden = false
-            btnSection.isSelected = true
-            if let lbTitle = btnSection.viewWithTag(100) as? UILabel {
-                lbTitle.font = UIFont.systemFont(ofSize: lbTitle.font.pointSize, weight: .bold)
-            }
-            if let ivArrow = btnSection.viewWithTag(101) as? UIImageView {
-                ivArrow.image = UIImage(systemName: "chevron.up")
-            }
+        if let ivArrow = btnSection.viewWithTag(101) as? UIImageView {
+            ivArrow.image = UIImage(systemName: "chevron.up")
         }
-
     }
     
     @IBAction func onClickedBtnActions(_ sender:UIButton) {

@@ -125,7 +125,7 @@ class StoreLocationInfoViewController: BaseViewController {
             }
         
             if type == "join" {
-                let vc = CeoInofViewController.instantiateFromStoryboard(.login)!
+                let vc = CeoInfoViewController.instantiateFromStoryboard(.login)!
                 if let selRoom = selRoom {
                     user.building = selRoom["ctgr_id"].stringValue
                 }
