@@ -50,9 +50,11 @@ class AdminNoticeListViewController: BaseViewController {
         self.requestAdminNoticeList()
     }
     func requestAdminNoticeList() {
-        if isPageEnd == true {
+        if isPageEnd == true || canRequest == false {
             return
         }
+        canRequest = false
+        
         let param = ["kind": ShareData.ins.kind.rawValue, "p_current": page] as [String:Any]
         ApiManager.ins.requestAdminNoticeList(param) { res in
             self.canRequest = true
@@ -113,7 +115,6 @@ extension AdminNoticeListViewController: UITableViewDataSource, UITableViewDeleg
         let offsetY = floor((scrollView.contentOffset.y + scrollView.bounds.height)*100)/100
         let contentH = floor(scrollView.contentSize.height*100)/100
         if velocityY < 0 && offsetY > contentH && canRequest == true {
-            canRequest = false
             self.addData()
         }
     }

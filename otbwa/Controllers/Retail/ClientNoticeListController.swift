@@ -118,7 +118,11 @@ class ClientNoticeListController: BaseViewController {
     }
     
     func requestNoticeList() {
-        if isPageEnd == true { return }
+        if isPageEnd == true || canRequest == false {
+            return
+        }
+        canRequest = false
+        
         let param = ["comp_no": comp_no, "p_current": page]
         ApiManager.ins.requestNoticeList(param) { res in
             self.canRequest = true
@@ -196,7 +200,6 @@ extension ClientNoticeListController: UITableViewDelegate, UITableViewDataSource
         let offsetY = floor((scrollView.contentOffset.y + scrollView.bounds.height)*100)/100
         let contentH = floor(scrollView.contentSize.height*100)/100
         if velocityY < 0 && offsetY > contentH && canRequest == true {
-            canRequest = false
             self.addData()
         }
     }

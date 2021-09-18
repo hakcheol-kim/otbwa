@@ -39,10 +39,10 @@ class ProductNotifyViewController: BaseViewController {
         self.requestNofifyList()
     }
     func requestNofifyList() {
-        if isPageEnd == true {
+        if isPageEnd == true || canRequest == false {
             return
         }
-        
+        canRequest = false
         var param = [String:Any]()
         param["kind"] = ShareData.ins.kind.rawValue
         param["p_current"] = page
@@ -99,7 +99,6 @@ extension ProductNotifyViewController: UIScrollViewDelegate {
         let offsetY = floor((scrollView.contentOffset.y + scrollView.bounds.height)*100)/100
         let contentH = floor(scrollView.contentSize.height*100)/100
         if velocityY < 0 && offsetY > contentH && canRequest == true {
-            canRequest = false
             self.addData()
         }
     }

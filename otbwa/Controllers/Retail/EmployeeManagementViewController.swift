@@ -75,9 +75,11 @@ class EmployeeManagementViewController: BaseViewController {
         self.requestEmployeeList()
     }
     func requestEmployeeList() {
-        if isPageEnd == true {
+        if isPageEnd == true || canRequest == false {
             return
         }
+        
+        canRequest = false
         
         let param:[String:Any] = ["comp_no": ShareData.ins.compNo, "p_current": page]
         ApiManager.ins.requestEmployeeList(param) { res in
@@ -158,7 +160,6 @@ extension EmployeeManagementViewController: UITableViewDelegate, UITableViewData
         let offsetY = floor((scrollView.contentOffset.y + scrollView.bounds.height)*100)/100
         let contentH = floor(scrollView.contentSize.height*100)/100
         if velocityY < 0 && offsetY > contentH && canRequest == true {
-            canRequest = false
             self.addData()
         }
     }

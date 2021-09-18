@@ -47,9 +47,9 @@ class SearchViewController: BaseViewController {
             self.navigationController?.popViewController(animated: true)
         }
         else if sender == btnPhoto || sender == btnPhotoSearch {
-            let vc = ImageSelectOptionViewController.initWithCompletion { vcs, souretype in
+            let vc = ImageSelectOptionViewController.initWithCompletion { vcs, sourcetype in
                 vcs?.dismiss(animated: true, completion: nil)
-//                self.checkPermissionPhoto(souretype)
+                self.showImagePicker(sourcetype)
             }
             self.present(vc, animated: true, completion: nil)
         }
@@ -60,7 +60,6 @@ class SearchViewController: BaseViewController {
                 self.view.endEditing(true)
                 gotoSearchTextVc(item)
             }
-            
         }
         else if let sender = sender as? CButton, sender.tag >= 200 && sender.tag < 300 {
             let item = sender.data as! String
@@ -82,17 +81,24 @@ class SearchViewController: BaseViewController {
         }
     }
     
-//    override func displayImagePicker(_ sourceType: UIImagePickerController.SourceType) {
-//        let vc = CImagePickerController.init(sourceType, false) { origin, crop in
-//            guard let image = origin else {
-//                return
-//            }
-//            let vc = SearchImageViewController.instantiateFromStoryboard(.main)!
-//            vc.searchImg = image
-//            self.navigationController?.pushViewController(vc, animated: true)
-//        }
-//        self.present(vc, animated: true, completion: nil)
-//    }
+    func showImagePicker(_ sourceType: UIImagePickerController.SourceType) {
+        let vc = CImagePickerController.initWithSouretType(sourceType, false, 1) { data in
+            var img: UIImage?
+            if let data = data as? UIImage {
+                img = data
+            }
+            else if let data = data as? [UIImage] {
+                img = data.first
+            }
+            guard let img = img else {
+                return
+            }
+            let vc = SearchImageViewController.instantiateFromStoryboard(.main)!
+            vc.searchImg = img
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        self.present(vc, animated: true, completion: nil)
+    }
     
     func requestMySearch() {
         ApiManager.ins.requestMySearchHistoryList(userNo: ShareData.ins.userNo) { res in
@@ -208,7 +214,7 @@ class SearchViewController: BaseViewController {
     func gotoSearchTextVc(_ text:String?) {
         let vc = SearchTextViewController.instantiateFromStoryboard(.main)!
         vc.search = text
-        self.navigationController?.pushViewController(vc, animated: false)
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

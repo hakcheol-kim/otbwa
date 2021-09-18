@@ -153,7 +153,7 @@ class ProductDetailViewController: BaseViewController {
             if let lbAddr = btnAddress.viewWithTag(100) as? UILabel {
                 lbAddr.text = addr
             }
-            
+            lbPrice.text = data["price"].numberValue.toString()
             let like_yn = data["like_yn"].stringValue
             btnLike.isSelected = (like_yn == "Y")
             

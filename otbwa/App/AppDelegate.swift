@@ -84,12 +84,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ivLoading.startAnimating()
             ivLoading.tag = 215001
             //혹시라라도 indicator 계속 돌고 있으면 강제로 제거 해준다. 10초후에
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+60) {
-                if let loadingView = appDelegate.window!.viewWithTag(215000) {
-                    ivLoading.stopAnimating()
-                    loadingView.removeFromSuperview()
-                }
-            }
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()+60) {
+//                if let loadingView = appDelegate.window!.viewWithTag(215000) {
+//                    ivLoading.stopAnimating()
+//                    loadingView.removeFromSuperview()
+//                }
+//            }
         }
     }
     public func stopIndicator() {

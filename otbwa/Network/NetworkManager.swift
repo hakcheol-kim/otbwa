@@ -27,6 +27,12 @@ enum ContentType: String {
 
 class NetworkManager: NSObject {
     static let ins = NetworkManager()
+    let sessionManager: Session = {
+      let configuration = URLSessionConfiguration.af.default
+      configuration.timeoutIntervalForRequest = 60
+      configuration.httpShouldUsePipelining = true
+      return Session(configuration: configuration, startRequestsImmediately: true)
+    }()
     
     func getFullUrl(_ url:String) -> String {
         return "\(baseUrl)\(url)"
@@ -54,7 +60,7 @@ class NetworkManager: NSObject {
             let cusHeader = HTTPHeader(name:"X-AUTH-TOKEN", value: ShareData.ins.token)
             headers.add(cusHeader)
         }
-        let request = AF.request(encodedUrl, method: method, parameters: param, encoding: encoding, headers: headers)
+        let request = sessionManager.request(encodedUrl, method: method, parameters: param, encoding: encoding, headers: headers)
         request.responseJSON { (response:AFDataResponse<Any>) in
             if let url = response.request?.url?.absoluteString {
                 print("\n=======request: url: \(String(describing: url))")
@@ -92,7 +98,7 @@ class NetworkManager: NSObject {
             headers.add(cusHeader)
         }
         
-        AF.upload(multipartFormData: { (multipartFormData) in
+        sessionManager.upload(multipartFormData: { (multipartFormData) in
             for (key, value) in param {
                 if let value = value as? Array<UIImage> {
                     for img in value {

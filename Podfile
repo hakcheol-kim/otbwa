@@ -14,7 +14,7 @@ target 'otbwa' do
   pod 'Firebase/Auth'
   pod 'Firebase/Crashlytics'
   pod 'Firebase/Messaging'
-  
+#  pod 'CRRefresh'
   pod 'UIImageViewAlignedSwift'
   pod 'PanModal'
   pod 'Toast-Swift', '~> 5.0.1'

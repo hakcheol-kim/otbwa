@@ -150,9 +150,10 @@ class BasketListViewController: BaseViewController {
     }
     
     func requestBasketList() {
-        if isPageEnd == true {
+        if isPageEnd == true  || canRequest == false {
             return
         }
+        canRequest = false
         let param = ["p_current": page, "user_no":ShareData.ins.userNo]
         ApiManager.ins.requestBasketList(param: param) { res in
             self.canRequest = true
@@ -182,9 +183,11 @@ class BasketListViewController: BaseViewController {
             }
             else {
                 self.isPageEnd = true
+                self.tblView.reloadData()
             }
         } fail: { error in
             self.showErrorToast(error)
+            self.tblView.reloadData()
         }
     }
     func requestDeleteBasket() {
@@ -204,6 +207,7 @@ class BasketListViewController: BaseViewController {
         ApiManager.ins.requestDeleteBasketList(param: param) { res in
             let success = res["success"].boolValue
             if success {
+                self.listData.removeAll()
                 self.dataReset()
             }
             else {
@@ -323,7 +327,6 @@ extension BasketListViewController: UIScrollViewDelegate {
         let offsetY = floor((scrollView.contentOffset.y + scrollView.bounds.height)*100)/100
         let contentH = floor(scrollView.contentSize.height*100)/100
         if velocityY < 0 && offsetY > contentH && canRequest == true {
-            canRequest = false
             self.addData()
         }
     }

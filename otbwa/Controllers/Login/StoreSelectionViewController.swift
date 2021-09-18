@@ -130,9 +130,10 @@ class StoreSelectionViewController: BaseViewController {
             return
         }
         
-        guard isPageEnd == false else {
+        guard isPageEnd == false || canRequest == false else {
             return
         }
+        canRequest = true
         
         var param = [String:Any]()
         param["kind"] = kind
@@ -210,7 +211,6 @@ extension StoreSelectionViewController: UIScrollViewDelegate {
         let offsetY = floor((scrollView.contentOffset.y + scrollView.bounds.height)*100)/100
         let contentH = floor(scrollView.contentSize.height*100)/100
         if velocityY < 0 && offsetY > contentH && canRequest == true {
-            canRequest = false
             self.addData()
         }
     }

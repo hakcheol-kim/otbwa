@@ -40,10 +40,10 @@ class RoomSelectedViewController: BaseViewController {
         self.requestBuildingUnit()
     }
     func requestBuildingUnit() {
-        if isPageEnd {
+        if isPageEnd == true || canRequest == false {
             return
         }
-        
+        canRequest = false
         let category_no = selFloor["ctgr_no"].intValue
         let param:[String:Any] = ["category_no" : category_no, "p_current": page]
         ApiManager.ins.requestBuildingUnit(param) { res in
@@ -114,7 +114,6 @@ extension RoomSelectedViewController: UIScrollViewDelegate {
         let offsetY = floor((scrollView.contentOffset.y + scrollView.bounds.height)*100)/100
         let contentH = floor(scrollView.contentSize.height*100)/100
         if velocityY < 0 && offsetY > contentH && canRequest == true {
-            canRequest = false
             self.addData()
         }
     }

@@ -10,6 +10,8 @@ import UIKit
 class RMainTabViewController: BaseViewController {
     
     var tabContainer:TabContainerController?
+    var totalProductListVc :RTotalProductViewController?
+    var clientProductListVc : RPartnerProductViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupTabContainer()
@@ -37,10 +39,10 @@ class RMainTabViewController: BaseViewController {
         tabContainer?.tabBarBackgroundColor = RGB(237, 237, 237)
         tabContainer?.stackViewInset = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
         
-        let vc1 = RTotalProductViewController.instantiateFromStoryboard(.main)!
-        self.tabContainer?.viewControllers.append(vc1)
-        let vc2 = RPartnerProductViewController.instantiateFromStoryboard(.main)!
-        self.tabContainer?.viewControllers.append(vc2)
+        self.totalProductListVc = RTotalProductViewController.instantiateFromStoryboard(.main)!
+        self.tabContainer?.viewControllers.append(totalProductListVc!)
+        self.clientProductListVc = RPartnerProductViewController.instantiateFromStoryboard(.main)!
+        self.tabContainer?.viewControllers.append(clientProductListVc!)
         
         
         tabContainer?.tabBarButtons.append(Utility.createTabBar(0, "전체 신상", false, true, false, false))
@@ -69,6 +71,17 @@ class RMainTabViewController: BaseViewController {
 
 extension RMainTabViewController: TabContainerControllerDelegate {
     func tabContainer(tabContainer: TabContainerController, didSelectedIndex: Int) {
-        
+        if didSelectedIndex == 0 {
+            totalProductListVc?.filters = nil;
+            if let _ = totalProductListVc?.headerView {
+                totalProductListVc?.reloadHeaderFilter()
+            }
+        }
+        else {
+            clientProductListVc?.filters = nil;
+            if let _ = clientProductListVc?.headerView {
+                clientProductListVc?.reloadHeaderFilter()
+            }
+        }
     }
 }

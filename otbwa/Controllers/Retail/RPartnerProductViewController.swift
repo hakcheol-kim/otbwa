@@ -73,9 +73,10 @@ class RPartnerProductViewController: BaseViewController {
         self.requestAllProductList()
     }
     func requestAllProductList() {
-        if isPageEnd == true {
+        if isPageEnd == true || canRequest == false {
             return
         }
+        canRequest = false
         
         var param = [String:Any]()
         param["p_current"] = page
@@ -232,7 +233,6 @@ extension RPartnerProductViewController: UIScrollViewDelegate {
         let offsetY = floor((scrollView.contentOffset.y + scrollView.bounds.height)*100)/100
         let contentH = floor(scrollView.contentSize.height*100)/100
         if velocityY < 0 && offsetY > contentH && canRequest == true {
-            canRequest = false
             self.addData()
         }
     }

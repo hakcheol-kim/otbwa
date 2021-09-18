@@ -50,12 +50,26 @@ class SearchImageViewController: BaseViewController {
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
         if sender == btnBack {
-            self.navigationController?.popViewController(animated: true)
+            var findVc: UIViewController?
+            if let viewcontrollers = self.navigationController?.viewControllers {
+                for vc in  viewcontrollers {
+                    if vc.isKind(of: SearchViewController.self) {
+                        findVc = vc
+                        break
+                    }
+                }
+            }
+            if let findVc = findVc {
+                self.navigationController?.popToViewController(findVc, animated: true)
+            }
+            else {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
         else if sender == btnPhoto {
             let vc = ImageSelectOptionViewController.initWithCompletion { vcs, sourceType in
                 vcs?.dismiss(animated: true, completion: nil)
-//                self.checkPermissionPhoto(sourceType)
+                self.showImagePicker(sourceType)
             }
             self.present(vc, animated: true, completion: nil)
         }
@@ -83,29 +97,29 @@ class SearchImageViewController: BaseViewController {
         }
 
     }
-//    override func displayImagePicker(_ sourceType: UIImagePickerController.SourceType) {
-//        let vc = CImagePickerController.init(sourceType, false) { origin, crop in
-//            guard let image = origin else {
-//                return
-//            }
-//            self.searchImg = image
-//            self.dataReset()
-//        }
-//        self.present(vc, animated: true, completion: nil)
-//    }
+    func showImagePicker(_ sourceType: UIImagePickerController.SourceType) {
+        let vc = CImagePickerController.initWithSouretType(sourceType, false, 1) { data in
+            var img: UIImage?
+            if let data = data as? UIImage {
+                img = data
+            }
+            else if let data = data as? [UIImage] {
+                img = data.first
+            }
+            guard let img = img else {
+                return
+            }
+            let vc = SearchImageViewController.instantiateFromStoryboard(.main)!
+            vc.searchImg = img
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        self.present(vc, animated: true, completion: nil)
+    }
     
     func gotoSearchTextVc(_ search: String) {
-        if let findVc = self.navigationController?.viewControllers.filter({ vc ->Bool in
-            return (vc is SearchTextViewController || vc is SearchImageViewController)
-        }).first {
-            self.navigationController?.popToViewController(findVc, animated: false)
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
-            let vc = SearchTextViewController.instantiateFromStoryboard(.main)!
-            vc.search = search
-            self.navigationController?.pushViewController(vc, animated: true)
-        })
+        let vc = SearchTextViewController.instantiateFromStoryboard(.main)!
+        vc.search = search
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

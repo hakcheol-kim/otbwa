@@ -64,9 +64,11 @@ class StoreInfoViewController: BaseViewController {
     }
     
     func requestStoreDetailInfo() {
-        if isPageEnd == true {
+        if isPageEnd == true || canRequest == false {
             return
         }
+        canRequest = false
+        
         let comp_no = passData["comp_no"].intValue
         var param = [String:Any]()
         param["comp_no"] = comp_no
@@ -80,6 +82,7 @@ class StoreInfoViewController: BaseViewController {
         param["order_type"] = "latest"
 
         ApiManager.ins.requestCompanyInfo(param) { res in
+            self.canRequest = true
             if res["success"].boolValue {
                 
                 self.data = res["data"]
@@ -228,7 +231,6 @@ extension StoreInfoViewController: UICollectionViewDelegate, UICollectionViewDat
         let offsetY = floor((scrollView.contentOffset.y + scrollView.bounds.height)*100)/100
         let contentH = floor(scrollView.contentSize.height*100)/100
         if velocityY < 0 && offsetY > contentH && canRequest == true {
-            canRequest = false
             self.addData()
         }
     }
