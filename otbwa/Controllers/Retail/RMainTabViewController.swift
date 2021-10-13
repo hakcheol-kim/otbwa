@@ -76,12 +76,14 @@ extension RMainTabViewController: TabContainerControllerDelegate {
             if let _ = totalProductListVc?.headerView {
                 totalProductListVc?.reloadHeaderFilter()
             }
+            totalProductListVc?.dataReset()
         }
         else {
             clientProductListVc?.filters = nil;
             if let _ = clientProductListVc?.headerView {
                 clientProductListVc?.reloadHeaderFilter()
             }
+            clientProductListVc?.dataReset();
         }
     }
 }

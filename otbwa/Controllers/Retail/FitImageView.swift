@@ -8,11 +8,14 @@
 /// 요거 만드는데 하루 걸렸네 짜증나!!!
 import UIKit
 import CoreGraphics
-
+protocol FitImageViewDelegate {
+    func didFinishCropImage(_ image: UIImage?)
+}
 class FitImageView: UIView {
     @IBOutlet weak var ivThumb: UIImageView!
     @IBOutlet weak var heightImg: NSLayoutConstraint!
     @IBOutlet weak var widthImg: NSLayoutConstraint!
+    var delegate: FitImageViewDelegate?
     
     var shapeLayer: CAShapeLayer?
     var rectShape = CGRect.zero
@@ -46,7 +49,7 @@ class FitImageView: UIView {
             trailing.isActive = true
             
             let size = CGSize(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.width*(320/375))
-
+            
             if image.size.width > image.size.height {
                 //vw:vh = iw:ih
                 let vh = (image.size.height * size.width) / image.size.width
@@ -88,8 +91,10 @@ class FitImageView: UIView {
             path.close()
             shapeLayer.path = path.cgPath
         }
+//        ivThumb.layer.borderWidth = 1
+//        ivThumb.layer.borderColor = UIColor.red.cgColor;
     }
-
+    
     func createOverlay() {
         if let shapeLayer = shapeLayer  {
             shapeLayer.removeFromSuperlayer()
@@ -109,9 +114,13 @@ class FitImageView: UIView {
         panView?.backgroundColor = UIColor.clear
         panView?.layer.borderWidth = 3
         panView?.layer.borderColor = UIColor(named: "AccentColor")!.cgColor
-    
+        
         self.addPanGesture(panView!)
         self.setNeedsDisplay()
+        self.layoutIfNeeded()
+        if let image = image {
+            self.delegate?.didFinishCropImage(self.cropImage1(image: image))
+        }
     }
     
     override func layoutSubviews() {
@@ -153,10 +162,45 @@ class FitImageView: UIView {
             self.setNeedsDisplay()
         }
         else if gesture.state == .ended {
-            
+            if let image = image {
+                self.delegate?.didFinishCropImage(self.cropImage1(image: image))
+            }
         }
         else {
             
         }
+    }
+    
+    func cropImage1(image: UIImage) -> UIImage {
+        let imsize = image.size
+        let ivsize = ivThumb.bounds.size
+                
+        var scale : CGFloat = ivsize.width / imsize.width
+        if imsize.height * scale < ivsize.height {
+            scale = ivsize.height / imsize.height
+        }
+                
+        let dispSize = CGSize(width:ivsize.width/scale, height:ivsize.height/scale)
+        let dispOrigin = CGPoint(x: (imsize.width-dispSize.width)/2.0, y: (imsize.height-dispSize.height)/2.0)
+                
+        let r = self.panView!.convert(self.panView!.bounds, to: ivThumb)
+        let cropRect = CGRect(x:r.origin.x/scale+dispOrigin.x,
+                              y:r.origin.y/scale+dispOrigin.y,
+                              width:r.width/scale,
+                              height:r.height/scale)
+
+        let rend = UIGraphicsImageRenderer(size:cropRect.size)
+        let croppedIm = rend.image { _ in
+            self.ivThumb.image!.draw(at: CGPoint(x:-cropRect.origin.x, y:-cropRect.origin.y))
+        }
+        return croppedIm
+    }
+    
+    func cropImage2(image: UIImage, rect: CGRect, scale: CGFloat) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: rect.size.width / scale, height: rect.size.height / scale), true, 0.0)
+        image.draw(at: CGPoint(x: -rect.origin.x / scale, y: -rect.origin.y / scale))
+        let croppedImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return croppedImage!
     }
 }

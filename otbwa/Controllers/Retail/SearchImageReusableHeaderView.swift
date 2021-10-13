@@ -17,8 +17,9 @@ class SearchImageReusableHeaderView: UICollectionReusableView {
     @IBOutlet weak var tagBgView: UIView!
     
     var tags: [JSON]?
+    var fitImgView: FitImageView?
     var completion:((_ action: Int, _ isSelected: Bool) ->Void)?
-    
+    var didfinishCropImgClosure:((_ crop: Any?) -> Void)?
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -27,14 +28,16 @@ class SearchImageReusableHeaderView: UICollectionReusableView {
         
         self.tags = tags
         if let image = image {
-            for subView in bgImageView.subviews {
-                subView.removeFromSuperview()
+            if let _ = self.fitImgView {
+                
             }
-            
-            let fitImgView = Bundle.main.loadNibNamed("FitImageView", owner: nil, options: nil)?.first as! FitImageView
-            bgImageView.addSubview(fitImgView)
-            fitImgView.image = image
-            fitImgView.createOverlay()
+            else {
+                self.fitImgView = Bundle.main.loadNibNamed("FitImageView", owner: nil, options: nil)?.first as? FitImageView
+                self.fitImgView!.delegate = self
+                bgImageView.addSubview(fitImgView!)
+                self.fitImgView!.image = image
+                self.fitImgView!.createOverlay()
+            }
         }
         
         if let tags = tags, tags.isEmpty == false {
@@ -73,6 +76,7 @@ class SearchImageReusableHeaderView: UICollectionReusableView {
         }
         bgImageView.isHidden = hideImageView
         tagBgView.isHidden = hideTagView
+        btnAiTagUpDown.isSelected = hideTagView
     }
     
     @IBAction func onClickedBtnActions(_ sender: UIButton) {
@@ -88,5 +92,10 @@ class SearchImageReusableHeaderView: UICollectionReusableView {
             self.completion?(300, true)
         }
         
+    }
+}
+extension SearchImageReusableHeaderView: FitImageViewDelegate {
+    func didFinishCropImage(_ image: UIImage?) {
+        self.didfinishCropImgClosure?(image)
     }
 }

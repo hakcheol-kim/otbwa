@@ -89,6 +89,10 @@ class FilterViewController: BaseViewController {
         }
         
     }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.completion?(self.getSelFilters())
+    }
     func requestFilerList() {
         ApiManager.ins.requestFilterList { res in
             let succes = res["success"].boolValue
@@ -144,6 +148,7 @@ class FilterViewController: BaseViewController {
                 }
                 else if action == 2 {   //초기화
                     self.selCategorys = nil
+//                    self.completion?(self.getSelFilters())
                 }
                 else if action == 3 { //셀 선택
                     if let selData = selData as? JSON, let selCategorys = self.selCategorys, selCategorys["ctgr_id"].stringValue == selData["ctgr_id"].stringValue {
@@ -173,6 +178,7 @@ class FilterViewController: BaseViewController {
                 }
                 else if action == 2 {   //초기화
                     self.selStyle = nil
+//                    self.completion?(self.getSelFilters())
                 }
                 else if action == 3 { //셀 선택
                     if let selData = selData as? JSON, let selStyle = self.selStyle, selStyle["code"].stringValue == selData["code"].stringValue {
@@ -199,6 +205,7 @@ class FilterViewController: BaseViewController {
                 }
                 else if action == 2 {   //초기화
                     self.selColors = nil
+//                    self.completion?(self.getSelFilters())
                 }
                 else if action == 3 { //셀 선택
                     self.selColors = selData as? [JSON]
@@ -224,6 +231,7 @@ class FilterViewController: BaseViewController {
                 }
                 else if action == 2 {   //초기화
                     self.selAmount = nil
+//                    self.completion?(self.getSelFilters())
                 }
                 else if action == 3 { //셀 선택
                     if let selData = selData as? JSON, let selAmount = self.selAmount, selAmount["code"].intValue == selData["code"].intValue {
@@ -250,6 +258,7 @@ class FilterViewController: BaseViewController {
                 }
                 else if action == 2 {   //초기화
                     self.selAddress = nil
+//                    self.completion?(self.getSelFilters())
                 }
                 else if action == 3 { //셀 선택
                     if let selData = selData as? JSON, let selAddress = self.selAddress, selAddress["ctgr_id"].stringValue == selData["ctgr_id"].stringValue {
@@ -279,6 +288,7 @@ class FilterViewController: BaseViewController {
                 }
                 else if action == 2 {   //초기화
                     self.selCountry = nil
+//                    self.completion?(self.getSelFilters())
                 }
                 else if action == 3 { //셀 선택
                     if let selData = selData as? JSON, let selStyle = self.selCountry, selStyle["code"].stringValue == selData["code"].stringValue {
@@ -294,7 +304,7 @@ class FilterViewController: BaseViewController {
         }
         
     }
-    func popViewControllerWithCompletion() {
+    func getSelFilters() ->JSON {
         var filters = JSON()
         if let selCategorys = selCategorys, selCategorys.isEmpty == false {
             filters["ft_category"] = selCategorys
@@ -314,7 +324,9 @@ class FilterViewController: BaseViewController {
         if let selCountry = selCountry, selCountry.isEmpty == false {
             filters["ft_country"] = selCountry
         }
-        self.completion?(filters)
+        return filters
+    }
+    func popViewControllerWithCompletion() {
         self.navigationController?.popViewController(animated: true)
     }
     func updateUi() {

@@ -115,15 +115,16 @@ extension ProductHistoryMenuViewController: TabContainerControllerDelegate {
         self.selectedIndex = didSelectedIndex
         if didSelectedIndex == 0 {
             self.decorationNaviBar(selectedIndex)
-            vcLike.dataRest()
+            //뷰가 생성 대기 전에 데이터 요청이 들어가는오류
+            self.vcLike.dataRest()
         }
         else if didSelectedIndex == 1 {
             self.decorationNaviBar(selectedIndex)
-            vcRecent.dataRest()
+            self.vcRecent.dataRest()
         }
         else {
             self.decorationNaviBar(selectedIndex)
-            vcNotify.dataRest()
+            self.vcNotify.dataRest()
         }
     }
 }

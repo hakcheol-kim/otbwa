@@ -21,6 +21,7 @@ class ProductRecentViewController: BaseViewController {
     var type: TableViewType = .normal {
         didSet {
             selectedItems.removeAll()
+            btnDel.setTitle("선택삭제", for: .normal)
             bottomBar.isHidden = (type == .normal)
             tblView.reloadData()
         }

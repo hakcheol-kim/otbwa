@@ -1510,7 +1510,8 @@
                                                             <constraint firstAttribute="height" constant="45" id="FtR-QP-6Ba"/>
                                                             <constraint firstAttribute="width" constant="45" id="eaG-xW-yrA"/>
                                                         </constraints>
-                                                        <state key="normal" image="ico_search"/>
+                                                        <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                        <state key="normal" image="ico_expand"/>
                                                         <connections>
                                                             <action selector="onClickedBtnActions:" destination="6YA-Aa-vGW" eventType="touchUpInside" id="NZe-Vu-Y8x"/>
                                                         </connections>
@@ -5664,6 +5665,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9TU-0d-dAe">
+                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9g4-g8-8en">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="kwN-rF-Jby" id="NTc-1h-1nb"/>
+                                    <outlet property="delegate" destination="kwN-rF-Jby" id="HbL-23-Kz6"/>
+                                </connections>
+                            </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="USy-Pk-BPJ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="88"/>
                                 <subviews>
@@ -5749,28 +5765,22 @@
                                     <constraint firstAttribute="trailing" secondItem="Fij-P7-R9J" secondAttribute="trailing" id="ylz-Xk-MGa"/>
                                 </constraints>
                             </view>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9TU-0d-dAe">
-                                <rect key="frame" x="0.0" y="88" width="375" height="690"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="9g4-g8-8en">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <connections>
-                                    <outlet property="dataSource" destination="kwN-rF-Jby" id="NTc-1h-1nb"/>
-                                    <outlet property="delegate" destination="kwN-rF-Jby" id="HbL-23-Kz6"/>
-                                </connections>
-                            </collectionView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qVZ-pV-eZa">
+                                <rect key="frame" x="67.666666666666686" y="538" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="4Ob-WZ-MYw"/>
+                                    <constraint firstAttribute="width" secondItem="qVZ-pV-eZa" secondAttribute="height" multiplier="1:1" id="8uq-d4-he0"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Mt6-2K-Rfb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Mt6-2K-Rfb" firstAttribute="trailing" secondItem="9TU-0d-dAe" secondAttribute="trailing" id="6zg-k7-pWe"/>
                             <constraint firstItem="9TU-0d-dAe" firstAttribute="leading" secondItem="Mt6-2K-Rfb" secondAttribute="leading" id="78f-4B-CDg"/>
+                            <constraint firstItem="Mt6-2K-Rfb" firstAttribute="bottom" secondItem="qVZ-pV-eZa" secondAttribute="bottom" id="Hy8-2R-dE2"/>
                             <constraint firstItem="Mt6-2K-Rfb" firstAttribute="bottom" secondItem="9TU-0d-dAe" secondAttribute="bottom" id="JxB-DF-u4N"/>
+                            <constraint firstItem="qVZ-pV-eZa" firstAttribute="centerX" secondItem="FZH-JQ-6R2" secondAttribute="centerX" id="XJm-nX-jDK"/>
                             <constraint firstItem="USy-Pk-BPJ" firstAttribute="top" secondItem="FZH-JQ-6R2" secondAttribute="top" id="diL-J9-3hB"/>
                             <constraint firstItem="Mt6-2K-Rfb" firstAttribute="trailing" secondItem="USy-Pk-BPJ" secondAttribute="trailing" id="kJX-RU-sgq"/>
                             <constraint firstItem="USy-Pk-BPJ" firstAttribute="leading" secondItem="FZH-JQ-6R2" secondAttribute="leading" id="mpS-6D-NEV"/>
@@ -5781,6 +5791,7 @@
                         <outlet property="btnBack" destination="34a-5Z-UAc" id="rDd-H6-nyu"/>
                         <outlet property="btnPhoto" destination="xlx-yX-uk7" id="QjQ-Fa-BPZ"/>
                         <outlet property="collectionVeiw" destination="9TU-0d-dAe" id="0SE-AT-qkn"/>
+                        <outlet property="ivTemp" destination="qVZ-pV-eZa" id="vJv-Iw-oUD"/>
                         <outlet property="tfSearch" destination="uVs-Ob-rHM" id="igM-32-Sh4"/>
                     </connections>
                 </viewController>
@@ -7501,6 +7512,7 @@
         <image name="ico_close" width="16" height="16"/>
         <image name="ico_cus" width="15" height="15"/>
         <image name="ico_email" width="16" height="11"/>
+        <image name="ico_expand" width="256" height="256"/>
         <image name="ico_kakao" width="14" height="14"/>
         <image name="ico_l_ike" width="26" height="24"/>
         <image name="ico_like" width="12" height="10"/>
@@ -7513,7 +7525,6 @@
         <image name="ico_orderlist" width="11" height="15"/>
         <image name="ico_orga" width="15" height="13"/>
         <image name="ico_photo" width="21" height="17"/>
-        <image name="ico_search" width="17" height="17"/>
         <image name="ico_search_gray" width="17" height="17"/>
         <image name="ico_search_orange" width="17" height="17"/>
         <image name="ico_store" width="14" height="14"/>

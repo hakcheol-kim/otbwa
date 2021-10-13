@@ -44,7 +44,7 @@ class RPartnerProductViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("RTotalTrandy viewWillAppear")
-        self.dataReset()
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -224,6 +224,13 @@ extension RPartnerProductViewController: UICollectionViewDelegate, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
         return .init(width: view.bounds.width, height: 0.1)
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        let item = listData[indexPath.row]
+        let vc = ProductDetailViewController.instantiateFromStoryboard(.main)!
+        vc.passData = item
+        appDelegate.mainNaviCtrl.pushViewController(vc, animated: true)
     }
 }
 

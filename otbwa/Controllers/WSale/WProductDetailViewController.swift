@@ -19,7 +19,8 @@ class WProductDetailViewController: BaseViewController {
     @IBOutlet weak var safetyView: UIView!
     
     //scrollView
-    @IBOutlet weak var ivThumb: UIImageView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var svImg: UIStackView!
     @IBOutlet weak var lbName: UILabel!
     @IBOutlet weak var lbProductKind: UILabel!
     @IBOutlet weak var btnViews: UIButton!
@@ -65,7 +66,6 @@ class WProductDetailViewController: BaseViewController {
     
     func decorationUi() {
         guard let data = data,  data.isEmpty == false else {
-            ivThumb.image = nil
             lbName.text = ""
             lbProductKind.text = ""
             btnLikeCount.setTitle("0", for: .normal)
@@ -82,9 +82,19 @@ class WProductDetailViewController: BaseViewController {
             return
         }
         
-        let img = passData["img"].stringValue
-        if img.isEmpty == false {
-            ivThumb.setImageCache(img)
+        let img_list = data["img_list"].arrayValue
+        if img_list.isEmpty == false {
+            svImg.subviews.forEach { sub in
+                sub.removeFromSuperview()
+            }
+            for img in img_list {
+                let iv = UIImageView.init()
+                iv.contentMode = .scaleAspectFill
+                svImg.addArrangedSubview(iv)
+                iv.translatesAutoresizingMaskIntoConstraints = false
+                iv.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: 0).isActive = true
+                iv.setImageCache(img.stringValue)
+            }
         }
         
         lbName.text = data["name"].stringValue

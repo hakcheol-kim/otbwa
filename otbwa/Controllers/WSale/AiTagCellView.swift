@@ -8,6 +8,7 @@
 import UIKit
 import SwiftyJSON
 import TagListView
+
 class AiTagCellView: UIView {
     @IBOutlet weak var lbTitle:UILabel!
     @IBOutlet weak var tagBgView: UIView!

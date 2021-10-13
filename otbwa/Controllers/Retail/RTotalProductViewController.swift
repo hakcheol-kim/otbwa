@@ -45,7 +45,7 @@ class RTotalProductViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("RTotalTrandy viewWillAppear")
-        self.dataReset()
+//        self.dataReset()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

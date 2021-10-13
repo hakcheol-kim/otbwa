@@ -127,6 +127,7 @@ open class TagView: UIButton {
         didSet {
             removeButton.isHidden = !enableRemoveButton
             updateRightInsets()
+            removeButton.isUserInteractionEnabled = false
         }
     }
     

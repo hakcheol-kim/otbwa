@@ -89,8 +89,8 @@ class TabContainerController: UIViewController {
         
         if let index = tabBarButtons.firstIndex(of: sender) {
             let viewController = self.viewControllers[index]
-            self.delegate?.tabContainer(tabContainer: self, didSelectedIndex: index)
             self.displayViewController(viewController)
+            self.delegate?.tabContainer(tabContainer: self, didSelectedIndex: index)
         }
     }
     

@@ -42,6 +42,7 @@ class WProductModifyViewController: BaseViewController {
     @IBOutlet weak var btnAll: SelectedButton!
     @IBOutlet weak var btnClient: SelectedButton!
     @IBOutlet weak var btnSoldOut: SelectedButton!
+    var cropImg: UIImage?
     
     var filters: JSON!
     var categoryNo: String?
@@ -253,34 +254,38 @@ class WProductModifyViewController: BaseViewController {
         
         self.fitImgView = (Bundle.main.loadNibNamed("FitImageView", owner: nil, options: nil)?.first as! FitImageView)
         imgBgView.addSubview(fitImgView)
-        
+        fitImgView.delegate = self
         let img_list = data["img_list"].arrayValue
-        
+        self.cropImg = nil
         if images.isEmpty == false {
             fitImgView.image = images.first
             fitImgView.createOverlay()
-            self.requestSearchAiImageTag()
+//            self.requestSearchAiImageTag()
         }
         else if img_list.isEmpty == false {
-            let img = img_list.first!.stringValue
-            Utility.downloadImage(img) { (image, nil) in
-                guard let image = image else {
-                    return
-                }
-                self.fitImgView.image = image
-                self.fitImgView.createOverlay()
-                self.images.removeAll()
-                self.images.append(image)
+            
+            for i in 0..<img_list.count {
+                let img = img_list[i].stringValue
                 
-                self.requestSearchAiImageTag()
+                Utility.downloadImage(img) { (image, nil) in
+                    guard let image = image else {
+                        return
+                    }
+                    if (i == 0) {
+                        self.fitImgView.image = image
+                        self.fitImgView.createOverlay()
+                        self.images.removeAll()
+                    }
+                    self.images.append(image)
+                }
             }
         }
     }
     func requestSearchAiImageTag() {
-        guard let fitImgView = fitImgView, let image = fitImgView.image else {
+        guard let cropImg = self.cropImg else {
             return
         }
-        let param = ["img":image, "type" : "updt"] as [String:Any]
+        let param = ["img":cropImg, "type" : "updt"] as [String:Any]
         ApiManager.ins.requestSearchAiImageTag(param) { res in
             if res["success"].boolValue {
                 self.aiTag = res["data"]["map"].arrayValue
@@ -442,6 +447,9 @@ class WProductModifyViewController: BaseViewController {
         else if sender == btnPieceOff {
             btnPieceOn.isSelected = false
             btnPieceOff.isSelected = true
+        }
+        else if sender == btnSearch {
+            self.requestSearchAiImageTag()
         }
         else if sender == btnOk {
             guard let name = tfProdName.text, name.isEmpty == false else {
@@ -716,4 +724,15 @@ extension WProductModifyViewController: UIScrollViewDelegate {
 //            }, completion: nil)
 //        }
 //    }
+}
+extension WProductModifyViewController: FitImageViewDelegate {
+    func didFinishCropImage(_ image: UIImage?) {
+        if let _ = cropImg {
+            self.cropImg = image
+        }
+        else {
+            self.cropImg = image
+            self.requestSearchAiImageTag()
+        }
+    }
 }

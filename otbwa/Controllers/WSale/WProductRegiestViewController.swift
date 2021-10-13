@@ -49,6 +49,7 @@ class WProductRegiestViewController: BaseViewController {
     var passData: JSON!
     var data:JSON!
     var fitImgView: FitImageView!
+    
     var aiTag: [JSON]!
     var selColors = [JSON]() {
         didSet {
@@ -116,7 +117,7 @@ class WProductRegiestViewController: BaseViewController {
             
         }
     }
-    
+    var cropImg: UIImage?
     override func viewDidLoad() {
         super.viewDidLoad()
         CNavigationBar.drawBack(self, nil, #selector(actionNaviBack))
@@ -194,7 +195,7 @@ class WProductRegiestViewController: BaseViewController {
         
         self.fitImgView = (Bundle.main.loadNibNamed("FitImageView", owner: nil, options: nil)?.first as! FitImageView)
         imgBgView.addSubview(fitImgView)
-        
+        self.fitImgView.delegate = self
         if images.isEmpty == false {
             fitImgView.image = images.first
             fitImgView.createOverlay()
@@ -202,10 +203,10 @@ class WProductRegiestViewController: BaseViewController {
         }
     }
     func requestSearchAiImageTag() {
-        guard let fitImgView = fitImgView, let image = fitImgView.image else {
+        guard let cropImg = cropImg else {
             return
         }
-        let param = ["img":image, "type" : "reg"] as [String:Any]
+        let param = ["img":cropImg, "type" : "reg"] as [String:Any]
         ApiManager.ins.requestSearchAiImageTag(param) { res in
             if res["success"].boolValue {
                 self.aiTag = res["data"]["map"].arrayValue
@@ -367,6 +368,9 @@ class WProductRegiestViewController: BaseViewController {
         else if sender == btnPieceOff {
             btnPieceOn.isSelected = false
             btnPieceOff.isSelected = true
+        }
+        else if sender == btnSearch {
+            self.requestSearchAiImageTag()
         }
         else if sender == btnOk {
             
@@ -625,6 +629,17 @@ extension WProductRegiestViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if let textView = textView as? CTextView {
             textView.placeholderLabel?.isHidden = !textView.text.isEmpty
+        }
+    }
+}
+extension WProductRegiestViewController: FitImageViewDelegate {
+    func didFinishCropImage(_ image: UIImage?) {
+        if let _ = cropImg { // crop img 이미 있으면 저장만한다.
+            self.cropImg = image
+        }
+        else {  //최초를 요청까지 함
+            self.cropImg = image
+            self.requestSearchAiImageTag()
         }
     }
 }

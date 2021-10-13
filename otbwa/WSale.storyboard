@@ -754,9 +754,22 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MeW-YD-wcw">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="353.5"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0fA-32-roL">
+                                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KmV-wU-aOQ">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="353.5"/>
-                                                    </imageView>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rDl-zb-9so">
+                                                                <rect key="frame" x="0.0" y="0.0" width="414" height="353.5"/>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="rDl-zb-9so" secondAttribute="trailing" id="9UI-h1-tfT"/>
+                                                            <constraint firstItem="rDl-zb-9so" firstAttribute="height" secondItem="KmV-wU-aOQ" secondAttribute="height" id="K0B-dd-JS8"/>
+                                                            <constraint firstAttribute="bottom" secondItem="rDl-zb-9so" secondAttribute="bottom" id="VXo-O8-qeE"/>
+                                                            <constraint firstItem="rDl-zb-9so" firstAttribute="leading" secondItem="KmV-wU-aOQ" secondAttribute="leading" id="Vta-2l-hEI"/>
+                                                            <constraint firstItem="rDl-zb-9so" firstAttribute="width" secondItem="KmV-wU-aOQ" secondAttribute="width" priority="2" id="aYB-Sn-K5M"/>
+                                                            <constraint firstItem="rDl-zb-9so" firstAttribute="top" secondItem="KmV-wU-aOQ" secondAttribute="top" id="lXk-dt-5mo"/>
+                                                        </constraints>
+                                                    </scrollView>
                                                     <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MLT-IE-pZb">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="353.5"/>
                                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -767,14 +780,14 @@
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="MLT-IE-pZb" secondAttribute="trailing" id="1f1-sC-6x5"/>
-                                                    <constraint firstAttribute="trailing" secondItem="0fA-32-roL" secondAttribute="trailing" id="9ts-sb-G75"/>
                                                     <constraint firstItem="MLT-IE-pZb" firstAttribute="top" secondItem="MeW-YD-wcw" secondAttribute="top" id="Kda-Co-7qf"/>
+                                                    <constraint firstAttribute="bottom" secondItem="KmV-wU-aOQ" secondAttribute="bottom" id="QWC-sA-tQI"/>
                                                     <constraint firstAttribute="bottom" secondItem="MLT-IE-pZb" secondAttribute="bottom" id="RG7-2K-MGX"/>
-                                                    <constraint firstAttribute="bottom" secondItem="0fA-32-roL" secondAttribute="bottom" id="U8F-kP-BBx"/>
-                                                    <constraint firstItem="0fA-32-roL" firstAttribute="leading" secondItem="MeW-YD-wcw" secondAttribute="leading" id="WjH-jg-Hjy"/>
+                                                    <constraint firstItem="KmV-wU-aOQ" firstAttribute="leading" secondItem="MeW-YD-wcw" secondAttribute="leading" id="YWA-MK-A8k"/>
                                                     <constraint firstAttribute="width" secondItem="MeW-YD-wcw" secondAttribute="height" multiplier="375:320" priority="999" id="cPa-es-C39"/>
                                                     <constraint firstItem="MLT-IE-pZb" firstAttribute="leading" secondItem="MeW-YD-wcw" secondAttribute="leading" id="d3S-j6-fUp"/>
-                                                    <constraint firstItem="0fA-32-roL" firstAttribute="top" secondItem="MeW-YD-wcw" secondAttribute="top" id="ocm-SY-3Ae"/>
+                                                    <constraint firstItem="KmV-wU-aOQ" firstAttribute="top" secondItem="MeW-YD-wcw" secondAttribute="top" id="hzh-lx-5dX"/>
+                                                    <constraint firstAttribute="trailing" secondItem="KmV-wU-aOQ" secondAttribute="trailing" id="u6X-m2-k6x"/>
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vXj-ig-tSR">
@@ -1149,7 +1162,6 @@
                         <outlet property="btnSoldout" destination="nus-dN-PzT" id="kAx-xF-Cgb"/>
                         <outlet property="btnSoldoutStatus" destination="MLT-IE-pZb" id="qku-Zf-t6V"/>
                         <outlet property="btnViews" destination="cig-Cb-wRx" id="pTD-aQ-4eA"/>
-                        <outlet property="ivThumb" destination="0fA-32-roL" id="SPM-Ba-Laa"/>
                         <outlet property="lbColor" destination="rJj-oi-YWD" id="gwn-P9-ZDZ"/>
                         <outlet property="lbCountry" destination="Qtr-Hw-hBE" id="3GK-uF-PQe"/>
                         <outlet property="lbDetailInfo" destination="mxa-pz-QLz" id="NeM-0u-SYJ"/>
@@ -1160,7 +1172,9 @@
                         <outlet property="lbProductKind" destination="d1X-pL-rRM" id="FwJ-kN-1Sp"/>
                         <outlet property="lbSize" destination="8s4-pY-y1L" id="Iyh-wn-DVo"/>
                         <outlet property="safetyView" destination="hT9-ZM-4YZ" id="pY5-FG-inY"/>
+                        <outlet property="scrollView" destination="KmV-wU-aOQ" id="DrQ-jn-AEs"/>
                         <outlet property="svBottomContainer" destination="fwT-OO-oqn" id="DBI-Ym-ATx"/>
+                        <outlet property="svImg" destination="rDl-zb-9so" id="IoH-Vb-wdW"/>
                         <outlet property="tagContainer" destination="lkv-m0-8Sl" id="psN-nf-2Ti"/>
                     </connections>
                 </viewController>
@@ -2785,7 +2799,6 @@
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
-                                                                    <action selector="onClickedBtnActions:" destination="EXG-52-NX8" eventType="touchUpInside" id="TVd-fV-rg6"/>
                                                                     <action selector="onClickedBtnActions:" destination="xPB-Oe-6Kk" eventType="touchUpInside" id="vZt-8s-Mqd"/>
                                                                 </connections>
                                                             </button>
@@ -4199,11 +4212,14 @@
                                                                             </label>
                                                                         </subviews>
                                                                     </stackView>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IsY-DN-bEo">
-                                                                        <rect key="frame" x="69.5" y="47" width="61" height="16"/>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IsY-DN-bEo">
+                                                                        <rect key="frame" x="25" y="47" width="150" height="16"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" priority="999" constant="150" id="oV6-88-PtQ"/>
+                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                                                                        <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="-3" maxY="0.0"/>
-                                                                        <state key="normal" title="026354" image="ico_call">
+                                                                        <inset key="imageEdgeInsets" minX="-3" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                                        <state key="normal" title="01050381718" image="ico_call">
                                                                             <color key="titleColor" name="AccentColor"/>
                                                                         </state>
                                                                         <connections>

@@ -19,6 +19,7 @@ class SearchImageViewController: BaseViewController {
             collectionVeiw.register(UINib(nibName: "ProductColCell", bundle: nil), forCellWithReuseIdentifier: "ProductColCell")
         }
     }
+    @IBOutlet weak var ivTemp: UIImageView!
     var listData = [JSON]()
     var aiTags = [JSON]()
     var searchImg: UIImage?
@@ -26,8 +27,10 @@ class SearchImageViewController: BaseViewController {
     var header: SearchImageReusableHeaderView?
     
     var hideImageView = false
-    var hideTagView = false
+    var hideTagView = true
     var heightTagView:CGFloat = 0
+    
+    var cropImg: UIImage?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -39,8 +42,7 @@ class SearchImageViewController: BaseViewController {
         layout.minimumLineSpacing = 8
         layout.sectionInset = UIEdgeInsets(top: 0, left: 18, bottom: 20, right: 18)
         collectionVeiw.collectionViewLayout = layout
-        
-        dataReset()
+        ivTemp.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -75,8 +77,11 @@ class SearchImageViewController: BaseViewController {
         }
     }
     func dataReset() {
+        guard let cropImg = cropImg  else {
+            return
+        }
         var param = [String:Any]()
-        param["img"] = searchImg
+        param["img"] = cropImg
         param["type"] = "img"
         ApiManager.ins.requestSearchAiImageTag(param) { res in
             if res["success"].boolValue {
@@ -164,7 +169,7 @@ extension SearchImageViewController: UICollectionViewDelegate, UICollectionViewD
                 return UICollectionReusableView()
             }
             self.header = header
-            header.configuratinData(searchImg, aiTags, hideImageView, hideTagView)
+            
             header.completion = {(action, isSelected) ->Void in
                 if action == 100 {
                     self.hideImageView = isSelected
@@ -178,6 +183,23 @@ extension SearchImageViewController: UICollectionViewDelegate, UICollectionViewD
                     self.dataReset()
                 }
             }
+            header.didfinishCropImgClosure = {(image) ->Void in
+                guard let image = image as? UIImage else {
+                    return
+                }
+                
+                if let _ = self.cropImg {
+                    self.cropImg = image
+                }
+                else {
+                    self.cropImg = image
+                    self.dataReset()
+                }
+                self.ivTemp.image = image
+                self.ivTemp.isHidden = true
+            }
+            
+            header.configuratinData(searchImg, aiTags, hideImageView, hideTagView)
             return header
         }
         return UICollectionReusableView()

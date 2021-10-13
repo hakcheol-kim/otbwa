@@ -198,12 +198,13 @@ class WHomeViewController: BaseViewController {
             
             ApiManager.ins.requestChangeProductStatus(param) { res in
                 if reqCnt == (selList.count - 1) {
-                    self.dataReset()
                     self.listType = .normal
+                    self.selIndexPaths.removeAll()
+                    self.dataReset()
                 }
                 reqCnt += 1
             } fail: { errr in
-                
+                reqCnt += 1
             }
         }
     }
